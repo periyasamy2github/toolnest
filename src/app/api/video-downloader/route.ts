@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import ytdl from '@ybd-project/ytdl-core';
+import { YtdlCore } from '@ybd-project/ytdl-core';
+
+// Instantiate YtdlCore
+const ytdl = new YtdlCore();
 
 export async function GET(req: NextRequest) {
     const url = req.nextUrl.searchParams.get('url');
@@ -14,38 +17,24 @@ export async function GET(req: NextRequest) {
     }
 
     try {
-        // If format requested, stream the download
+        // If format requested, redirect to direct URL
         if (formatId) {
-            const info = await ytdl.getInfo(url);
+            const info = await ytdl.getFullInfo(url);
             const title = info.videoDetails.title || 'video';
             const safeTitle = title.replace(/[^a-zA-Z0-9\s\-_]/g, '').trim().substring(0, 50) || 'video';
 
-            // Find the format
-            const format = info.formats.find(f => f.itag.toString() === formatId);
-            if (!format) {
+            // Find the format by itag
+            const format = info.formats.find((f: any) => f.itag.toString() === formatId);
+            if (!format || !format.url) {
                 return NextResponse.json({ error: 'Format not found' }, { status: 404 });
             }
 
-            // Stream the video
-            const stream = ytdl(url, { format });
-
-            // Convert Node.js stream to Web ReadableStream
-            const chunks: Uint8Array[] = [];
-            for await (const chunk of stream) {
-                chunks.push(chunk);
-            }
-            const buffer = Buffer.concat(chunks);
-
-            const headers = new Headers();
-            headers.set('Content-Disposition', `attachment; filename="${safeTitle}.mp4"`);
-            headers.set('Content-Type', 'video/mp4');
-            headers.set('Content-Length', buffer.length.toString());
-
-            return new NextResponse(buffer, { headers });
+            // Return redirect to direct URL
+            return NextResponse.redirect(format.url, 302);
         }
 
         // Get video info
-        const info = await ytdl.getInfo(url);
+        const info = await ytdl.getFullInfo(url);
 
         const videoInfo = {
             id: info.videoDetails.videoId,
@@ -60,16 +49,16 @@ export async function GET(req: NextRequest) {
 
         return NextResponse.json(videoInfo);
     } catch (error: any) {
-        console.error('Video Error:', error);
+        console.error('Video Error:', error.message);
         return NextResponse.json({
             error: 'Failed to process video',
-            details: error.message
+            details: error.message || 'Unknown error'
         }, { status: 500 });
     }
 }
 
 function formatDuration(seconds: number): string {
-    if (!seconds) return '0:00';
+    if (!seconds || isNaN(seconds)) return '0:00';
     const hrs = Math.floor(seconds / 3600);
     const mins = Math.floor((seconds % 3600) / 60);
     const secs = Math.floor(seconds % 60);
@@ -80,28 +69,28 @@ function formatDuration(seconds: number): string {
 }
 
 function formatFileSize(bytes: number): string {
-    if (!bytes) return 'Unknown';
+    if (!bytes || isNaN(bytes)) return 'Unknown';
     if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
     return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
 function extractFormats(formats: any[]): any[] {
-    if (!formats) return [];
+    if (!formats || !Array.isArray(formats)) return [];
 
     const videoFormats = formats
-        .filter(f => f.hasVideo && f.container === 'mp4')
+        .filter(f => f.hasVideo && f.container === 'mp4' && f.url)
         .map(f => ({
-            formatId: f.itag.toString(),
+            formatId: f.itag?.toString() || '',
             quality: f.qualityLabel || `${f.height}p` || 'Unknown',
             resolution: `${f.width || 0}x${f.height || 0}`,
             height: f.height || 0,
-            ext: f.container,
+            ext: f.container || 'mp4',
             filesize: f.contentLength ? parseInt(f.contentLength) : null,
             filesizeFormatted: f.contentLength ? formatFileSize(parseInt(f.contentLength)) : 'Unknown',
-            fps: f.fps,
-            hasAudio: f.hasAudio,
+            fps: f.fps || 30,
+            hasAudio: f.hasAudio || false,
         }))
-        .filter(f => f.height > 0)
+        .filter(f => f.height > 0 && f.formatId)
         .sort((a, b) => b.height - a.height);
 
     // Prioritize formats with audio
@@ -118,8 +107,5 @@ function extractFormats(formats: any[]): any[] {
     }).slice(0, 8);
 }
 
-export const config = {
-    api: {
-        responseLimit: false,
-    },
-};
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
