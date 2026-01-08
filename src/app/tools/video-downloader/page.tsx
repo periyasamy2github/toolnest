@@ -30,7 +30,7 @@ export default function VideoDownloaderPage() {
     const [url, setUrl] = useState("");
     const [loading, setLoading] = useState(false);
     const [loadingProgress, setLoadingProgress] = useState(0);
-    const [downloadMessage, setDownloadMessage] = useState("");
+    const [downloading, setDownloading] = useState<string | null>(null);
     const [error, setError] = useState("");
     const [videoInfo, setVideoInfo] = useState<VideoInfo | null>(null);
 
@@ -51,9 +51,6 @@ export default function VideoDownloaderPage() {
             const data = await response.json();
 
             if (!response.ok) {
-                if (data.isHostingLimitation) {
-                    throw new Error('YouTube Downloader requires self-hosting. This feature is not available on Vercel. Please run locally or on a VPS.');
-                }
                 throw new Error(data.error || 'Failed to fetch video info');
             }
 
@@ -68,15 +65,32 @@ export default function VideoDownloaderPage() {
         }
     };
 
-    const getDownloadUrl = (formatId: string) => {
-        return `/api/video-downloader?url=${encodeURIComponent(url)}&format=${formatId}`;
-    };
+    const handleDownload = async (format: VideoFormat) => {
+        setDownloading(format.formatId);
+        setError("");
 
-    const handleDownloadClick = (quality: string) => {
-        setDownloadMessage(`Download started for ${quality}. Please wait...`);
-        setTimeout(() => {
-            setDownloadMessage("");
-        }, 5000);
+        try {
+            // Download through our API (avoids CORS)
+            const downloadUrl = `/api/video-downloader?url=${encodeURIComponent(url)}&format=${format.formatId}`;
+
+            // Create a hidden link and click it
+            const a = document.createElement('a');
+            a.href = downloadUrl;
+            a.download = `${videoInfo?.title || 'video'}_${format.quality}.mp4`;
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            // Keep the loading state for a bit to show something is happening
+            setTimeout(() => {
+                setDownloading(null);
+            }, 3000);
+
+        } catch (err: any) {
+            setError(`Download failed: ${err.message}`);
+            setDownloading(null);
+        }
     };
 
     const formatViews = (count: number) => {
@@ -177,10 +191,10 @@ export default function VideoDownloaderPage() {
                     </div>
 
                     {/* Download Notice */}
-                    {downloadMessage && (
-                        <div className="bg-green-500/10 border border-green-500/20 text-green-400 p-3 rounded-lg flex items-center gap-3 text-sm">
+                    {downloading && (
+                        <div className="bg-blue-500/10 border border-blue-500/20 text-blue-400 p-3 rounded-lg flex items-center gap-3 text-sm">
                             <Loader2 className="animate-spin" size={18} />
-                            {downloadMessage}
+                            Preparing download... This may take a moment for larger videos.
                         </div>
                     )}
 
@@ -217,15 +231,26 @@ export default function VideoDownloaderPage() {
                                     </div>
                                     <div className="flex items-center gap-3">
                                         <span className="text-xs text-zinc-500 hidden sm:inline">{format.filesizeFormatted}</span>
-                                        <a
-                                            href={getDownloadUrl(format.formatId)}
-                                            download={`${videoInfo?.title || 'video'}_${format.quality}.mp4`}
-                                            onClick={() => handleDownloadClick(format.quality)}
-                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-all bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white"
+                                        <button
+                                            onClick={() => handleDownload(format)}
+                                            disabled={downloading !== null}
+                                            className={cn(
+                                                "flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-all",
+                                                downloading === format.formatId
+                                                    ? "bg-blue-600 text-white"
+                                                    : "bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white",
+                                                downloading && downloading !== format.formatId && "opacity-50 cursor-not-allowed"
+                                            )}
                                         >
-                                            <Download size={16} />
-                                            <span className="hidden sm:inline">Download</span>
-                                        </a>
+                                            {downloading === format.formatId ? (
+                                                <Loader2 className="animate-spin" size={16} />
+                                            ) : (
+                                                <Download size={16} />
+                                            )}
+                                            <span className="hidden sm:inline">
+                                                {downloading === format.formatId ? 'Preparing...' : 'Download'}
+                                            </span>
+                                        </button>
                                     </div>
                                 </div>
                             ))}
