@@ -25,6 +25,14 @@ export const metadata: Metadata = {
     description: "Powerful, private, and browser-based tools for everyone. Created by Professor.",
     url: "https://webtoolnest.vercel.app", // Replace with actual URL if known
     siteName: "ToolNest",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "ToolNest - All Your Everyday Tools in One Place",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },
@@ -32,6 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ToolNest - All Your Everyday Tools in One Place",
     description: "Powerful, private, and browser-based tools for everyone. Created by Professor.",
+    images: ["/og-image.png"],
   },
 };
 
