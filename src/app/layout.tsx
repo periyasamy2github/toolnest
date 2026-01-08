@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ToolNest - All Your Everyday Tools in One Place",
     description: "Powerful, private, and browser-based tools for everyone. Created by Professor.",
-    url: "https://toolnest.example.com", // Replace with actual URL if known
+    url: "https://webtoolnest.vercel.app", // Replace with actual URL if known
     siteName: "ToolNest",
     locale: "en_US",
     type: "website",
