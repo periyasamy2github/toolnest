@@ -21,14 +21,14 @@ const tools = [
     color: "text-blue-500",
     bg: "bg-blue-500/10",
   },
-  {
+  /* {
     title: "Downloader",
     description: "Download videos from YouTube, Instagram, Facebook, and TikTok.",
     icon: Download,
     href: "/downloader",
     color: "text-red-400",
     bg: "bg-red-400/10",
-  },
+  }, */
   {
     title: "Audio Tools",
     description: "Cut and merge audio files directly in your browser.",
@@ -125,7 +125,7 @@ export default function Home() {
           <div className="space-y-4">
             <h3 className="text-xl font-semibold text-zinc-100">Modern Suite</h3>
             <p className="text-zinc-400 leading-relaxed">
-              From developer utilities like JSON formatters and JWT tools to media tools like MP3 cutters and video downloaders, we have it all.
+              From developer utilities like JSON formatters and JWT tools to media tools like MP3 cutters and image editors, we have it all.
             </p>
           </div>
         </div>
@@ -137,7 +137,7 @@ export default function Home() {
               ToolNest is a unified platform designed to simplify your daily digital tasks. Whether you're a developer needing to encode Base64, a content creator looking for a meme generator, or someone just needing to calculate their BMI, ToolNest provides a sleek, high-performance interface for all your needs.
             </p>
             <div className="flex flex-wrap justify-center gap-3 pt-4">
-              {["Developer", "Downloader", "Audio", "Image", "Health", "Utilities", "Text"].map((tag) => (
+              {["Developer", "Audio", "Image", "Health", "Utilities", "Text"].map((tag) => (
                 <span key={tag} className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-zinc-400 text-sm">
                   {tag} Tools
                 </span>
