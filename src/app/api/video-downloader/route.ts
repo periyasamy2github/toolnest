@@ -1,23 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import YTDlpWrap from 'yt-dlp-wrap';
-import path from 'path';
-import fs from 'fs';
-import os from 'os';
+import ytdl from '@ybd-project/ytdl-core';
 
-const ytDlpPath = path.join(os.tmpdir(), process.platform === 'win32' ? 'yt-dlp.exe' : 'yt-dlp');
-
-async function ensureYtDlp(): Promise<YTDlpWrap> {
-    if (!fs.existsSync(ytDlpPath)) {
-        console.log('Downloading yt-dlp binary...');
-        await YTDlpWrap.downloadFromGithub(ytDlpPath);
-        if (process.platform !== 'win32') {
-            fs.chmodSync(ytDlpPath, 0o755);
-        }
-    }
-    return new YTDlpWrap(ytDlpPath);
-}
-
-// GET - Fetch video info OR download video
 export async function GET(req: NextRequest) {
     const url = req.nextUrl.searchParams.get('url');
     const formatId = req.nextUrl.searchParams.get('format');
@@ -31,25 +14,48 @@ export async function GET(req: NextRequest) {
     }
 
     try {
-        const ytDlp = await ensureYtDlp();
-
-        // If format is specified, download the video
+        // If format requested, stream the download
         if (formatId) {
-            return await downloadVideo(ytDlp, url, formatId);
+            const info = await ytdl.getInfo(url);
+            const title = info.videoDetails.title || 'video';
+            const safeTitle = title.replace(/[^a-zA-Z0-9\s\-_]/g, '').trim().substring(0, 50) || 'video';
+
+            // Find the format
+            const format = info.formats.find(f => f.itag.toString() === formatId);
+            if (!format) {
+                return NextResponse.json({ error: 'Format not found' }, { status: 404 });
+            }
+
+            // Stream the video
+            const stream = ytdl(url, { format });
+
+            // Convert Node.js stream to Web ReadableStream
+            const chunks: Uint8Array[] = [];
+            for await (const chunk of stream) {
+                chunks.push(chunk);
+            }
+            const buffer = Buffer.concat(chunks);
+
+            const headers = new Headers();
+            headers.set('Content-Disposition', `attachment; filename="${safeTitle}.mp4"`);
+            headers.set('Content-Type', 'video/mp4');
+            headers.set('Content-Length', buffer.length.toString());
+
+            return new NextResponse(buffer, { headers });
         }
 
-        // Otherwise, return video info
-        const metadata = await ytDlp.getVideoInfo(url);
+        // Get video info
+        const info = await ytdl.getInfo(url);
 
         const videoInfo = {
-            id: metadata.id,
-            title: metadata.title,
-            thumbnail: metadata.thumbnail,
-            duration: metadata.duration,
-            durationFormatted: formatDuration(metadata.duration),
-            channel: metadata.channel || metadata.uploader,
-            viewCount: metadata.view_count,
-            formats: extractFormats(metadata.formats),
+            id: info.videoDetails.videoId,
+            title: info.videoDetails.title,
+            thumbnail: info.videoDetails.thumbnails[info.videoDetails.thumbnails.length - 1]?.url,
+            duration: parseInt(info.videoDetails.lengthSeconds),
+            durationFormatted: formatDuration(parseInt(info.videoDetails.lengthSeconds)),
+            channel: info.videoDetails.author?.name,
+            viewCount: parseInt(info.videoDetails.viewCount || '0'),
+            formats: extractFormats(info.formats),
         };
 
         return NextResponse.json(videoInfo);
@@ -60,41 +66,6 @@ export async function GET(req: NextRequest) {
             details: error.message
         }, { status: 500 });
     }
-}
-
-async function downloadVideo(ytDlp: YTDlpWrap, url: string, formatId: string) {
-    const metadata = await ytDlp.getVideoInfo(url);
-    const title = metadata.title || 'video';
-    const safeTitle = title.replace(/[^a-zA-Z0-9\s\-_]/g, '').trim().substring(0, 50) || 'video';
-
-    const tempFile = path.join(os.tmpdir(), `${Date.now()}_video.mp4`);
-
-    console.log(`Downloading format ${formatId} to ${tempFile}`);
-
-    await ytDlp.execPromise([
-        url,
-        '-f', formatId,
-        '-o', tempFile,
-        '--no-playlist',
-        '--no-warnings',
-    ]);
-
-    if (!fs.existsSync(tempFile)) {
-        throw new Error('Video file was not created');
-    }
-
-    const stat = fs.statSync(tempFile);
-    const videoBuffer = fs.readFileSync(tempFile);
-
-    // Clean up temp file
-    try { fs.unlinkSync(tempFile); } catch (e) { }
-
-    const headers = new Headers();
-    headers.set('Content-Disposition', `attachment; filename="${safeTitle}.mp4"`);
-    headers.set('Content-Type', 'video/mp4');
-    headers.set('Content-Length', stat.size.toString());
-
-    return new NextResponse(videoBuffer, { headers });
 }
 
 function formatDuration(seconds: number): string {
@@ -118,17 +89,17 @@ function extractFormats(formats: any[]): any[] {
     if (!formats) return [];
 
     const videoFormats = formats
-        .filter(f => f.vcodec && f.vcodec !== 'none')
+        .filter(f => f.hasVideo && f.container === 'mp4')
         .map(f => ({
-            formatId: f.format_id,
-            quality: f.format_note || `${f.height}p` || 'Unknown',
-            resolution: f.resolution || `${f.width || 0}x${f.height || 0}`,
+            formatId: f.itag.toString(),
+            quality: f.qualityLabel || `${f.height}p` || 'Unknown',
+            resolution: `${f.width || 0}x${f.height || 0}`,
             height: f.height || 0,
-            ext: f.ext,
-            filesize: f.filesize || f.filesize_approx,
-            filesizeFormatted: formatFileSize(f.filesize || f.filesize_approx),
+            ext: f.container,
+            filesize: f.contentLength ? parseInt(f.contentLength) : null,
+            filesizeFormatted: f.contentLength ? formatFileSize(parseInt(f.contentLength)) : 'Unknown',
             fps: f.fps,
-            hasAudio: f.acodec && f.acodec !== 'none',
+            hasAudio: f.hasAudio,
         }))
         .filter(f => f.height > 0)
         .sort((a, b) => b.height - a.height);
@@ -146,3 +117,9 @@ function extractFormats(formats: any[]): any[] {
         return true;
     }).slice(0, 8);
 }
+
+export const config = {
+    api: {
+        responseLimit: false,
+    },
+};

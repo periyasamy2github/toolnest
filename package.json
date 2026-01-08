@@ -13,6 +13,7 @@
     "@ffmpeg/ffmpeg": "^0.12.15",
     "@ffmpeg/util": "^0.12.2",
     "@imgly/background-removal": "^1.7.0",
+    "@ybd-project/ytdl-core": "^6.0.8",
     "clsx": "^2.1.1",
     "fb-video-downloader": "^1.0.3",
     "instagram-url-direct": "^2.0.7",
