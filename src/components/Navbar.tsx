@@ -46,7 +46,7 @@ import { useState } from "react";
 
 const navItems = [
     { name: "All Tools", href: "/", icon: LayoutGrid },
-    {
+    /* {
         name: "Downloader",
         href: "/downloader",
         icon: Download,
@@ -54,7 +54,7 @@ const navItems = [
             { name: "YouTube Downloader", href: "/downloader/video", icon: Video },
             { name: "Social Downloader", href: "/downloader/social", icon: Share2 },
         ]
-    },
+    }, */
     {
         name: "Audio",
         href: "/audio",
