@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Type, AlignLeft, CaseSensitive, ArrowLeft } from "lucide-react";
+import { Type, AlignLeft, CaseSensitive, ArrowLeft, GitDiff } from "lucide-react";
 
 const tools = [
     {
@@ -25,6 +25,14 @@ const tools = [
         href: "/tools/lorem-ipsum",
         color: "text-purple-400",
         bg: "bg-purple-400/10",
+    },
+    {
+        title: "Text Diff Checker",
+        description: "Compare two texts and highlight differences.",
+        icon: GitDiff,
+        href: "/tools/text/diff-checker",
+        color: "text-orange-400",
+        bg: "bg-orange-400/10",
     },
 ];
 
