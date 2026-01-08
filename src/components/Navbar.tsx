@@ -48,82 +48,79 @@ const navItems = [
     { name: "All Tools", href: "/", icon: LayoutGrid },
     {
         name: "Downloader",
-        href: "/tools/downloader",
+        href: "/downloader",
         icon: Download,
         subItems: [
-            { name: "YouTube Downloader", href: "/tools/video-downloader", icon: Video },
-            { name: "Social Downloader", href: "/tools/social-downloader", icon: Share2 },
+            { name: "YouTube Downloader", href: "/downloader/video", icon: Video },
+            { name: "Social Downloader", href: "/downloader/social", icon: Share2 },
         ]
     },
     {
-        name: "Media",
-        href: "/tools/media",
-        icon: Video,
+        name: "Audio",
+        href: "/audio",
+        icon: Music,
         subItems: [
-            { name: "Video Converter", href: "/tools/video-converter", icon: FileVideo },
-            { name: "Audio Tools", href: "/tools/audio", icon: Music }, // Main Audio Page
-            { name: "Voice Recorder", href: "/tools/audio/recorder", icon: Mic },
-            { name: "MP3 Cutter", href: "/tools/audio/cutter", icon: Scissors },
-            { name: "Audio Merger", href: "/tools/audio/merger", icon: Merge },
+            { name: "MP3 Cutter", href: "/audio/cutter", icon: Scissors },
+            { name: "Audio Merger", href: "/audio/merger", icon: Merge },
         ]
     },
     {
         name: "Image",
-        href: "/tools/image",
+        href: "/image",
         icon: ImageIcon,
         subItems: [
-            { name: "Compressor", href: "/tools/image-compressor", icon: ImageIcon },
-            { name: "Resizer & Cropper", href: "/tools/image/resizer", icon: Crop },
-            { name: "Background Remover", href: "/tools/image/remove-bg", icon: Scissors },
-            { name: "Meme Generator", href: "/tools/image/meme-generator", icon: Smile },
+            { name: "Compressor", href: "/image/compressor", icon: ImageIcon },
+            { name: "Resizer & Cropper", href: "/image/resizer", icon: Crop },
+            { name: "Background Remover", href: "/image/remove-bg", icon: Scissors },
+            { name: "Meme Generator", href: "/image/meme-generator", icon: Smile },
         ]
     },
     {
         name: "Health",
-        href: "/tools/health",
+        href: "/health",
         icon: Activity,
         subItems: [
-            { name: "BMI Calculator", href: "/tools/health/bmi-calculator", icon: Calculator },
-            { name: "Body Fat", href: "/tools/health/body-fat-calculator", icon: Activity },
-            { name: "Breathing", href: "/tools/health/breathing-exercise", icon: Wind },
-            { name: "Water Intake", href: "/tools/health/water-intake-calculator", icon: Droplets },
-            { name: "Calories", href: "/tools/health/calories-calculator", icon: Flame },
+            { name: "BMI Calculator", href: "/health/bmi-calculator", icon: Calculator },
+            { name: "Body Fat", href: "/health/body-fat-calculator", icon: Activity },
+            { name: "Breathing", href: "/health/breathing-exercise", icon: Wind },
+            { name: "Water Intake", href: "/health/water-intake-calculator", icon: Droplets },
+            { name: "Calories", href: "/health/calories-calculator", icon: Flame },
         ]
     },
     {
         name: "Text",
-        href: "/tools/text",
+        href: "/text",
         icon: FileText,
         subItems: [
-            { name: "Word Counter", href: "/tools/word-counter", icon: Hash },
-            { name: "Case Converter", href: "/tools/case-converter", icon: CaseSensitive },
-            { name: "Lorem Ipsum", href: "/tools/lorem-ipsum", icon: Type },
-            { name: "Diff Checker", href: "/tools/text/diff-checker", icon: FileDiff },
+            { name: "Word Counter", href: "/text/word-counter", icon: Hash },
+            { name: "Case Converter", href: "/text/case-converter", icon: CaseSensitive },
+            { name: "Lorem Ipsum", href: "/text/lorem-ipsum", icon: Type },
+            { name: "Diff Checker", href: "/text/diff-checker", icon: FileDiff },
         ]
     },
     {
         name: "Developer",
-        href: "/tools/developer",
+        href: "/developer",
         icon: Braces,
         subItems: [
-            { name: "JSON Formatter", href: "/tools/developer/json-formatter", icon: Braces },
-            { name: "Base64 Encoder", href: "/tools/developer/base64", icon: Binary },
-            { name: "URL Encoder", href: "/tools/developer/url-encoder", icon: LinkIcon },
-            { name: "HTML Entities", href: "/tools/developer/html-entities", icon: Code },
-            { name: "Regex Tester", href: "/tools/developer/regex-tester", icon: FileCode },
-            { name: "JWT Tool", href: "/tools/developer/jwt", icon: ShieldCheck },
-            { name: "UUID Gen", href: "/tools/developer/uuid-generator", icon: Fingerprint },
-            { name: "Password Gen", href: "/tools/password-generator", icon: Lock },
+            { name: "JSON Formatter", href: "/developer/json-formatter", icon: Braces },
+            { name: "Base64 Encoder", href: "/developer/base64", icon: Binary },
+            { name: "URL Encoder", href: "/developer/url-encoder", icon: LinkIcon },
+            { name: "HTML Entities", href: "/developer/html-entities", icon: Code },
+            { name: "Regex Tester", href: "/developer/regex-tester", icon: FileCode },
+            { name: "JWT Tool", href: "/developer/jwt", icon: ShieldCheck },
+            { name: "UUID Gen", href: "/developer/uuid-generator", icon: Fingerprint },
+            { name: "Password Gen", href: "/developer/password-generator", icon: Lock },
         ]
     },
     {
         name: "Utilities",
-        href: "/tools/utils",
+        href: "/utils",
         icon: Wrench,
         subItems: [
-            { name: "QR Code", href: "/tools/qr-code", icon: QrCode },
-            { name: "Unit Converter", href: "/tools/converter", icon: Ruler },
-            { name: "Timer", href: "/tools/utils/timer", icon: Timer },
+            { name: "QR Code", href: "/utils/qr-code", icon: QrCode },
+            { name: "Unit Converter", href: "/utils/unit-converter", icon: Ruler },
+            { name: "Timer", href: "/utils/timer", icon: Timer },
         ]
     },
 ];
@@ -136,12 +133,18 @@ export function Navbar() {
     return (
         <nav className="sticky top-0 z-50 w-full border-b border-white/5 bg-zinc-950/80 backdrop-blur-xl">
             <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-                <Link href="/" className="flex items-center gap-2 font-bold text-xl text-zinc-100">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                        <LayoutGrid size={18} className="text-white" />
+                <div className="flex items-center gap-4">
+                    <Link href="/" className="flex items-center gap-2 font-bold text-xl text-zinc-100">
+                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                            <LayoutGrid size={18} className="text-white" />
+                        </div>
+                        <span>ToolNest</span>
+                    </Link>
+                    <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
+                        <span>Created by</span>
+                        <span className="text-zinc-200">Professor</span>
                     </div>
-                    <span>ToolNest</span>
-                </Link>
+                </div>
 
                 {/* Desktop Nav */}
                 <div className="hidden md:flex items-center gap-1 mr-4">

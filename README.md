@@ -97,12 +97,13 @@ src/
 │   ├── api/                 # API routes
 │   │   ├── video-downloader/
 │   │   └── social-downloader/
-│   ├── tools/               # Tool pages
-│   │   ├── audio/
-│   │   ├── image/
-│   │   ├── health/
-│   │   ├── text/
-│   │   └── utils/
+│   ├── audio/               # Audio tools
+│   ├── developer/           # Developer tools
+│   ├── downloader/          # Downloader tools
+│   ├── health/              # Health tools
+│   ├── image/               # Image tools
+│   ├── text/                # Text tools
+│   ├── utils/               # Utility tools
 │   ├── layout.tsx           # Root layout
 │   ├── page.tsx             # Home page
 │   └── globals.css          # Global styles
@@ -210,6 +211,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📞 Support
 
 If you have any questions or issues, please open an issue on GitHub.
+
+<a href="https://chai4.me/mr_professor" target="_blank" title="Support mr_professor on Chai4Me" style="display:inline-flex;flex-direction:column;align-items:center;justify-content:center;background:#ffffff;padding:8px 32px;border-radius:16px;text-decoration:none;border:1px solid #e5e7eb;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);transition:transform 0.2s;"><img src="https://www.chai4.me/icons/wordmark.png" alt="Chai4Me" style="height:32px;object-fit:contain;"/></a>
 
 ---
 
