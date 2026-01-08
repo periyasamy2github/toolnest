@@ -8,10 +8,19 @@ import {
   Type,
   ArrowRight,
   Download,
-  Activity
+  Activity,
+  Code
 } from "lucide-react";
 
 const tools = [
+  {
+    title: "Developer Tools",
+    description: "JSON formatter, Base64, JWT, Regex, and more.",
+    icon: Code,
+    href: "/tools/developer",
+    color: "text-blue-500",
+    bg: "bg-blue-500/10",
+  },
   {
     title: "Downloader",
     description: "Download videos from YouTube, Instagram, Facebook, and TikTok.",
