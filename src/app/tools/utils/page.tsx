@@ -11,14 +11,6 @@ const tools = [
         bg: "bg-blue-400/10",
     },
     {
-        title: "Password Generator",
-        description: "Generate strong, secure passwords instantly.",
-        icon: Lock,
-        href: "/tools/password-generator",
-        color: "text-green-400",
-        bg: "bg-green-400/10",
-    },
-    {
         title: "Unit Converter",
         description: "Convert length, weight, temperature, and more.",
         icon: Ruler,
@@ -49,7 +41,7 @@ export default function UtilsPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {tools.map((tool) => (
                     <Link
                         key={tool.title}

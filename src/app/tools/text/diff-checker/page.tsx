@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowLeft, GitDiff, Trash2, Copy, Check, Columns, Rows, Type } from "lucide-react";
+import { ArrowLeft, FileDiff, Trash2, Copy, Check, Columns, Rows, Type } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import * as diff from "diff";
@@ -143,7 +143,7 @@ export default function TextDiffChecker() {
             <div className="space-y-4">
                 <div className="flex items-center justify-between px-2">
                     <h3 className="text-sm font-medium text-zinc-400 flex items-center gap-2">
-                        <GitDiff size={16} className="text-orange-400" />
+                        <FileDiff size={16} className="text-orange-400" />
                         Difference Result
                     </h3>
                     <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest">
@@ -217,7 +217,7 @@ export default function TextDiffChecker() {
 
                     {(!oldText && !newText) && (
                         <div className="col-span-2 flex flex-col items-center justify-center py-20 text-zinc-700 space-y-4">
-                            <GitDiff size={48} className="opacity-20" />
+                            <FileDiff size={48} className="opacity-20" />
                             <p className="text-sm italic">Differences will be highlighted here...</p>
                         </div>
                     )}

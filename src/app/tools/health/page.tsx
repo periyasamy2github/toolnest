@@ -1,13 +1,13 @@
 "use client";
 
-import { ArrowLeft, Activity, Utensils } from "lucide-react";
+import { ArrowLeft, Activity, Calculator, Wind, Droplets, Flame } from "lucide-react";
 import Link from "next/link";
 
 const tools = [
     {
         title: "BMI Calculator",
         description: "Calculate your Body Mass Index (BMI) using Global or Asian/Indian standards.",
-        icon: Activity,
+        icon: Calculator,
         href: "/tools/health/bmi-calculator",
         color: "text-blue-400",
         bg: "bg-blue-400/10",
@@ -23,7 +23,7 @@ const tools = [
     {
         title: "Breathing Exercise",
         description: "Relax with guided breathing techniques including Pranayama.",
-        icon: Activity,
+        icon: Wind,
         href: "/tools/health/breathing-exercise",
         color: "text-cyan-400",
         bg: "bg-cyan-400/10",
@@ -31,7 +31,7 @@ const tools = [
     {
         title: "Water Intake Calculator",
         description: "Calculate your daily water needs based on weight and activity.",
-        icon: Activity,
+        icon: Droplets,
         href: "/tools/health/water-intake-calculator",
         color: "text-blue-500",
         bg: "bg-blue-500/10",
@@ -39,7 +39,7 @@ const tools = [
     {
         title: "Calories Calculator",
         description: "Calculate daily calorie needs and track food intake.",
-        icon: Utensils,
+        icon: Flame,
         href: "/tools/health/calories-calculator",
         color: "text-green-400",
         bg: "bg-green-400/10",
@@ -59,7 +59,7 @@ export default function HealthToolsPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {tools.map((tool) => (
                     <Link
                         key={tool.title}

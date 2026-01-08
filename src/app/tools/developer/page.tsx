@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Code, Braces, Hash, Link as LinkIcon, Shield, Search, Fingerprint, Key } from "lucide-react";
+import { ArrowLeft, Braces, Binary, Link as LinkIcon, Code, FileCode, ShieldCheck, Fingerprint, Lock } from "lucide-react";
 import Link from "next/link";
 
 const tools = [
@@ -15,7 +15,7 @@ const tools = [
     {
         title: "Base64 Encoder",
         description: "Encode and decode text to/from Base64 format.",
-        icon: Hash,
+        icon: Binary,
         href: "/tools/developer/base64",
         color: "text-blue-400",
         bg: "bg-blue-400/10",
@@ -31,7 +31,7 @@ const tools = [
     {
         title: "HTML Entities",
         description: "Escape and unescape HTML characters for safety.",
-        icon: Shield,
+        icon: Code,
         href: "/tools/developer/html-entities",
         color: "text-purple-400",
         bg: "bg-purple-400/10",
@@ -39,7 +39,7 @@ const tools = [
     {
         title: "Regex Tester",
         description: "Test and debug regular expressions with live matches.",
-        icon: Search,
+        icon: FileCode,
         href: "/tools/developer/regex-tester",
         color: "text-pink-400",
         bg: "bg-pink-400/10",
@@ -47,10 +47,18 @@ const tools = [
     {
         title: "JWT Tool",
         description: "Generate and decode JSON Web Tokens (JWT).",
-        icon: Key,
+        icon: ShieldCheck,
         href: "/tools/developer/jwt",
         color: "text-cyan-400",
         bg: "bg-cyan-400/10",
+    },
+    {
+        title: "Password Generator",
+        description: "Generate secure, random passwords instantly.",
+        icon: Lock,
+        href: "/tools/password-generator",
+        color: "text-orange-400",
+        bg: "bg-orange-400/10",
     },
     {
         title: "UUID Generator",
@@ -75,7 +83,7 @@ export default function DeveloperToolsPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {tools.map((tool) => (
                     <Link
                         key={tool.title}

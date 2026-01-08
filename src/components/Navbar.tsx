@@ -25,7 +25,22 @@ import {
     Share2,
     FileVideo,
     Smile,
-    Crop
+    Crop,
+    Wind,
+    Droplets,
+    Flame,
+    Hash,
+    CaseSensitive,
+    Type,
+    FileDiff,
+    Braces,
+    Binary,
+    Link as LinkIcon,
+    ShieldCheck,
+    Fingerprint,
+    Code,
+    Music,
+    FileCode
 } from "lucide-react";
 import { useState } from "react";
 
@@ -46,7 +61,7 @@ const navItems = [
         icon: Video,
         subItems: [
             { name: "Video Converter", href: "/tools/video-converter", icon: FileVideo },
-            { name: "Audio Tools", href: "/tools/audio", icon: Video }, // Main Audio Page
+            { name: "Audio Tools", href: "/tools/audio", icon: Music }, // Main Audio Page
             { name: "Voice Recorder", href: "/tools/audio/recorder", icon: Mic },
             { name: "MP3 Cutter", href: "/tools/audio/cutter", icon: Scissors },
             { name: "Audio Merger", href: "/tools/audio/merger", icon: Merge },
@@ -68,7 +83,11 @@ const navItems = [
         href: "/tools/health",
         icon: Activity,
         subItems: [
-            { name: "Calories Calculator", href: "/tools/health/calories-calculator", icon: Activity },
+            { name: "BMI Calculator", href: "/tools/health/bmi-calculator", icon: Calculator },
+            { name: "Body Fat", href: "/tools/health/body-fat-calculator", icon: Activity },
+            { name: "Breathing", href: "/tools/health/breathing-exercise", icon: Wind },
+            { name: "Water Intake", href: "/tools/health/water-intake-calculator", icon: Droplets },
+            { name: "Calories", href: "/tools/health/calories-calculator", icon: Flame },
         ]
     },
     {
@@ -76,9 +95,25 @@ const navItems = [
         href: "/tools/text",
         icon: FileText,
         subItems: [
-            { name: "Word Counter", href: "/tools/word-counter", icon: FileText },
-            { name: "Case Converter", href: "/tools/case-converter", icon: FileText },
-            { name: "Lorem Ipsum", href: "/tools/lorem-ipsum", icon: FileText },
+            { name: "Word Counter", href: "/tools/word-counter", icon: Hash },
+            { name: "Case Converter", href: "/tools/case-converter", icon: CaseSensitive },
+            { name: "Lorem Ipsum", href: "/tools/lorem-ipsum", icon: Type },
+            { name: "Diff Checker", href: "/tools/text/diff-checker", icon: FileDiff },
+        ]
+    },
+    {
+        name: "Developer",
+        href: "/tools/developer",
+        icon: Braces,
+        subItems: [
+            { name: "JSON Formatter", href: "/tools/developer/json-formatter", icon: Braces },
+            { name: "Base64 Encoder", href: "/tools/developer/base64", icon: Binary },
+            { name: "URL Encoder", href: "/tools/developer/url-encoder", icon: LinkIcon },
+            { name: "HTML Entities", href: "/tools/developer/html-entities", icon: Code },
+            { name: "Regex Tester", href: "/tools/developer/regex-tester", icon: FileCode },
+            { name: "JWT Tool", href: "/tools/developer/jwt", icon: ShieldCheck },
+            { name: "UUID Gen", href: "/tools/developer/uuid-generator", icon: Fingerprint },
+            { name: "Password Gen", href: "/tools/password-generator", icon: Lock },
         ]
     },
     {
@@ -87,7 +122,6 @@ const navItems = [
         icon: Wrench,
         subItems: [
             { name: "QR Code", href: "/tools/qr-code", icon: QrCode },
-            { name: "Password Gen", href: "/tools/password-generator", icon: Lock },
             { name: "Unit Converter", href: "/tools/converter", icon: Ruler },
             { name: "Timer", href: "/tools/utils/timer", icon: Timer },
         ]

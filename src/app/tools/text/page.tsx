@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { Type, AlignLeft, CaseSensitive, ArrowLeft, GitDiff } from "lucide-react";
+import { Type, Hash, CaseSensitive, ArrowLeft, FileDiff } from "lucide-react";
 
 const tools = [
     {
         title: "Word Counter",
         description: "Count words, characters, and sentences.",
-        icon: AlignLeft,
+        icon: Hash,
         href: "/tools/word-counter",
         color: "text-blue-400",
         bg: "bg-blue-400/10",
@@ -29,7 +29,7 @@ const tools = [
     {
         title: "Text Diff Checker",
         description: "Compare two texts and highlight differences.",
-        icon: GitDiff,
+        icon: FileDiff,
         href: "/tools/text/diff-checker",
         color: "text-orange-400",
         bg: "bg-orange-400/10",
@@ -49,7 +49,7 @@ export default function TextToolsPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {tools.map((tool) => (
                     <Link
                         key={tool.title}

@@ -16,7 +16,7 @@ const tools = [
         title: "Social Media Downloader",
         description: "Specialized downloader for Instagram Reels and Facebook Videos.",
         icon: Instagram,
-        href: "/tools/video-downloader", // Pointing to same tool as it handles both now
+        href: "/tools/social-downloader",
         color: "text-pink-400",
         bg: "bg-pink-400/10",
     }
@@ -35,7 +35,7 @@ export default function DownloaderToolsPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {tools.map((tool) => (
                     <Link
                         key={tool.title}
