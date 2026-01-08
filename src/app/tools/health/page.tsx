@@ -5,6 +5,38 @@ import Link from "next/link";
 
 const tools = [
     {
+        title: "BMI Calculator",
+        description: "Calculate your Body Mass Index (BMI) using Global or Asian/Indian standards.",
+        icon: Activity,
+        href: "/tools/health/bmi-calculator",
+        color: "text-blue-400",
+        bg: "bg-blue-400/10",
+    },
+    {
+        title: "Body Fat Calculator",
+        description: "Estimate your body fat percentage using the US Navy method.",
+        icon: Activity,
+        href: "/tools/health/body-fat-calculator",
+        color: "text-purple-400",
+        bg: "bg-purple-400/10",
+    },
+    {
+        title: "Breathing Exercise",
+        description: "Relax with guided breathing techniques including Pranayama.",
+        icon: Activity,
+        href: "/tools/health/breathing-exercise",
+        color: "text-cyan-400",
+        bg: "bg-cyan-400/10",
+    },
+    {
+        title: "Water Intake Calculator",
+        description: "Calculate your daily water needs based on weight and activity.",
+        icon: Activity,
+        href: "/tools/health/water-intake-calculator",
+        color: "text-blue-500",
+        bg: "bg-blue-500/10",
+    },
+    {
         title: "Calories Calculator",
         description: "Calculate daily calorie needs and track food intake.",
         icon: Utensils,
