@@ -1,36 +1,216 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ToolNest 🧰
 
-## Getting Started
+**All Your Everyday Tools in One Place**
 
-First, run the development server:
+A modern, feature-rich collection of web tools built with Next.js 16, TypeScript, and Tailwind CSS. All tools work directly in your browser with a focus on privacy and performance.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss)
+
+## ✨ Features
+
+### 📥 Downloader Tools
+- **YouTube Downloader** - Download videos from YouTube in MP4 format
+- **Social Downloader** - Download from Instagram and Facebook
+
+### 🎬 Media Tools
+- **Video Converter** - Convert video formats
+- **Audio Tools** - Voice Recorder, MP3 Cutter, Audio Merger
+
+### 🖼️ Image Tools
+- **Image Compressor** - Compress images without quality loss
+- **Resizer & Cropper** - Resize and crop images
+- **Background Remover** - Remove image backgrounds using AI
+- **Meme Generator** - Create custom memes
+
+### 💪 Health Tools
+- **Calories Calculator** - BMR calculator and food calorie search
+
+### 📝 Text Tools
+- **Word Counter** - Count words, characters, sentences
+- **Case Converter** - Transform text case
+- **Lorem Ipsum Generator** - Generate placeholder text
+
+### 🔧 Utilities
+- **QR Code Generator** - Create styled QR codes with logos
+- **Password Generator** - Generate secure passwords
+- **Unit Converter** - Convert length, weight, temperature
+- **Timer & Stopwatch** - Countdown timer and stopwatch
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** 18.17 or later
+- **npm** or **yarn** or **pnpm**
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/periyasamy2github/toolnest.git
+   cd toolnest
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   ```
+   Edit `.env.local` and add your API keys if needed.
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open in browser**
+   ```
+   http://localhost:3000
+   ```
+
+---
+
+## 🛠️ Development
+
+### Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server with Turbopack |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+
+### Project Structure
+
+```
+src/
+├── app/
+│   ├── api/                 # API routes
+│   │   ├── video-downloader/
+│   │   └── social-downloader/
+│   ├── tools/               # Tool pages
+│   │   ├── audio/
+│   │   ├── image/
+│   │   ├── health/
+│   │   ├── text/
+│   │   └── utils/
+│   ├── layout.tsx           # Root layout
+│   ├── page.tsx             # Home page
+│   └── globals.css          # Global styles
+├── components/
+│   └── Navbar.tsx           # Navigation component
+└── lib/
+    └── utils.ts             # Utility functions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4
+- **Icons**: Lucide React
+- **QR Codes**: qr-code-styling
+- **Background Removal**: @imgly/background-removal
+- **YouTube Downloads**: yt-dlp-wrap
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🌐 Deployment
 
-To learn more about Next.js, take a look at the following resources:
+### Deploy to Vercel (Recommended)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Push to GitHub** (already done)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Connect to Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Click "New Project"
+   - Import your GitHub repository
+   - Click "Deploy"
 
-## Deploy on Vercel
+3. **Environment Variables**
+   Add any required environment variables in Vercel dashboard.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Deploy to Other Platforms
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### Netlify
+```bash
+npm run build
+# Deploy the `.next` folder
+```
+
+#### Docker
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+#### Self-Hosted
+```bash
+npm run build
+npm run start
+# Or use PM2
+pm2 start npm --name "toolnest" -- start
+```
+
+---
+
+## ⚙️ Configuration
+
+### next.config.ts
+
+The app includes special headers for WASM support (required for background removal):
+
+```typescript
+headers: async () => [
+  {
+    source: "/(.*)",
+    headers: [
+      { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+      { key: "Cross-Origin-Embedder-Policy", value: "require-corp" },
+    ],
+  },
+],
+```
+
+---
+
+## 📄 License
+
+MIT License - feel free to use this project for personal or commercial purposes.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📞 Support
+
+If you have any questions or issues, please open an issue on GitHub.
+
+---
+
+**Made with ❤️ using Next.js**
