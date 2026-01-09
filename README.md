@@ -1,4 +1,4 @@
-# ToolNest - Professor 🧰
+# ToolNest - Professor
 
 **All Your Everyday Tools in One Place** 
 
