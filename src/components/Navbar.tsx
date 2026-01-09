@@ -21,7 +21,6 @@ import {
     Lock,
     Ruler,
     Calculator,
-    Timer,
     Share2,
     FileVideo,
     Smile,
@@ -40,23 +39,39 @@ import {
     Fingerprint,
     Code,
     Music,
-    FileCode,
+    Instagram,
+    FileJson,
+    Database,
+    Globe,
+    Dices,
+    Clock,
     Palette,
-    Instagram
+    FileCode2,
+    FileCode,
+    FileType,
+    Code2,
+    Timer,
+    Newspaper,
+    BookOpen,
+    BarChart3,
+    Volume2
 } from "lucide-react";
 import { useState } from "react";
 
 const navItems = [
     { name: "All Tools", href: "/", icon: LayoutGrid },
-    /* {
-        name: "Downloader",
-        href: "/downloader",
-        icon: Download,
+    {
+        name: "Design",
+        href: "/image",
+        icon: ImageIcon,
         subItems: [
-            { name: "YouTube Downloader", href: "/downloader/video", icon: Video },
-            { name: "Social Downloader", href: "/downloader/social", icon: Share2 },
+            { name: "Compressor", href: "/image/compressor", icon: ImageIcon },
+            { name: "Resizer & Cropper", href: "/image/resizer", icon: Crop },
+            { name: "Background Remover", href: "/image/remove-bg", icon: Scissors },
+            { name: "Meme Generator", href: "/image/meme-generator", icon: Smile },
+            { name: "Color Palette", href: "/image/color-palette", icon: Palette },
         ]
-    }, */
+    },
     {
         name: "Audio",
         href: "/audio",
@@ -67,15 +82,54 @@ const navItems = [
         ]
     },
     {
-        name: "Image",
-        href: "/image",
-        icon: ImageIcon,
+        name: "Content",
+        href: "/text",
+        icon: FileText,
         subItems: [
-            { name: "Compressor", href: "/image/compressor", icon: ImageIcon },
-            { name: "Resizer & Cropper", href: "/image/resizer", icon: Crop },
-            { name: "Background Remover", href: "/image/remove-bg", icon: Scissors },
-            { name: "Meme Generator", href: "/image/meme-generator", icon: Smile },
-            { name: "Color Palette", href: "/image/color-palette", icon: Palette },
+            { name: "Word Counter", href: "/text/word-counter", icon: Hash },
+            { name: "Case Converter", href: "/text/case-converter", icon: CaseSensitive },
+            { name: "Lorem Ipsum", href: "/text/lorem-ipsum", icon: Type },
+            { name: "Diff Checker", href: "/text/diff-checker", icon: FileDiff },
+            { name: "Instagram Hashtags", href: "/text/instagram-hashtags", icon: Instagram },
+            { name: "Headline Analyzer", href: "/text/headline-analyzer", icon: Newspaper },
+            { name: "Readability Score", href: "/text/readability", icon: BookOpen },
+            { name: "Keyword Density", href: "/text/keyword-density", icon: BarChart3 },
+            { name: "Text to Speech", href: "/text/text-to-speech", icon: Volume2 },
+        ]
+    },
+    {
+        name: "Developer",
+        href: "/developer",
+        icon: Braces,
+        subItems: [
+            { name: "JSON Formatter", href: "/developer/json-formatter", icon: Braces },
+            { name: "JSON to TS", href: "/developer/json-to-ts", icon: FileJson },
+            { name: "SQL Formatter", href: "/developer/sql-formatter", icon: Database },
+            { name: "YAML to JSON", href: "/developer/yaml-to-json", icon: FileType },
+            { name: "HTML to JSX", href: "/developer/html-to-jsx", icon: Code2 },
+            { name: "CSS Tools", href: "/developer/css-tools", icon: Scissors },
+            { name: "Markdown Preview", href: "/developer/markdown-preview", icon: FileCode2 },
+            { name: "HTML Entities", href: "/developer/html-entities", icon: Code },
+            { name: "Regex Tester", href: "/developer/regex-tester", icon: FileCode },
+            { name: "Base64 Encoder", href: "/developer/base64", icon: Binary },
+            { name: "URL Encoder", href: "/developer/url-encoder", icon: LinkIcon },
+            { name: "JWT Tool", href: "/developer/jwt", icon: ShieldCheck },
+            { name: "UUID Gen", href: "/developer/uuid-generator", icon: Fingerprint },
+            { name: "Password Gen", href: "/developer/password-generator", icon: Lock },
+        ]
+    },
+    {
+        name: "Productivity",
+        href: "/utils",
+        icon: Timer,
+        subItems: [
+            { name: "Pomodoro", href: "/utils/pomodoro", icon: Clock },
+            { name: "Stopwatch", href: "/utils/stopwatch", icon: Timer },
+            { name: "Timer", href: "/utils/timer", icon: Timer },
+            { name: "World Clock", href: "/utils/world-clock", icon: Globe },
+            { name: "Random Picker", href: "/utils/random-picker", icon: Dices },
+            { name: "QR Code", href: "/utils/qr-code", icon: QrCode },
+            { name: "Unit Converter", href: "/utils/unit-converter", icon: Ruler },
         ]
     },
     {
@@ -88,43 +142,6 @@ const navItems = [
             { name: "Breathing", href: "/health/breathing-exercise", icon: Wind },
             { name: "Water Intake", href: "/health/water-intake-calculator", icon: Droplets },
             { name: "Calories", href: "/health/calories-calculator", icon: Flame },
-        ]
-    },
-    {
-        name: "Text",
-        href: "/text",
-        icon: FileText,
-        subItems: [
-            { name: "Word Counter", href: "/text/word-counter", icon: Hash },
-            { name: "Case Converter", href: "/text/case-converter", icon: CaseSensitive },
-            { name: "Lorem Ipsum", href: "/text/lorem-ipsum", icon: Type },
-            { name: "Diff Checker", href: "/text/diff-checker", icon: FileDiff },
-            { name: "Instagram Hashtags", href: "/text/instagram-hashtags", icon: Instagram },
-        ]
-    },
-    {
-        name: "Developer",
-        href: "/developer",
-        icon: Braces,
-        subItems: [
-            { name: "JSON Formatter", href: "/developer/json-formatter", icon: Braces },
-            { name: "Base64 Encoder", href: "/developer/base64", icon: Binary },
-            { name: "URL Encoder", href: "/developer/url-encoder", icon: LinkIcon },
-            { name: "HTML Entities", href: "/developer/html-entities", icon: Code },
-            { name: "Regex Tester", href: "/developer/regex-tester", icon: FileCode },
-            { name: "JWT Tool", href: "/developer/jwt", icon: ShieldCheck },
-            { name: "UUID Gen", href: "/developer/uuid-generator", icon: Fingerprint },
-            { name: "Password Gen", href: "/developer/password-generator", icon: Lock },
-        ]
-    },
-    {
-        name: "Utilities",
-        href: "/utils",
-        icon: Wrench,
-        subItems: [
-            { name: "QR Code", href: "/utils/qr-code", icon: QrCode },
-            { name: "Unit Converter", href: "/utils/unit-converter", icon: Ruler },
-            { name: "Timer", href: "/utils/timer", icon: Timer },
         ]
     },
 ];
