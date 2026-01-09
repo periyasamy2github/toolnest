@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SupportButton } from "@/components/SupportButton";
+import { PageTransition } from "@/components/Animations";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -56,8 +57,10 @@ export default function RootLayout({
       >
         <Navbar />
         <main className="flex-grow transition-all duration-300">
-          <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 max-w-7xl">
-            {children}
+          <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 max-w-[1440px]">
+            <PageTransition>
+              {children}
+            </PageTransition>
           </div>
         </main>
         <Footer />

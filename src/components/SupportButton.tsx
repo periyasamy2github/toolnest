@@ -2,10 +2,16 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export function SupportButton() {
     return (
-        <div className="fixed bottom-6 z-50 transition-all duration-300 left-6 md:left-auto md:right-6">
+        <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1 }}
+            className="fixed bottom-6 z-50 left-6 md:left-auto md:right-6"
+        >
             <Link
                 href="https://chai4.me/mr_professor"
                 target="_blank"
@@ -22,6 +28,6 @@ export function SupportButton() {
                     priority
                 />
             </Link>
-        </div>
+        </motion.div>
     );
 }

@@ -16,6 +16,7 @@ const HASHTAG_DATABASE: { [key: string]: string[] } = {
 
 export default function InstagramHashtagsPage() {
     const [keyword, setKeyword] = useState("");
+    const [count, setCount] = useState(30);
     const [generatedHashtags, setGeneratedHashtags] = useState<string[]>([]);
     const [copied, setCopied] = useState(false);
     const [selectedHashtags, setSelectedHashtags] = useState<Set<string>>(new Set());
@@ -30,15 +31,15 @@ export default function InstagramHashtagsPage() {
             // Generic fallback or partial match
             const matches = Object.keys(HASHTAG_DATABASE).filter(k => k.includes(key) || key.includes(k));
             if (matches.length > 0) {
-                results = Array.from(new Set(matches.flatMap(m => HASHTAG_DATABASE[m]))).slice(0, 30);
+                results = Array.from(new Set(matches.flatMap(m => HASHTAG_DATABASE[m])));
             } else {
                 // Return some generic popular tags if no match
-                results = ["instagood", "photooftheday", "instagram", "trending", "viral", "explore", "love", "happy", "picoftheday", "instadaily"];
+                results = ["instagood", "photooftheday", "instagram", "trending", "viral", "explore", "love", "happy", "picoftheday", "instadaily", "follow", "like", "photography", "art", "fashion", "beautiful", "nature", "picoftheday", "travel", "happy", "style", "instadaily", "repost", "tbt", "summer", "selfie", "me", "friends", "fitness", "girl"];
             }
         }
 
-        // Shuffle a bit
-        results = results.sort(() => Math.random() - 0.5);
+        // Shuffle and slice based on user count
+        results = results.sort(() => Math.random() - 0.5).slice(0, count);
         setGeneratedHashtags(results);
         setSelectedHashtags(new Set(results));
     };
@@ -61,7 +62,7 @@ export default function InstagramHashtagsPage() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-6xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
                 <Link href="/text" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
                     <ArrowLeft className="text-zinc-400" />
@@ -73,41 +74,65 @@ export default function InstagramHashtagsPage() {
             </div>
 
             <div className="glass-card p-6 space-y-6">
-                <div className="flex flex-col md:flex-row gap-4">
-                    <div className="flex-1 relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={20} />
+                <div className="flex flex-col md:flex-row gap-6">
+                    <div className="flex-1 space-y-4">
+                        <label className="text-sm font-medium text-zinc-400">Keyword</label>
+                        <div className="relative">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={20} />
+                            <input
+                                type="text"
+                                value={keyword}
+                                onChange={(e) => setKeyword(e.target.value)}
+                                onKeyDown={(e) => e.key === "Enter" && generateHashtags()}
+                                placeholder="Enter a keyword (e.g., travel, fitness, art)..."
+                                className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+                            />
+                        </div>
+                    </div>
+                    <div className="w-full md:w-48 space-y-4">
+                        <div className="flex justify-between">
+                            <label className="text-sm font-medium text-zinc-400">Count</label>
+                            <span className="text-sm text-blue-400 font-mono">{count}</span>
+                        </div>
                         <input
-                            type="text"
-                            value={keyword}
-                            onChange={(e) => setKeyword(e.target.value)}
-                            onKeyDown={(e) => e.key === "Enter" && generateHashtags()}
-                            placeholder="Enter a keyword (e.g., travel, fitness, art)..."
-                            className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+                            type="range"
+                            min="10"
+                            max="50"
+                            step="1"
+                            value={count}
+                            onChange={(e) => setCount(parseInt(e.target.value))}
+                            className="w-full accent-blue-500 h-2 bg-white/5 rounded-lg appearance-none cursor-pointer"
                         />
+                        <div className="flex justify-between text-[10px] text-zinc-600 uppercase tracking-widest">
+                            <span>10</span>
+                            <span>30</span>
+                            <span>50</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-2">
+                    <div className="flex flex-wrap gap-2 text-sm text-zinc-500">
+                        <span>Popular:</span>
+                        {["Travel", "Fitness", "Food", "Tech", "Fashion", "Art"].map(tag => (
+                            <button
+                                key={tag}
+                                onClick={() => {
+                                    setKeyword(tag);
+                                }}
+                                className="hover:text-blue-400 transition-colors"
+                            >
+                                {tag}
+                            </button>
+                        ))}
                     </div>
                     <button
                         onClick={generateHashtags}
-                        className="px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition-all flex items-center justify-center gap-2"
+                        className="w-full md:w-auto px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition-all flex items-center justify-center gap-2"
                     >
                         <RefreshCw size={20} />
                         Generate
                     </button>
-                </div>
-
-                <div className="flex flex-wrap gap-2 text-sm text-zinc-500">
-                    <span>Popular:</span>
-                    {["Travel", "Fitness", "Food", "Tech", "Fashion", "Art"].map(tag => (
-                        <button
-                            key={tag}
-                            onClick={() => {
-                                setKeyword(tag);
-                                // Small delay to ensure state update if we wanted to auto-generate
-                            }}
-                            className="hover:text-blue-400 transition-colors"
-                        >
-                            {tag}
-                        </button>
-                    ))}
                 </div>
             </div>
 
@@ -149,7 +174,7 @@ export default function InstagramHashtagsPage() {
 
                     <div className="p-4 rounded-xl bg-blue-500/5 border border-blue-500/10">
                         <p className="text-sm text-zinc-400 leading-relaxed">
-                            <span className="text-blue-400 font-semibold">Tip:</span> Instagram allows up to 30 hashtags per post. We've generated a mix of popular and niche tags to help you reach a wider audience.
+                            <span className="text-blue-400 font-semibold">Tip:</span> Instagram allows up to 30 hashtags per post. Using a mix of popular and niche tags helps reach a wider audience. You've selected {selectedHashtags.size} tags.
                         </p>
                     </div>
                 </div>

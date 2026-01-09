@@ -20,6 +20,7 @@
     "clsx": "^2.1.1",
     "diff": "^8.0.2",
     "fb-video-downloader": "^1.0.3",
+    "framer-motion": "^12.24.12",
     "instagram-url-direct": "^2.0.7",
     "js-yaml": "^4.1.1",
     "lucide-react": "^0.562.0",

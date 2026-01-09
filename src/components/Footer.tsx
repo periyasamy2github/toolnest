@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { Send } from "lucide-react";
+import { Send, Globe } from "lucide-react";
 
 export function Footer() {
     return (
         <footer className="border-t border-white/5 bg-zinc-950/50 backdrop-blur-xl mt-auto">
-            <div className="container mx-auto px-4 py-8 max-w-7xl">
+            <div className="container mx-auto px-4 py-8 max-w-[1440px]">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                     <div className="flex flex-col items-center md:items-start gap-2">
                         <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
@@ -20,15 +20,26 @@ export function Footer() {
                             <span>Created by</span>
                             <span className="font-semibold text-zinc-100">Professor</span>
                         </div>
-                        <Link
-                            href="https://t.me/hey_mrprofessor"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 hover:bg-blue-500 hover:text-white transition-all duration-300"
-                        >
-                            <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                            <span className="font-medium">@hey_mrprofessor</span>
-                        </Link>
+                        <div className="flex flex-wrap items-center justify-center md:justify-end gap-4">
+                            <Link
+                                href="https://uply-monitor.vercel.app/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-zinc-400 hover:bg-white/10 hover:text-white transition-all duration-300"
+                            >
+                                <Globe size={16} className="group-hover:rotate-12 transition-transform" />
+                                <span className="font-medium">Uply Monitor</span>
+                            </Link>
+                            <Link
+                                href="https://t.me/hey_mrprofessor"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 hover:bg-blue-500 hover:text-white transition-all duration-300"
+                            >
+                                <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                <span className="font-medium">@hey_mrprofessor</span>
+                            </Link>
+                        </div>
                     </div>
                 </div>
 

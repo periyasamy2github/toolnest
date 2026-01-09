@@ -48,7 +48,7 @@ export default function WorldClockPage() {
     };
 
     return (
-        <div className="max-w-5xl mx-auto space-y-8">
+        <div className="max-w-6xl mx-auto space-y-8">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     <Link href="/utils" className="p-2 rounded-lg hover:bg-white/5 transition-colors">

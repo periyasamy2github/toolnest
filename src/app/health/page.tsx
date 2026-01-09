@@ -2,6 +2,8 @@
 
 import { ArrowLeft, Activity, Calculator, Wind, Droplets, Flame } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer } from "@/components/Animations";
 
 const tools = [
     {
@@ -13,7 +15,7 @@ const tools = [
         bg: "bg-blue-400/10",
     },
     {
-        title: "Body Fat Calculator",
+        title: "Body Fat",
         description: "Estimate your body fat percentage using the US Navy method.",
         icon: Activity,
         href: "/health/body-fat-calculator",
@@ -21,7 +23,7 @@ const tools = [
         bg: "bg-purple-400/10",
     },
     {
-        title: "Breathing Exercise",
+        title: "Breathing",
         description: "Relax with guided breathing techniques including Pranayama.",
         icon: Wind,
         href: "/health/breathing-exercise",
@@ -29,7 +31,7 @@ const tools = [
         bg: "bg-cyan-400/10",
     },
     {
-        title: "Water Intake Calculator",
+        title: "Water Intake",
         description: "Calculate your daily water needs based on weight and activity.",
         icon: Droplets,
         href: "/health/water-intake-calculator",
@@ -37,7 +39,7 @@ const tools = [
         bg: "bg-blue-500/10",
     },
     {
-        title: "Calories Calculator",
+        title: "Calories",
         description: "Calculate daily calorie needs and track food intake.",
         icon: Flame,
         href: "/health/calories-calculator",
@@ -48,8 +50,13 @@ const tools = [
 
 export default function HealthToolsPage() {
     return (
-        <div className="space-y-8">
-            <div className="flex items-center gap-4">
+        <motion.div
+            initial="initial"
+            animate="animate"
+            variants={staggerContainer}
+            className="space-y-8"
+        >
+            <motion.div variants={fadeInUp} className="flex items-center gap-4">
                 <Link href="/" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
@@ -57,28 +64,29 @@ export default function HealthToolsPage() {
                     <h1 className="text-3xl font-bold text-zinc-100">Health Tools</h1>
                     <p className="text-zinc-400">Tools for a healthier lifestyle.</p>
                 </div>
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
                 {tools.map((tool) => (
-                    <Link
-                        key={tool.title}
-                        href={tool.href}
-                        className="group relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/50 p-6 hover:bg-zinc-900/80 transition-all duration-300 hover:border-white/20 hover:shadow-xl"
-                    >
-                        <div className={`p-3 rounded-xl ${tool.bg} ${tool.color} w-fit mb-4`}>
-                            <tool.icon size={24} />
-                        </div>
+                    <motion.div key={tool.title} variants={fadeInUp} className="h-full">
+                        <Link
+                            href={tool.href}
+                            className="group relative flex flex-col h-full overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/50 p-6 hover:bg-zinc-900/80 transition-all duration-500 hover:border-white/20 hover:shadow-xl"
+                        >
+                            <div className={`p-3 rounded-xl ${tool.bg} ${tool.color} w-fit mb-4 group-hover:scale-110 transition-transform duration-500`}>
+                                <tool.icon size={24} />
+                            </div>
 
-                        <h2 className="text-xl font-semibold mb-2 text-zinc-100 group-hover:text-white">
-                            {tool.title}
-                        </h2>
-                        <p className="text-sm text-zinc-400 group-hover:text-zinc-300">
-                            {tool.description}
-                        </p>
-                    </Link>
+                            <h2 className="text-xl font-semibold mb-2 text-zinc-100 group-hover:text-white transition-colors">
+                                {tool.title}
+                            </h2>
+                            <p className="text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors flex-grow">
+                                {tool.description}
+                            </p>
+                        </Link>
+                    </motion.div>
                 ))}
             </div>
-        </div>
+        </motion.div>
     );
 }

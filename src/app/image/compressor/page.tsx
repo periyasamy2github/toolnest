@@ -37,14 +37,25 @@ export default function ImageCompressorPage() {
             canvas.width = imageBitmap.width;
             canvas.height = imageBitmap.height;
             const ctx = canvas.getContext('2d');
-            ctx?.drawImage(imageBitmap, 0, 0);
+
+            if (!ctx) throw new Error("Could not get canvas context");
+
+            // Fill with white background (important for transparent PNGs converting to JPEG)
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(imageBitmap, 0, 0);
+
+            // Always compress to JPEG for best results, unless it's already a WebP
+            const outputType = file.type === 'image/webp' ? 'image/webp' : 'image/jpeg';
 
             canvas.toBlob(
                 (blob) => {
-                    setCompressedFile(blob);
+                    if (blob) {
+                        setCompressedFile(blob);
+                    }
                     setIsCompressing(false);
                 },
-                file.type,
+                outputType,
                 quality
             );
         } catch (error) {
@@ -62,7 +73,7 @@ export default function ImageCompressorPage() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-6xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
                 <Link href="/image" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
                     <ArrowLeft className="text-zinc-400" />
@@ -161,7 +172,7 @@ export default function ImageCompressorPage() {
 
                                 <a
                                     href={URL.createObjectURL(compressedFile)}
-                                    download={`compressed-${file?.name}`}
+                                    download={`compressed-${file?.name.split('.')[0]}.jpg`}
                                     className="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-500 text-white py-3 rounded-lg font-medium transition-colors"
                                 >
                                     <Download size={20} />
