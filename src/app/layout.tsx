@@ -17,21 +17,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ToolNest - All Your Everyday Tools in One Place",
-  description: "A unified suite of powerful, private, and browser-based web tools for media, images, developers, and more. Created by Professor.",
-  keywords: ["web tools", "online tools", "image compressor", "video downloader", "json formatter", "jwt tool", "unit converter", "qr code generator", "professor tools"],
+  title: {
+    default: "ToolNest - All Your Everyday Tools in One Place",
+    template: "%s | ToolNest"
+  },
+  description: "A unified suite of powerful, private, and browser-based web tools for media, images, developers, and more. No uploads, no limits, 100% private.",
+  keywords: [
+    "web tools", "online tools", "image compressor", "background remover",
+    "json formatter", "jwt tool", "unit converter", "qr code generator",
+    "uptime monitoring", "developer utilities", "productivity tools",
+    "text tools", "audio tools", "health calculators"
+  ],
   authors: [{ name: "Professor", url: "https://t.me/hey_mrprofessor" }],
+  creator: "Professor",
+  publisher: "ToolNest",
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: "ToolNest - All Your Everyday Tools in One Place",
-    description: "Powerful, private, and browser-based tools for everyone. Created by Professor.",
-    url: "https://webtoolnest.vercel.app", // Replace with actual URL if known
+    description: "Powerful, private, and browser-based tools for everyone. Media, developers, and everyday tasks.",
+    url: "https://webtoolnest.vercel.app",
     siteName: "ToolNest",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ToolNest - All Your Everyday Tools in One Place",
+        alt: "ToolNest - The Ultimate Digital Toolbox",
       },
     ],
     locale: "en_US",
@@ -40,9 +54,14 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "ToolNest - All Your Everyday Tools in One Place",
-    description: "Powerful, private, and browser-based tools for everyone. Created by Professor.",
+    description: "Powerful, private, and browser-based tools for everyone. Media, developers, and everyday tasks.",
     images: ["/og-image.png"],
   },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  }
 };
 
 export default function RootLayout({

@@ -23,20 +23,35 @@ A modern, feature-rich collection of web tools built with Next.js 16, TypeScript
 - **Resizer & Cropper** - Resize and crop images
 - **Background Remover** - Remove image backgrounds using AI
 - **Meme Generator** - Create custom memes
+- **Color Palette** - Extract colors from images
+
+### 💻 Developer Tools
+- **JSON Formatter** - Pretty print and minify JSON
+- **SQL Formatter** - Beautify SQL queries (MySQL, Postgres, etc.)
+- **JWT Tool** - Decode and generate JSON Web Tokens
+- **HTML to JSX** - Convert HTML snippets to React
+- **Secure Generators** - UUID and Password generators
 
 ### 💪 Health Tools
-- **Calories Calculator** - BMR calculator and food calorie search
-
-### 📝 Text Tools
-- **Word Counter** - Count words, characters, sentences
-- **Case Converter** - Transform text case
-- **Lorem Ipsum Generator** - Generate placeholder text
+- **Calculators** - BMI, Body Fat, Calories, Water Intake
+- **Breathing Exercise** - Guided relaxation tool
 
 ### 🔧 Utilities
 - **QR Code Generator** - Create styled QR codes with logos
-- **Password Generator** - Generate secure passwords
 - **Unit Converter** - Convert length, weight, temperature
 - **Timer & Stopwatch** - Countdown timer and stopwatch
+- **World Clock** - Track time across different zones
+
+### 🚀 Featured Products
+- **Uply Monitor** - Professional uptime monitoring services
+
+---
+
+## 🛠️ SEO & Performance
+- **Dynamic Metadata** - SEO-friendly titles and descriptions for every page
+- **Custom Favicon** - Branded high-quality 3D icon
+- **100% Private** - All tools run locally in the browser
+- **PWA Ready** - Optimized for mobile and desktop use
 
 ---
 

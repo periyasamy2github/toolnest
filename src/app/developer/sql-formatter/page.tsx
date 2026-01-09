@@ -15,7 +15,7 @@ export default function SqlFormatterPage() {
         try {
             const result = format(sql, {
                 language: dialect as any,
-                uppercase: true,
+                keywordCase: "upper",
             });
             setFormattedSql(result);
         } catch (e) {
