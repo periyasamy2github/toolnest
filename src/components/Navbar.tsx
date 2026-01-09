@@ -40,7 +40,9 @@ import {
     Fingerprint,
     Code,
     Music,
-    FileCode
+    FileCode,
+    Palette,
+    Instagram
 } from "lucide-react";
 import { useState } from "react";
 
@@ -73,6 +75,7 @@ const navItems = [
             { name: "Resizer & Cropper", href: "/image/resizer", icon: Crop },
             { name: "Background Remover", href: "/image/remove-bg", icon: Scissors },
             { name: "Meme Generator", href: "/image/meme-generator", icon: Smile },
+            { name: "Color Palette", href: "/image/color-palette", icon: Palette },
         ]
     },
     {
@@ -96,6 +99,7 @@ const navItems = [
             { name: "Case Converter", href: "/text/case-converter", icon: CaseSensitive },
             { name: "Lorem Ipsum", href: "/text/lorem-ipsum", icon: Type },
             { name: "Diff Checker", href: "/text/diff-checker", icon: FileDiff },
+            { name: "Instagram Hashtags", href: "/text/instagram-hashtags", icon: Instagram },
         ]
     },
     {
