@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Activity, Calculator, Wind, Droplets, Flame } from "lucide-react";
+import { ArrowLeft, Activity, Calculator, Wind, Droplets, Flame, Dumbbell, HeartPulse, Brain, Coins, Hourglass } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/components/Animations";
@@ -45,6 +45,46 @@ const tools = [
         href: "/health/calories-calculator",
         color: "text-green-400",
         bg: "bg-green-400/10",
+    },
+    {
+        title: "Fitness Age",
+        description: "Discover your fitness age based on lifestyle and health metrics.",
+        icon: Dumbbell,
+        href: "/health/fitness-age",
+        color: "text-orange-400",
+        bg: "bg-orange-400/10",
+    },
+    {
+        title: "Health Score",
+        description: "Track your daily wellness with a comprehensive health score.",
+        icon: HeartPulse,
+        href: "/health/health-score",
+        color: "text-pink-400",
+        bg: "bg-pink-400/10",
+    },
+    {
+        title: "Burnout Risk",
+        description: "Assess your risk of burnout based on work and lifestyle factors.",
+        icon: Brain,
+        href: "/health/burnout-risk",
+        color: "text-red-400",
+        bg: "bg-red-400/10",
+    },
+    {
+        title: "Smoking Cost",
+        description: "Calculate how much money you spend on smoking.",
+        icon: Coins,
+        href: "/health/smoking-cost",
+        color: "text-yellow-400",
+        bg: "bg-yellow-400/10",
+    },
+    {
+        title: "Life Expectancy",
+        description: "Estimate your life expectancy based on lifestyle and health factors.",
+        icon: Hourglass,
+        href: "/health/life-expectancy",
+        color: "text-indigo-400",
+        bg: "bg-indigo-400/10",
     }
 ];
 

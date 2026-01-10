@@ -40,21 +40,57 @@ export default function ColorPalettePage() {
 
     const extractColors = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
         const imageData = ctx.getImageData(0, 0, width, height).data;
-        const colorCounts: { [key: string]: number } = {};
+        const pixels: [number, number, number][] = [];
 
-        // Sample pixels (every 10th pixel to improve performance)
-        for (let i = 0; i < imageData.length; i += 40) {
+        // Sample pixels more densely (every 5th pixel)
+        for (let i = 0; i < imageData.length; i += 20) {
             const r = imageData[i];
             const g = imageData[i + 1];
             const b = imageData[i + 2];
-            const hex = rgbToHex(r, g, b);
-            colorCounts[hex] = (colorCounts[hex] || 0) + 1;
+            const a = imageData[i + 3];
+
+            // Skip transparent pixels
+            if (a < 125) continue;
+
+            // Skip very dark and very light pixels
+            const brightness = (r + g + b) / 3;
+            if (brightness < 20 || brightness > 235) continue;
+
+            pixels.push([r, g, b]);
         }
 
-        const sortedColors = Object.entries(colorCounts)
-            .sort(([, a], [, b]) => b - a)
+        // Simple color quantization - group similar colors
+        const colorBuckets: { [key: string]: { count: number; r: number; g: number; b: number } } = {};
+        const bucketSize = 32; // Group colors in 32-value ranges
+
+        pixels.forEach(([r, g, b]) => {
+            const bucketR = Math.floor(r / bucketSize) * bucketSize;
+            const bucketG = Math.floor(g / bucketSize) * bucketSize;
+            const bucketB = Math.floor(b / bucketSize) * bucketSize;
+            const key = `${bucketR}-${bucketG}-${bucketB}`;
+
+            if (!colorBuckets[key]) {
+                colorBuckets[key] = { count: 0, r: 0, g: 0, b: 0 };
+            }
+            colorBuckets[key].count++;
+            colorBuckets[key].r += r;
+            colorBuckets[key].g += g;
+            colorBuckets[key].b += b;
+        });
+
+        // Get average color from each bucket and sort by frequency
+        const sortedColors = Object.values(colorBuckets)
+            .map(bucket => ({
+                color: rgbToHex(
+                    Math.round(bucket.r / bucket.count),
+                    Math.round(bucket.g / bucket.count),
+                    Math.round(bucket.b / bucket.count)
+                ),
+                count: bucket.count
+            }))
+            .sort((a, b) => b.count - a.count)
             .slice(0, 8)
-            .map(([color]) => color);
+            .map(item => item.color);
 
         setColors(sortedColors);
     };

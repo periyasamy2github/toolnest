@@ -89,6 +89,7 @@ export default function BodyFatCalculator() {
 
     useEffect(() => {
         calculateBodyFat();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [height, neck, waist, hip, unit, gender]);
 
     const reset = () => {

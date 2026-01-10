@@ -33,15 +33,18 @@ export default function InstagramHashtagsPage() {
             if (matches.length > 0) {
                 results = Array.from(new Set(matches.flatMap(m => HASHTAG_DATABASE[m])));
             } else {
-                // Return some generic popular tags if no match
-                results = ["instagood", "photooftheday", "instagram", "trending", "viral", "explore", "love", "happy", "picoftheday", "instadaily", "follow", "like", "photography", "art", "fashion", "beautiful", "nature", "picoftheday", "travel", "happy", "style", "instadaily", "repost", "tbt", "summer", "selfie", "me", "friends", "fitness", "girl"];
+                // Return some generic popular tags if no match (removed duplicates)
+                results = ["instagood", "photooftheday", "instagram", "trending", "viral", "explore", "love", "happy", "picoftheday", "instadaily", "follow", "like", "photography", "art", "fashion", "beautiful", "nature", "travel", "style", "repost", "tbt", "summer", "selfie", "me", "friends", "fitness", "girl", "motivation", "inspiration", "goals"];
             }
         }
 
-        // Shuffle and slice based on user count
-        results = results.sort(() => Math.random() - 0.5).slice(0, count);
-        setGeneratedHashtags(results);
-        setSelectedHashtags(new Set(results));
+        // Remove duplicates, shuffle, and slice based on user count
+        const uniqueResults = Array.from(new Set(results));
+        const shuffled = uniqueResults.sort(() => Math.random() - 0.5);
+        const limited = shuffled.slice(0, Math.min(count, shuffled.length));
+
+        setGeneratedHashtags(limited);
+        setSelectedHashtags(new Set(limited));
     };
 
     const toggleHashtag = (tag: string) => {
