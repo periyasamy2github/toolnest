@@ -53,7 +53,7 @@ export default function PasswordGeneratorPage() {
     });
 
     return (
-        <div className="max-w-2xl mx-auto space-y-8">
+        <div className="max-w-4xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
                 <Link href="/developer" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
                     <ArrowLeft className="text-zinc-400" />
