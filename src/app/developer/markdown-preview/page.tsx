@@ -10,9 +10,30 @@ export default function MarkdownPreviewPage() {
     const [html, setHtml] = useState("");
 
     useEffect(() => {
+        // Configure marked renderer for images
+        const renderer = new marked.Renderer();
+        const originalImageRenderer = renderer.image.bind(renderer);
+
+        renderer.image = (href, title, text) => {
+            // Add crossorigin attribute to images
+            const img = originalImageRenderer(href, title, text);
+            return img.replace('<img', '<img crossorigin="anonymous" loading="lazy"');
+        };
+
+        marked.setOptions({
+            renderer: renderer,
+            breaks: true,
+            gfm: true,
+        });
+
         const renderMarkdown = async () => {
-            const result = await marked.parse(markdown);
-            setHtml(result);
+            try {
+                const result = await marked.parse(markdown);
+                setHtml(result);
+            } catch (error) {
+                console.error('Markdown parsing error:', error);
+                setHtml('<p class="text-red-400">Error rendering markdown</p>');
+            }
         };
         renderMarkdown();
     }, [markdown]);

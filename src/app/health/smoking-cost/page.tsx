@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, Coins, RefreshCw } from "lucide-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export default function SmokingCostCalculator() {
     const [cigarettesPerDay, setCigarettesPerDay] = useState<string>("");
     const [costPerCigarette, setCostPerCigarette] = useState<string>("");
     const [yearsSmoked, setYearsSmoked] = useState<string>("");
+    const [currency, setCurrency] = useState<"USD" | "INR">("USD");
 
     const [monthlyCost, setMonthlyCost] = useState<number>(0);
     const [yearlyCost, setYearlyCost] = useState<number>(0);
@@ -46,9 +48,9 @@ export default function SmokingCostCalculator() {
     };
 
     const formatCurrency = (amount: number) => {
-        return new Intl.NumberFormat('en-US', {
+        return new Intl.NumberFormat(currency === "USD" ? 'en-US' : 'en-IN', {
             style: 'currency',
-            currency: 'USD',
+            currency: currency,
             minimumFractionDigits: 0,
             maximumFractionDigits: 0,
         }).format(amount);
@@ -70,6 +72,34 @@ export default function SmokingCostCalculator() {
                 <div className="lg:col-span-2 space-y-6">
                     <div className="glass-card p-6 space-y-6">
                         <div className="space-y-2">
+                            <label className="text-sm font-medium text-zinc-400">Currency</label>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => setCurrency("USD")}
+                                    className={cn(
+                                        "flex-1 py-3 rounded-xl border transition-all font-medium",
+                                        currency === "USD"
+                                            ? "bg-blue-500/10 border-blue-500/50 text-blue-400"
+                                            : "bg-zinc-800/50 border-white/10 text-zinc-400"
+                                    )}
+                                >
+                                    USD ($)
+                                </button>
+                                <button
+                                    onClick={() => setCurrency("INR")}
+                                    className={cn(
+                                        "flex-1 py-3 rounded-xl border transition-all font-medium",
+                                        currency === "INR"
+                                            ? "bg-blue-500/10 border-blue-500/50 text-blue-400"
+                                            : "bg-zinc-800/50 border-white/10 text-zinc-400"
+                                    )}
+                                >
+                                    INR (₹)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="space-y-2">
                             <label className="text-sm font-medium text-zinc-400">Cigarettes per Day</label>
                             <input
                                 type="number"
@@ -81,13 +111,13 @@ export default function SmokingCostCalculator() {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-sm font-medium text-zinc-400">Cost per Cigarette ($)</label>
+                            <label className="text-sm font-medium text-zinc-400">Cost per Cigarette ({currency === "USD" ? "$" : "₹"})</label>
                             <input
                                 type="number"
                                 step="0.01"
                                 value={costPerCigarette}
                                 onChange={(e) => setCostPerCigarette(e.target.value)}
-                                placeholder="e.g. 0.50"
+                                placeholder={currency === "USD" ? "e.g. 0.50" : "e.g. 5"}
                                 className="w-full bg-zinc-800/50 border border-white/10 rounded-xl px-4 py-3 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                             />
                             <p className="text-xs text-zinc-500">Divide pack price by number of cigarettes in pack</p>
@@ -132,14 +162,14 @@ export default function SmokingCostCalculator() {
                             <div className="p-4 rounded-xl bg-white/5 border border-white/10">
                                 <div className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Monthly</div>
                                 <div className="text-2xl font-bold text-zinc-100">
-                                    {monthlyCost > 0 ? formatCurrency(monthlyCost) : "$0"}
+                                    {monthlyCost > 0 ? formatCurrency(monthlyCost) : currency === "USD" ? "$0" : "₹0"}
                                 </div>
                             </div>
 
                             <div className="p-4 rounded-xl bg-white/5 border border-white/10">
                                 <div className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Yearly</div>
                                 <div className="text-2xl font-bold text-zinc-100">
-                                    {yearlyCost > 0 ? formatCurrency(yearlyCost) : "$0"}
+                                    {yearlyCost > 0 ? formatCurrency(yearlyCost) : currency === "USD" ? "$0" : "₹0"}
                                 </div>
                             </div>
 
