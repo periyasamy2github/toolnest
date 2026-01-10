@@ -6,26 +6,10 @@ import Link from "next/link";
 import { marked } from "marked";
 
 export default function MarkdownPreviewPage() {
-    const [markdown, setMarkdown] = useState("# Welcome to ToolNest\n\nEdit this text to see the **live preview**.\n\n- Feature 1\n- Feature 2\n\n```javascript\nconsole.log('Hello World');\n```");
+    const [markdown, setMarkdown] = useState("# Welcome to ToolNest\\n\\nEdit this text to see the **live preview**.\\n\\n- Feature 1\\n- Feature 2\\n\\n```javascript\\nconsole.log('Hello World');\\n```");
     const [html, setHtml] = useState("");
 
     useEffect(() => {
-        // Configure marked renderer for images
-        const renderer = new marked.Renderer();
-        const originalImageRenderer = renderer.image.bind(renderer);
-
-        renderer.image = (href, title, text) => {
-            // Add crossorigin attribute to images
-            const img = originalImageRenderer(href, title, text);
-            return img.replace('<img', '<img crossorigin="anonymous" loading="lazy"');
-        };
-
-        marked.setOptions({
-            renderer: renderer,
-            breaks: true,
-            gfm: true,
-        });
-
         const renderMarkdown = async () => {
             try {
                 const result = await marked.parse(markdown);
