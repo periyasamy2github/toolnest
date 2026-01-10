@@ -60,9 +60,9 @@ export default function JsonFormatter() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[600px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" style={{ height: '600px' }}>
                 {/* Input Area */}
-                <div className="flex flex-col space-y-4 h-full">
+                <div className="flex flex-col space-y-4 h-full min-h-0">
                     <div className="flex items-center justify-between px-2">
                         <label className="text-sm font-medium text-zinc-400 flex items-center gap-2">
                             <FileJson size={16} className="text-blue-400" />
@@ -80,9 +80,9 @@ export default function JsonFormatter() {
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder='Paste your JSON here... e.g. {"name": "ToolNest", "version": 1.0}'
-                        className="flex-1 bg-zinc-900/50 border border-white/10 rounded-2xl p-6 text-zinc-100 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all resize-none"
+                        className="flex-1 min-h-0 bg-zinc-900/50 border border-white/10 rounded-2xl p-6 text-zinc-100 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all resize-none"
                     />
-                    <div className="flex gap-3">
+                    <div className="flex gap-3 flex-shrink-0">
                         <button
                             onClick={formatJson}
                             className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/10"
@@ -101,7 +101,7 @@ export default function JsonFormatter() {
                 </div>
 
                 {/* Output Area */}
-                <div className="flex flex-col space-y-4 h-full">
+                <div className="flex flex-col space-y-4 h-full min-h-0">
                     <div className="flex items-center justify-between px-2">
                         <label className="text-sm font-medium text-zinc-400 flex items-center gap-2">
                             <Braces size={16} className="text-green-400" />
@@ -117,7 +117,7 @@ export default function JsonFormatter() {
                             </button>
                         )}
                     </div>
-                    <div className="flex-1 relative group">
+                    <div className="flex-1 min-h-0 overflow-hidden">
                         <pre className={cn(
                             "w-full h-full bg-zinc-950 border rounded-2xl p-6 overflow-auto font-mono text-sm transition-all",
                             error ? "border-red-500/50 bg-red-500/5" : "border-white/10"
@@ -131,7 +131,7 @@ export default function JsonFormatter() {
                                     </div>
                                 </div>
                             ) : (
-                                <code className="text-zinc-300 whitespace-pre-wrap break-all">
+                                <code className="text-zinc-300 whitespace-pre break-words">
                                     {output || <span className="text-zinc-700 italic">Formatted output will appear here...</span>}
                                 </code>
                             )}

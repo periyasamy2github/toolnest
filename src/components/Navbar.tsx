@@ -56,7 +56,12 @@ import {
     BarChart3,
     Volume2,
     ArrowRight,
-    Zap
+    Zap,
+    Dumbbell,
+    HeartPulse,
+    Brain,
+    Coins,
+    Hourglass
 } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -145,6 +150,11 @@ const navItems = [
             { name: "Breathing", href: "/health/breathing-exercise", icon: Wind },
             { name: "Water Intake", href: "/health/water-intake-calculator", icon: Droplets },
             { name: "Calories", href: "/health/calories-calculator", icon: Flame },
+            { name: "Fitness Age", href: "/health/fitness-age", icon: Dumbbell },
+            { name: "Health Score", href: "/health/health-score", icon: HeartPulse },
+            { name: "Burnout Risk", href: "/health/burnout-risk", icon: Brain },
+            { name: "Smoking Cost", href: "/health/smoking-cost", icon: Coins },
+            { name: "Life Expectancy", href: "/health/life-expectancy", icon: Hourglass },
         ]
     },
 ];
