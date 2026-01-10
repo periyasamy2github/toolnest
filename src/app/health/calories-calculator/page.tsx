@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft, Calculator, Search, Plus, Trash2, Info } from "lucide-react";
 import Link from "next/link";
+import indianFoodDatabase from "@/data/indianFoodDatabase";
 
 // Static Food Database (Indian-focused & Generic)
 const foodDatabase = [
