@@ -131,7 +131,7 @@ export default function JsonFormatter() {
                                     </div>
                                 </div>
                             ) : (
-                                <code className="text-zinc-300 whitespace-pre break-words">
+                                <code className="text-zinc-300 whitespace-pre">
                                     {output || <span className="text-zinc-700 italic">Formatted output will appear here...</span>}
                                 </code>
                             )}
