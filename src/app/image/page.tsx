@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Image as ImageIcon, Crop, Scissors, Smile, Palette, ArrowLeft, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
+import { ArrowLeft, ArrowRight, ImageIcon, Crop, Scissors, Smile, Palette } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/components/Animations";
 
 const tools = [
     {
-        title: "Image Compressor",
-        description: "Compress JPG, PNG, WebP images locally.",
+        title: "Compressor",
+        description: "Compress images without quality loss.",
         icon: ImageIcon,
         href: "/image/compressor",
         color: "text-blue-400",
@@ -50,13 +50,13 @@ const tools = [
 
 export default function ImageToolsPage() {
     return (
-        <motion.div
+        <m.div
             initial="initial"
             animate="animate"
             variants={staggerContainer}
             className="space-y-12"
         >
-            <motion.div variants={fadeInUp} className="flex items-center gap-6">
+            <m.div variants={fadeInUp} className="flex items-center gap-6">
                 <Link href="/" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
                     <ArrowLeft className="text-zinc-100" />
                 </Link>
@@ -64,11 +64,11 @@ export default function ImageToolsPage() {
                     <h1 className="text-4xl font-black text-gradient">Image Tools</h1>
                     <p className="text-zinc-400 text-lg">Edit and optimize images in your browser with total privacy.</p>
                 </div>
-            </motion.div>
+            </m.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
                 {tools.map((tool) => (
-                    <motion.div key={tool.title} variants={fadeInUp} className="h-full">
+                    <m.div key={tool.title} variants={fadeInUp} className="h-full">
                         <Link
                             href={tool.href}
                             className="group relative flex flex-col h-full overflow-hidden glass-card p-8"
@@ -86,9 +86,9 @@ export default function ImageToolsPage() {
                                 Open Tool <ArrowRight size={16} />
                             </div>
                         </Link>
-                    </motion.div>
+                    </m.div>
                 ))}
             </div>
-        </motion.div>
+        </m.div>
     );
 }

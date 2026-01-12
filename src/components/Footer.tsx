@@ -15,29 +15,37 @@ export function Footer() {
                         </p>
                     </div>
 
-                    <div className="flex flex-col items-center md:items-end gap-3">
-                        <div className="flex items-center gap-2 text-zinc-400 text-sm">
+                    <div className="flex flex-col items-center md:items-end gap-4">
+                        <div className="flex items-center gap-2 text-zinc-500 text-[10px] font-bold uppercase tracking-widest">
                             <span>Created by</span>
-                            <span className="font-semibold text-zinc-100">Professor</span>
+                            <span className="text-zinc-300">Professor</span>
                         </div>
-                        <div className="flex flex-wrap items-center justify-center md:justify-end gap-4">
+                        <div className="flex flex-wrap items-center justify-center md:justify-end gap-3">
                             <Link
                                 href="https://uply-monitor.vercel.app/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-zinc-400 hover:bg-white/10 hover:text-white transition-all duration-300"
+                                className="group relative flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-zinc-900 border border-white/10 hover:border-blue-500/50 transition-all duration-500"
                             >
-                                <Globe size={16} className="group-hover:rotate-12 transition-transform" />
-                                <span className="font-medium">Uply Monitor</span>
+                                <div className="absolute -top-2 -right-2 px-2 py-0.5 rounded-md bg-blue-600 text-[8px] font-black uppercase tracking-tighter text-white shadow-lg shadow-blue-600/20">
+                                    Future
+                                </div>
+                                <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                                    <Globe size={16} />
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-xs font-black text-white leading-none">UPLY MONITOR</span>
+                                    <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Next-Gen Uptime</span>
+                                </div>
                             </Link>
                             <Link
                                 href="https://t.me/hey_mrprofessor"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 hover:bg-blue-500 hover:text-white transition-all duration-300"
+                                className="group flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-blue-500/5 border border-blue-500/10 text-blue-400 hover:bg-blue-500 hover:text-white transition-all duration-500"
                             >
                                 <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                                <span className="font-medium">@hey_mrprofessor</span>
+                                <span className="text-xs font-black uppercase tracking-widest">Contact</span>
                             </Link>
                         </div>
                     </div>

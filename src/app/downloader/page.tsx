@@ -1,14 +1,14 @@
 "use client";
 
-import { ArrowLeft, Video, Instagram, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
+import { ArrowLeft, ArrowRight, Video, Instagram } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/components/Animations";
 
 const tools = [
     {
         title: "Video Downloader",
-        description: "Download videos from YouTube, Instagram, Facebook, and TikTok.",
+        description: "Download videos from popular platforms.",
         icon: Video,
         href: "/downloader/video",
         color: "text-red-400",
@@ -26,13 +26,13 @@ const tools = [
 
 export default function DownloaderToolsPage() {
     return (
-        <motion.div
+        <m.div
             initial="initial"
             animate="animate"
             variants={staggerContainer}
             className="space-y-12"
         >
-            <motion.div variants={fadeInUp} className="flex items-center gap-6">
+            <m.div variants={fadeInUp} className="flex items-center gap-6">
                 <Link href="/" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
                     <ArrowLeft className="text-zinc-100" />
                 </Link>
@@ -40,11 +40,11 @@ export default function DownloaderToolsPage() {
                     <h1 className="text-4xl font-black text-gradient">Downloader Tools</h1>
                     <p className="text-zinc-400 text-lg">Download media from various platforms securely and privately.</p>
                 </div>
-            </motion.div>
+            </m.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
                 {tools.map((tool) => (
-                    <motion.div key={tool.title} variants={fadeInUp} className="h-full">
+                    <m.div key={tool.title} variants={fadeInUp} className="h-full">
                         <Link
                             href={tool.href}
                             className="group relative flex flex-col h-full overflow-hidden glass-card p-8"
@@ -62,9 +62,9 @@ export default function DownloaderToolsPage() {
                                 Open Tool <ArrowRight size={16} />
                             </div>
                         </Link>
-                    </motion.div>
+                    </m.div>
                 ))}
             </div>
-        </motion.div>
+        </m.div>
     );
 }

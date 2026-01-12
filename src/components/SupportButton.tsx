@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 export function SupportButton() {
     return (
-        <motion.div
+        <m.div
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1 }}
@@ -28,6 +28,6 @@ export function SupportButton() {
                     priority
                 />
             </Link>
-        </motion.div>
+        </m.div>
     );
 }

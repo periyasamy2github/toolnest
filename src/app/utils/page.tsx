@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { QrCode, Ruler, ArrowLeft, Timer, Clock, Globe, Dices, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
+import { ArrowLeft, ArrowRight, Clock, Timer, Globe, Dices, QrCode, Ruler } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/components/Animations";
 
 const tools = [
     {
         title: "Pomodoro Timer",
-        description: "Stay focused and productive with timed work sessions.",
+        description: "Boost productivity with the Pomodoro technique.",
         icon: Clock,
         href: "/utils/pomodoro",
         color: "text-blue-400",
@@ -66,13 +66,13 @@ const tools = [
 
 export default function UtilsPage() {
     return (
-        <motion.div
+        <m.div
             initial="initial"
             animate="animate"
             variants={staggerContainer}
             className="space-y-12"
         >
-            <motion.div variants={fadeInUp} className="flex items-center gap-6">
+            <m.div variants={fadeInUp} className="flex items-center gap-6">
                 <Link href="/" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
                     <ArrowLeft className="text-zinc-100" />
                 </Link>
@@ -80,11 +80,11 @@ export default function UtilsPage() {
                     <h1 className="text-4xl font-black text-gradient">Utility Tools</h1>
                     <p className="text-zinc-400 text-lg">Everyday utilities to boost your productivity with total privacy, right in your browser.</p>
                 </div>
-            </motion.div>
+            </m.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
                 {tools.map((tool) => (
-                    <motion.div key={tool.title} variants={fadeInUp} className="h-full">
+                    <m.div key={tool.title} variants={fadeInUp} className="h-full">
                         <Link
                             href={tool.href}
                             className="group relative flex flex-col h-full overflow-hidden glass-card p-8"
@@ -102,9 +102,9 @@ export default function UtilsPage() {
                                 Open Tool <ArrowRight size={16} />
                             </div>
                         </Link>
-                    </motion.div>
+                    </m.div>
                 ))}
             </div>
-        </motion.div>
+        </m.div>
     );
 }

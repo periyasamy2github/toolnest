@@ -1,277 +1,374 @@
 "use client";
 
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 import {
-  Video,
-  Image as ImageIcon,
-  Wrench,
+  ImageIcon,
   Type,
   ArrowRight,
-  Shield,
-  Zap,
+  Lock,
+  Cpu,
   Globe,
   Music,
   Code,
   Activity,
+  LayoutGrid,
+  ShieldCheck,
+  EyeOff,
+  Database,
+  Search,
+  CheckCircle2,
+  Zap,
+  Timer
 } from "lucide-react";
-import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer, float, glow } from "@/components/Animations";
+import { m } from "framer-motion";
+import { fadeInUp, staggerContainer } from "@/components/Animations";
 
-const tools = [
+const toolCategories = [
   {
     title: "Developer Tools",
-    description: "JSON to TS, SQL Formatter, YAML/JSON, Markdown Preview, and more.",
+    description: "Professional-grade coding utilities. From JSON formatting and SQL optimization to JWT decoding and Regex testing, we provide the essential tools for modern software engineering.",
     icon: Code,
     href: "/developer",
     color: "text-blue-500",
     bg: "bg-blue-500/10",
+    tools: ["JSON Formatter", "SQL Formatter", "JWT Tool", "Regex Tester", "Base64 Encoder"]
   },
   {
-    title: "Audio Tools",
-    description: "Cut and merge audio files directly in your browser.",
-    icon: Music,
-    href: "/audio",
-    color: "text-blue-400",
-    bg: "bg-blue-400/10",
-  },
-  {
-    title: "Image Tools",
-    description: "Compress, resize, remove background, and extract color palettes.",
+    title: "Image Processing",
+    description: "Privacy-focused image editing. Compress images without quality loss, resize for social media, or remove backgrounds instantly. All processing happens locally.",
     icon: ImageIcon,
     href: "/image",
-    color: "text-purple-400",
-    bg: "bg-purple-400/10",
+    color: "text-purple-500",
+    bg: "bg-purple-500/10",
+    tools: ["Compressor", "Resizer", "Background Remover", "Meme Generator"]
   },
   {
-    title: "Health Tools",
-    description: "BMI, Body Fat, Breathing exercises, and Calorie tracking.",
-    icon: Activity,
-    href: "/health",
-    color: "text-pink-400",
-    bg: "bg-pink-400/10",
-  },
-  {
-    title: "Productivity",
-    description: "Pomodoro, Stopwatch, World Clock, and Random Picker.",
-    icon: Wrench,
-    href: "/utils",
-    color: "text-green-400",
-    bg: "bg-green-400/10",
-  },
-  {
-    title: "Content Tools",
-    description: "Headline analysis, Readability, Keyword density, and TTS.",
+    title: "Content & Text",
+    description: "Advanced text utilities for creators. Analyze keyword density, check readability scores, or generate placeholder text. Optimized for SEO specialists.",
     icon: Type,
     href: "/text",
-    color: "text-orange-400",
-    bg: "bg-orange-400/10",
+    color: "text-orange-500",
+    bg: "bg-orange-500/10",
+    tools: ["Word Counter", "Keyword Density", "Readability Score", "Case Converter"]
+  },
+  {
+    title: "Audio Utilities",
+    description: "Simple yet powerful audio editing. Cut MP3 files for ringtones or merge multiple tracks into one. Fast, secure, and requires no installation.",
+    icon: Music,
+    href: "/audio",
+    color: "text-cyan-500",
+    bg: "bg-cyan-500/10",
+    tools: ["MP3 Cutter", "Audio Merger"]
+  },
+  {
+    title: "Health & Wellness",
+    description: "Track your health metrics with precision. Calculate BMI, body fat percentage, and daily calorie needs. Maintain a healthy lifestyle with ease.",
+    icon: Activity,
+    href: "/health",
+    color: "text-pink-500",
+    bg: "bg-pink-500/10",
+    tools: ["BMI Calculator", "Calories Calculator", "Health Score"]
+  },
+  {
+    title: "Productivity Suite",
+    description: "Boost your daily efficiency. Manage time with Pomodoro timers, generate secure QR codes, or convert units instantly. Designed for focus.",
+    icon: Timer,
+    href: "/utils",
+    color: "text-green-500",
+    bg: "bg-green-500/10",
+    tools: ["Pomodoro Timer", "QR Code Generator", "Unit Converter"]
   },
 ];
 
 export default function Home() {
   return (
-    <div className="space-y-24 pb-20">
+    <div className="min-h-screen bg-[#030303] selection:bg-blue-500 selection:text-white font-sans">
       {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]" />
-        <motion.div
-          initial="initial"
-          animate="animate"
-          variants={staggerContainer}
-          className="relative text-center space-y-10 max-w-5xl mx-auto px-4"
-        >
-          <motion.div
-            variants={fadeInUp}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-blue-400 font-medium mb-4 glass"
+      <section className="relative min-h-[85vh] flex items-center justify-center pt-20 pb-32 overflow-hidden">
+        <div className="container mx-auto px-4 z-10">
+          <m.div
+            initial="initial"
+            animate="animate"
+            variants={staggerContainer}
+            className="text-center space-y-8 max-w-5xl mx-auto"
           >
-            <Zap size={16} className="animate-pulse" />
-            <span>The Ultimate Productivity Suite</span>
-          </motion.div>
-
-          <motion.h1
-            variants={fadeInUp}
-            className="text-6xl md:text-8xl font-bold tracking-tight text-white leading-tight"
-          >
-            Your All-in-One <br />
-            <span className="text-gradient animate-glow">
-              Digital Toolbox
-            </span>
-          </motion.h1>
-
-          <motion.p
-            variants={fadeInUp}
-            className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto leading-relaxed"
-          >
-            Powerful, private, and browser-based tools for media,
-            developers, and everyday tasks. <span className="text-zinc-200">No uploads, no limits, 100% private.</span>
-          </motion.p>
-
-          <motion.div
-            variants={fadeInUp}
-            className="flex flex-wrap items-center justify-center gap-6 pt-6"
-          >
-            <Link
-              href="#tools"
-              className="px-10 py-5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl transition-all hover:scale-105 active:scale-95 flex items-center gap-2 shadow-2xl shadow-blue-600/40"
+            <m.div
+              variants={fadeInUp}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-blue-400"
             >
-              Explore Tools
-              <ArrowRight size={22} />
-            </Link>
-            <Link
-              href="/about"
-              className="px-10 py-5 glass hover:bg-white/10 text-white font-bold rounded-2xl transition-all hover:scale-105 active:scale-95"
-            >
-              Learn More
-            </Link>
-          </motion.div>
-        </motion.div>
-      </section>
+              <LayoutGrid size={16} />
+              <span>Professional Utility Suite</span>
+            </m.div>
 
-      {/* Featured Product Section */}
-      <section className="relative px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-6xl mx-auto rounded-[3rem] p-[1px] bg-gradient-to-r from-blue-500 via-purple-600 to-blue-500 bg-[length:200%_auto] animate-gradient-x shadow-2xl shadow-blue-500/10"
-        >
-          <div className="bg-zinc-950/90 backdrop-blur-3xl rounded-[2.9rem] p-8 md:p-12 flex flex-col lg:flex-row items-center gap-12 overflow-hidden relative">
-            {/* Background Glow */}
-            <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/20 blur-[120px] rounded-full" />
-
-            <div className="flex-1 space-y-8 relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-bold text-blue-400 uppercase tracking-widest glass">
-                <Zap size={14} className="animate-pulse" />
-                Featured Tool
-              </div>
-
-              <div className="space-y-4">
-                <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-                  Uply Monitor <br />
-                  <span className="text-zinc-500 font-medium text-2xl md:text-3xl">Professional Uptime Monitoring</span>
-                </h2>
-                <p className="text-zinc-400 text-lg leading-relaxed max-w-2xl">
-                  Get instant alerts via Telegram and Email when your website goes offline. High-frequency monitoring with detailed performance insights.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-6 pt-4">
-                <Link
-                  href="https://uply-monitor.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-10 py-5 bg-white text-zinc-950 font-black rounded-2xl hover:bg-zinc-200 transition-all hover:scale-105 active:scale-95 flex items-center gap-2 shadow-2xl"
-                >
-                  Get Started Free
-                  <ArrowRight size={20} />
-                </Link>
-
-                <div className="flex items-center gap-6 text-sm text-zinc-500 font-bold">
-                  <div className="flex items-center gap-2">
-                    <Shield size={18} className="text-green-500" />
-                    Secure
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Activity size={18} className="text-blue-500" />
-                    Real-time
-                  </div>
-                </div>
-              </div>
+            <div className="space-y-6">
+              <m.h1
+                variants={fadeInUp}
+                className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight"
+              >
+                The Ultimate <br />
+                <span className="text-blue-500">Tool Collection</span>
+              </m.h1>
+              <m.p
+                variants={fadeInUp}
+                className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto font-normal leading-relaxed"
+              >
+                A comprehensive suite of professional tools for developers, creators, and everyone else.
+                Fast, secure, and built with your privacy as our top priority.
+              </m.p>
             </div>
 
-            <motion.div
-              variants={float}
-              animate="animate"
-              className="w-full lg:w-80 aspect-square relative group"
+            <m.div
+              variants={fadeInUp}
+              className="flex flex-wrap items-center justify-center gap-4 pt-6"
             >
-              <div className="absolute inset-0 bg-blue-500/20 blur-[100px] group-hover:bg-blue-500/30 transition-all duration-1000" />
-              <div className="relative h-full w-full rounded-[2.5rem] border border-white/10 bg-zinc-900/40 backdrop-blur-2xl flex flex-col items-center justify-center p-8 text-center space-y-6 overflow-hidden glass">
-                <div className="w-28 h-28 rounded-3xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-2xl shadow-blue-500/40 group-hover:scale-110 transition-transform duration-1000">
-                  <Activity size={56} className="text-white" />
-                </div>
-
-                <div className="space-y-2 relative">
-                  <div className="text-2xl font-black text-white">Uply Monitor</div>
-                  <div className="text-green-500 text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    Operational
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
+              <Link
+                href="#explore"
+                className="px-8 py-3.5 bg-white text-black text-sm font-semibold rounded-lg hover:bg-zinc-200 transition-all flex items-center gap-2"
+              >
+                Explore Tools
+                <ArrowRight size={18} />
+              </Link>
+              <Link
+                href="/developer"
+                className="px-8 py-3.5 bg-white/5 text-white text-sm font-semibold rounded-lg hover:bg-white/10 transition-all border border-white/10 flex items-center gap-2"
+              >
+                <Code size={18} />
+                Developer Hub
+              </Link>
+            </m.div>
+          </m.div>
+        </div>
       </section>
 
-      {/* Features Grid */}
-      <section id="tools" className="space-y-16 px-4">
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-white">Explore Our Tools</h2>
-          <p className="text-zinc-400 text-lg">Everything you need, organized and ready to use directly in your browser.</p>
-        </div>
+      {/* Explore Categories Section */}
+      <section id="explore" className="py-24 px-4 border-t border-white/5">
+        <div className="max-w-7xl mx-auto space-y-16">
+          <div className="text-center space-y-4 max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-2 text-blue-400 text-sm font-medium mb-2">
+              <Search size={18} />
+              <span>Discover the Suite</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
+              Explore Our <span className="text-blue-500">Tools</span>
+            </h2>
+            <p className="text-zinc-400 text-lg leading-relaxed">
+              Find the perfect tool for your needs. From image editing to developer utilities,
+              we have everything you need in one secure place.
+            </p>
+          </div>
 
-        <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch max-w-7xl mx-auto"
-        >
-          {tools.map((tool) => (
-            <motion.div key={tool.title} variants={fadeInUp} className="h-full">
-              <Link
-                href={tool.href}
-                className="group relative flex flex-col h-full p-8 rounded-[2rem] glass-card overflow-hidden border border-white/5 hover:border-blue-500/30 transition-all duration-500"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {toolCategories.map((category, i) => (
+              <m.div
+                key={category.title}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <Link
+                  href={category.href}
+                  className="group block p-8 rounded-2xl bg-zinc-900/40 border border-white/5 hover:border-blue-500/30 transition-all duration-300"
+                >
+                  <div className={cn(
+                    "w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform group-hover:scale-110",
+                    category.bg,
+                    category.color
+                  )}>
+                    <category.icon size={24} />
+                  </div>
 
-                <div className={`p-5 rounded-2xl ${tool.bg} ${tool.color} w-fit mb-6 group-hover:scale-110 transition-transform duration-500 shadow-xl shadow-black/20`}>
-                  <tool.icon size={32} />
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                    {category.title}
+                  </h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed mb-6">
+                    {category.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {category.tools.map((tool) => (
+                      <span key={tool} className="px-2.5 py-1 rounded-md bg-white/5 border border-white/5 text-xs font-medium text-zinc-300">
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-2 text-sm font-semibold text-blue-400 opacity-0 group-hover:opacity-100 transition-all">
+                    Open Tools <ArrowRight size={16} />
+                  </div>
+                </Link>
+              </m.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why ToolNest Section */}
+      <section className="py-24 border-t border-white/5 bg-zinc-950/20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div className="lg:col-span-1 space-y-4">
+              <h2 className="text-3xl font-bold text-white tracking-tight">
+                Why <span className="text-blue-500">ToolNest?</span>
+              </h2>
+              <p className="text-zinc-400 text-base leading-relaxed">
+                We provide professional tools that empower users without compromising their digital safety.
+                Our platform is built for speed, accessibility, and absolute privacy.
+              </p>
+            </div>
+            <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[
+                { icon: Zap, title: "Instant Results", desc: "Optimized for speed to deliver results instantly without any server lag.", color: "text-yellow-500" },
+                { icon: Globe, title: "Universal Access", desc: "Access our entire suite from any device, anywhere in the world, for free.", color: "text-blue-500" },
+                { icon: ShieldCheck, title: "Verified Security", desc: "Built with the latest security protocols to keep your environment safe.", color: "text-green-500" },
+                { icon: Database, title: "Zero Footprint", desc: "We leave no trace of your data. Everything is purged after your session.", color: "text-purple-500" }
+              ].map((item, i) => (
+                <div key={i} className="space-y-3">
+                  <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                    <item.icon className={item.color} size={20} />
+                    {item.title}
+                  </h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Products Section */}
+      <section className="py-24 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center space-y-4 max-w-2xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 text-blue-400 text-sm font-medium mb-2">
+              <Zap size={18} />
+              <span>Ecosystem</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
+              Our <span className="text-blue-500">Products</span>
+            </h2>
+            <p className="text-zinc-400 text-lg leading-relaxed">
+              Explore other powerful tools built by our team to enhance your digital workflow.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <m.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <Link
+                href="https://uply-monitor.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block p-8 rounded-2xl bg-zinc-900/40 border border-white/5 hover:border-blue-500/30 transition-all duration-300 h-full"
+              >
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform group-hover:scale-110 bg-blue-500/10 text-blue-500">
+                  <Zap size={24} />
                 </div>
 
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-500">
-                  {tool.title}
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                  Uply Monitor
                 </h3>
-                <p className="text-zinc-400 text-base leading-relaxed mb-8 flex-grow group-hover:text-zinc-300 transition-colors duration-500">
-                  {tool.description}
+                <p className="text-zinc-400 text-sm leading-relaxed mb-6">
+                  Next-generation uptime monitoring solution. Track your website's status in real-time with instant alerts and detailed analytics.
                 </p>
 
-                <div className="flex items-center gap-2 text-base font-bold text-blue-400 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-500">
-                  Open Tool <ArrowRight size={18} />
+                <div className="flex items-center gap-2 text-sm font-semibold text-blue-400 opacity-0 group-hover:opacity-100 transition-all">
+                  Visit Website <ArrowRight size={16} />
                 </div>
               </Link>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
-
-      {/* Trust Section */}
-      <section className="py-24 border-y border-white/5 bg-white/[0.01]">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-16">
-          <div className="flex flex-col items-center text-center space-y-6">
-            <div className="p-5 rounded-3xl bg-blue-500/10 text-blue-400 glass">
-              <Shield size={40} />
-            </div>
-            <h3 className="text-2xl font-bold text-white">100% Private</h3>
-            <p className="text-zinc-400 text-lg">All processing happens in your browser. Your data never leaves your device, ensuring total privacy.</p>
-          </div>
-          <div className="flex flex-col items-center text-center space-y-6">
-            <div className="p-5 rounded-3xl bg-purple-500/10 text-purple-400 glass">
-              <Zap size={40} />
-            </div>
-            <h3 className="text-2xl font-bold text-white">Lightning Fast</h3>
-            <p className="text-zinc-400 text-lg">Optimized for speed with local execution and modern web technologies. No server delays.</p>
-          </div>
-          <div className="flex flex-col items-center text-center space-y-6">
-            <div className="p-5 rounded-3xl bg-green-500/10 text-green-400 glass">
-              <Globe size={40} />
-            </div>
-            <h3 className="text-2xl font-bold text-white">No Limits</h3>
-            <p className="text-zinc-400 text-lg">Free to use with no hidden costs, subscriptions, or file size restrictions. Unlimited access.</p>
+            </m.div>
           </div>
         </div>
       </section>
+
+      {/* Privacy Commitment Section */}
+      <section id="privacy" className="py-24 border-t border-white/5 bg-zinc-950/40">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <m.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <div className="inline-flex items-center gap-2 text-blue-400 text-sm font-medium">
+                <Lock size={18} />
+                <span>Privacy Commitment</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
+                Your Data <br />
+                <span className="text-zinc-500">Stays Yours.</span>
+              </h2>
+              <div className="space-y-4 text-zinc-300 text-lg leading-relaxed">
+                <p>
+                  At ToolNest, we prioritize your digital safety. Our platform is built on a "No Logs" policy,
+                  ensuring that your activity remains completely anonymous.
+                </p>
+                <p>
+                  Every tool operates locally in your browser. This means your files, code, and sensitive
+                  information never leave your device. When you're done, your data is instantly purged.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4">
+                {[
+                  "No Database Storage",
+                  "No Activity Logs",
+                  "No User Tracking",
+                  "No Account Required",
+                  "Local Processing",
+                  "Instant Data Purge"
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-2 text-zinc-300 font-medium text-sm">
+                    <CheckCircle2 size={16} className="text-blue-500" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </m.div>
+
+            <m.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="glass-card p-10 flex flex-col justify-center items-center text-center space-y-6 border-white/10 rounded-2xl"
+            >
+              <div className="w-20 h-20 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-500">
+                <ShieldCheck size={40} />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold text-white">100% Private</h3>
+                <p className="text-zinc-400 text-sm">
+                  Your data stays on your device. <br />
+                  We have no access to your information.
+                </p>
+              </div>
+              <div className="w-full h-px bg-white/5" />
+              <div className="flex items-center gap-10">
+                <div className="text-center">
+                  <div className="text-xl font-bold text-white">0</div>
+                  <div className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Logs</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl font-bold text-white">0</div>
+                  <div className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Storage</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl font-bold text-white">∞</div>
+                  <div className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Privacy</div>
+                </div>
+              </div>
+            </m.div>
+          </div>
+        </div>
+      </section>
+
+
     </div>
   );
 }

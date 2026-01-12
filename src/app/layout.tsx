@@ -80,6 +80,10 @@ export const metadata: Metadata = {
   }
 };
 
+import { LazyMotionProvider } from "@/components/LazyMotionProvider";
+
+// ... imports
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -90,16 +94,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-950 text-zinc-100 overflow-x-hidden flex flex-col min-h-screen`}
       >
-        <Navbar />
-        <main className="flex-grow transition-all duration-300">
-          <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 max-w-[1440px]">
-            <PageTransition>
-              {children}
-            </PageTransition>
-          </div>
-        </main>
-        <Footer />
-        <SupportButton />
+        <LazyMotionProvider>
+          <Navbar />
+          <main className="flex-grow transition-all duration-300 pt-28">
+            <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 max-w-[1440px]">
+              <PageTransition>
+                {children}
+              </PageTransition>
+            </div>
+          </main>
+          <Footer />
+          <SupportButton />
+        </LazyMotionProvider>
       </body>
     </html>
   );
