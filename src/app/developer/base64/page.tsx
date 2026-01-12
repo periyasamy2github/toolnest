@@ -58,7 +58,7 @@ export default function Base64Tool() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Base64 Encoder / Decoder</h1>
+                    <h1 className="text-4xl font-black text-gradient">Base64 Encoder / Decoder</h1>
                     <p className="text-zinc-400">Securely encode and decode text to Base64 format.</p>
                 </div>
             </div>

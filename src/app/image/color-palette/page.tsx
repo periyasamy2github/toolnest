@@ -115,7 +115,7 @@ export default function ColorPalettePage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Color Palette Extractor</h1>
+                    <h1 className="text-4xl font-black text-gradient">Color Palette Extractor</h1>
                     <p className="text-zinc-400">Extract dominant colors from any image.</p>
                 </div>
             </div>

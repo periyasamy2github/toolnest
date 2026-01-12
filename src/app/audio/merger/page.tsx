@@ -103,7 +103,7 @@ export default function AudioMergerPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Audio Merger</h1>
+                    <h1 className="text-4xl font-black text-gradient">Audio Merger</h1>
                     <p className="text-zinc-400">Combine multiple audio files into a single track.</p>
                 </div>
             </div>

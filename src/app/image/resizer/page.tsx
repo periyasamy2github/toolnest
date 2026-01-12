@@ -132,7 +132,7 @@ export default function ImageResizerPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Image Resizer & Cropper</h1>
+                    <h1 className="text-4xl font-black text-gradient">Image Resizer & Cropper</h1>
                     <p className="text-zinc-400">Crop and resize images directly in your browser.</p>
                 </div>
             </div>

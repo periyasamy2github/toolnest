@@ -41,7 +41,7 @@ export default function YamlToJsonPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">YAML ↔ JSON Converter</h1>
+                    <h1 className="text-4xl font-black text-gradient">YAML ↔ JSON Converter</h1>
                     <p className="text-zinc-400">Seamlessly convert between YAML and JSON formats.</p>
                 </div>
             </div>

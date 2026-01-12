@@ -49,7 +49,7 @@ export default function TextDiffChecker() {
                         <ArrowLeft className="text-zinc-400" />
                     </Link>
                     <div>
-                        <h1 className="text-3xl font-bold text-zinc-100">Text Diff Checker</h1>
+                        <h1 className="text-4xl font-black text-gradient">Text Diff Checker</h1>
                         <p className="text-zinc-400">Compare two texts and highlight changes instantly.</p>
                     </div>
                 </div>

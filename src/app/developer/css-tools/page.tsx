@@ -54,7 +54,7 @@ export default function CssToolsPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">CSS Tools</h1>
+                    <h1 className="text-4xl font-black text-gradient">CSS Tools</h1>
                     <p className="text-zinc-400">Minify or beautify your CSS code for optimization or readability.</p>
                 </div>
             </div>

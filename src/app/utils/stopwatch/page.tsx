@@ -47,7 +47,7 @@ export default function StopwatchPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Stopwatch</h1>
+                    <h1 className="text-4xl font-black text-gradient">Stopwatch</h1>
                     <p className="text-zinc-400">Precise stopwatch with lap timing capabilities.</p>
                 </div>
             </div>

@@ -63,7 +63,7 @@ export default function SmokingCostCalculator() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Cost of Smoking Calculator</h1>
+                    <h1 className="text-4xl font-black text-gradient">Cost of Smoking Calculator</h1>
                     <p className="text-zinc-400">Calculate how much money you spend on smoking.</p>
                 </div>
             </div>

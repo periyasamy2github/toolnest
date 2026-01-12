@@ -53,7 +53,7 @@ export default function RegexTester() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Regex Tester</h1>
+                    <h1 className="text-4xl font-black text-gradient">Regex Tester</h1>
                     <p className="text-zinc-400">Test and debug regular expressions with live match highlighting.</p>
                 </div>
             </div>

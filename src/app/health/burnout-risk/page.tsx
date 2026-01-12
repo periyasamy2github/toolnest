@@ -83,7 +83,7 @@ export default function BurnoutRiskCalculator() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Burnout Risk Calculator</h1>
+                    <h1 className="text-4xl font-black text-gradient">Burnout Risk Calculator</h1>
                     <p className="text-zinc-400">Assess your risk of burnout based on work and lifestyle factors.</p>
                 </div>
             </div>

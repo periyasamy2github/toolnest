@@ -107,7 +107,7 @@ export default function VideoDownloaderPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold text-zinc-100">YouTube Downloader</h1>
+                    <h1 className="text-4xl font-black text-gradient">YouTube Downloader</h1>
                     <p className="text-zinc-400 text-sm">Download videos from YouTube in multiple formats.</p>
                 </div>
             </div>

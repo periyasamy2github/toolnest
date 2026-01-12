@@ -42,7 +42,7 @@ export default function SocialDownloaderPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Social Media Downloader</h1>
+                    <h1 className="text-4xl font-black text-gradient">Social Media Downloader</h1>
                     <p className="text-zinc-400">Download videos from Instagram and Facebook.</p>
                 </div>
             </div>

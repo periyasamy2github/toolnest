@@ -71,7 +71,7 @@ export default function InstagramHashtagsPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Instagram Hashtag Generator</h1>
+                    <h1 className="text-4xl font-black text-gradient">Instagram Hashtag Generator</h1>
                     <p className="text-zinc-400">Generate trending hashtags for your posts.</p>
                 </div>
             </div>

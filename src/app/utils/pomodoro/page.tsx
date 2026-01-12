@@ -65,7 +65,7 @@ export default function PomodoroPage() {
                         <ArrowLeft className="text-zinc-400" />
                     </Link>
                     <div>
-                        <h1 className="text-3xl font-bold text-zinc-100">Pomodoro Timer</h1>
+                        <h1 className="text-4xl font-black text-gradient">Pomodoro Timer</h1>
                         <p className="text-zinc-400">Stay focused and productive with timed work sessions.</p>
                     </div>
                 </div>

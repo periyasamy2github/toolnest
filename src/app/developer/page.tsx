@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { m } from "framer-motion";
-import { ArrowLeft, ArrowRight, Braces, FileJson, Database, FileType, Code2, Scissors, FileCode2, Code, FileCode, Binary, Link as LinkIcon, ShieldCheck, Fingerprint, Lock } from "lucide-react";
+import { ArrowLeft, ArrowRight, Braces, FileJson, Database, FileType, Code2, Scissors, FileCode2, Code, FileCode, Binary, Link as LinkIcon, ShieldCheck, Fingerprint, Lock, Clock } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/components/Animations";
 
 const tools = [
@@ -13,6 +13,14 @@ const tools = [
         href: "/developer/json-formatter",
         color: "text-yellow-400",
         bg: "bg-yellow-400/10",
+    },
+    {
+        title: "Cron Generator",
+        description: "Create and debug cron expressions visually.",
+        icon: Clock,
+        href: "/developer/cron-generator",
+        color: "text-emerald-400",
+        bg: "bg-emerald-400/10",
     },
     {
         title: "JSON to TypeScript",
@@ -143,15 +151,15 @@ export default function DeveloperToolsPage() {
                     <m.div key={tool.title} variants={fadeInUp} className="h-full">
                         <Link
                             href={tool.href}
-                            className="group relative flex flex-col h-full overflow-hidden glass-card p-8"
+                            className="group relative flex flex-col h-full overflow-hidden glass-card p-6"
                         >
-                            <div className={`p-4 rounded-2xl ${tool.bg} ${tool.color} w-fit mb-6 group-hover:scale-110 transition-transform duration-500 shadow-xl shadow-black/20`}>
-                                <tool.icon size={28} />
+                            <div className={`p-3 rounded-2xl ${tool.bg} ${tool.color} w-fit mb-4 group-hover:scale-110 transition-transform duration-500 shadow-xl shadow-black/20`}>
+                                <tool.icon size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-500">
+                            <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors duration-500">
                                 {tool.title}
                             </h3>
-                            <p className="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow group-hover:text-zinc-300 transition-colors duration-500">
+                            <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-grow group-hover:text-zinc-300 transition-colors duration-500">
                                 {tool.description}
                             </p>
                             <div className="flex items-center gap-2 text-sm font-bold text-blue-400 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-500">

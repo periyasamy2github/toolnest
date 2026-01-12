@@ -131,7 +131,7 @@ export default function QrCodePage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">QR Code Generator</h1>
+                    <h1 className="text-4xl font-black text-gradient">QR Code Generator</h1>
                     <p className="text-zinc-400">Create custom QR codes with advanced styling.</p>
                 </div>
             </div>

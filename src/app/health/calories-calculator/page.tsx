@@ -73,7 +73,7 @@ export default function CaloriesCalculatorPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Calories Calculator</h1>
+                    <h1 className="text-4xl font-black text-gradient">Calories Calculator</h1>
                     <p className="text-zinc-400">Calculate your daily needs and track your food.</p>
                 </div>
             </div>

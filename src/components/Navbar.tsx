@@ -55,7 +55,14 @@ import {
     Brain,
     Coins,
     Hourglass,
-    Smile
+    Smile,
+    RefreshCw,
+    Sliders,
+    Stamp,
+    Mic,
+    Eraser,
+    PenTool,
+    Moon
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -70,9 +77,14 @@ const navItems = [
         bg: "bg-purple-500/10",
         subItems: [
             { name: "Compressor", href: "/image/compressor", icon: ImageIcon, color: "text-purple-400" },
-            { name: "Resizer & Cropper", href: "/image/resizer", icon: Crop, color: "text-pink-400" },
+            { name: "Resizer", href: "/image/resizer", icon: Crop, color: "text-pink-400" },
+            { name: "Cropper", href: "/image/cropper", icon: Crop, color: "text-emerald-400" },
+            { name: "Converter", href: "/image/converter", icon: RefreshCw, color: "text-orange-400" },
+            { name: "Filters", href: "/image/filters", icon: Sliders, color: "text-indigo-400" },
             { name: "Background Remover", href: "/image/remove-bg", icon: Scissors, color: "text-indigo-400" },
             { name: "Meme Generator", href: "/image/meme-generator", icon: Smile, color: "text-yellow-400" },
+            { name: "Watermark", href: "/image/watermark", icon: Stamp, color: "text-cyan-400" },
+            { name: "Collage Maker", href: "/image/collage", icon: LayoutGrid, color: "text-rose-400" },
             { name: "Color Palette", href: "/image/color-palette", icon: Palette, color: "text-fuchsia-400" },
         ]
     },
@@ -85,6 +97,7 @@ const navItems = [
         subItems: [
             { name: "MP3 Cutter", href: "/audio/cutter", icon: Scissors, color: "text-cyan-400" },
             { name: "Audio Merger", href: "/audio/merger", icon: Merge, color: "text-blue-400" },
+            { name: "Voice Recorder", href: "/audio/voice-recorder", icon: Mic, color: "text-red-400" },
         ]
     },
     {
@@ -95,6 +108,7 @@ const navItems = [
         bg: "bg-orange-500/10",
         subItems: [
             { name: "Word Counter", href: "/text/word-counter", icon: Hash, color: "text-orange-400" },
+            { name: "Text Cleaner", href: "/text/text-cleaner", icon: Eraser, color: "text-red-400" },
             { name: "Case Converter", href: "/text/case-converter", icon: CaseSensitive, color: "text-amber-400" },
             { name: "Lorem Ipsum", href: "/text/lorem-ipsum", icon: Type, color: "text-yellow-400" },
             { name: "Diff Checker", href: "/text/diff-checker", icon: FileDiff, color: "text-red-400" },
@@ -113,6 +127,7 @@ const navItems = [
         bg: "bg-blue-500/10",
         subItems: [
             { name: "JSON Formatter", href: "/developer/json-formatter", icon: Braces, color: "text-blue-400" },
+            { name: "Cron Generator", href: "/developer/cron-generator", icon: Clock, color: "text-indigo-400" },
             { name: "JSON to TypeScript", href: "/developer/json-to-ts", icon: FileJson, color: "text-blue-300" },
             { name: "SQL Formatter", href: "/developer/sql-formatter", icon: Database, color: "text-indigo-400" },
             { name: "YAML to JSON", href: "/developer/yaml-to-json", icon: FileType, color: "text-violet-400" },
@@ -137,6 +152,7 @@ const navItems = [
         bg: "bg-green-500/10",
         subItems: [
             { name: "Pomodoro Timer", href: "/utils/pomodoro", icon: Clock, color: "text-red-400" },
+            { name: "Signature Generator", href: "/utils/signature-generator", icon: PenTool, color: "text-pink-400" },
             { name: "Stopwatch", href: "/utils/stopwatch", icon: Timer, color: "text-blue-400" },
             { name: "Timer", href: "/utils/timer", icon: Timer, color: "text-green-400" },
             { name: "World Clock", href: "/utils/world-clock", icon: Globe, color: "text-cyan-400" },
@@ -153,6 +169,7 @@ const navItems = [
         bg: "bg-pink-500/10",
         subItems: [
             { name: "BMI Calculator", href: "/health/bmi-calculator", icon: Calculator, color: "text-blue-400" },
+            { name: "Sleep Calculator", href: "/health/sleep-calculator", icon: Moon, color: "text-indigo-400" },
             { name: "Body Fat", href: "/health/body-fat-calculator", icon: Activity, color: "text-pink-400" },
             { name: "Breathing", href: "/health/breathing-exercise", icon: Wind, color: "text-cyan-400" },
             { name: "Water Intake", href: "/health/water-intake-calculator", icon: Droplets, color: "text-blue-500" },
@@ -211,7 +228,7 @@ export function Navbar() {
                                     <Link
                                         href={item.href}
                                         className={cn(
-                                            "px-4 py-2 rounded-full text-sm font-bold tracking-widest uppercase transition-all flex items-center gap-2 relative",
+                                            "px-3 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all flex items-center gap-2 relative",
                                             isActive
                                                 ? "text-white"
                                                 : "text-zinc-400 hover:text-white"
@@ -239,7 +256,7 @@ export function Navbar() {
                                                             <Link
                                                                 key={subItem.href}
                                                                 href={subItem.href}
-                                                                className="flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-bold text-zinc-200 hover:text-white hover:bg-white/5 transition-all group/sub"
+                                                                className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-zinc-200 hover:text-white hover:bg-white/5 transition-all group/sub"
                                                             >
                                                                 <div className={cn(
                                                                     "w-9 h-9 rounded-lg bg-zinc-900 flex items-center justify-center transition-colors",

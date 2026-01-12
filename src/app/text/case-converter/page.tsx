@@ -47,7 +47,7 @@ export default function CaseConverterPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Case Converter</h1>
+                    <h1 className="text-4xl font-black text-gradient">Case Converter</h1>
                     <p className="text-zinc-400">Convert text between different letter cases.</p>
                 </div>
             </div>

@@ -58,7 +58,7 @@ export default function UrlEncoderTool() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">URL Encoder / Decoder</h1>
+                    <h1 className="text-4xl font-black text-gradient">URL Encoder / Decoder</h1>
                     <p className="text-zinc-400">Safely encode or decode URLs and query parameters.</p>
                 </div>
             </div>

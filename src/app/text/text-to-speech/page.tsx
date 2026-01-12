@@ -81,7 +81,7 @@ export default function TextToSpeechPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Text to Speech</h1>
+                    <h1 className="text-4xl font-black text-gradient">Text to Speech</h1>
                     <p className="text-zinc-400">Convert your text into natural-sounding speech using browser voices.</p>
                 </div>
             </div>

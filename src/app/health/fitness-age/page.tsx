@@ -110,7 +110,7 @@ export default function FitnessAgeCalculator() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Fitness Age Calculator</h1>
+                    <h1 className="text-4xl font-black text-gradient">Fitness Age Calculator</h1>
                     <p className="text-zinc-400">Discover your fitness age based on your lifestyle and health metrics.</p>
                 </div>
             </div>

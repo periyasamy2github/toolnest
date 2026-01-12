@@ -66,7 +66,7 @@ export default function HtmlEntitiesTool() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">HTML Escape / Unescape</h1>
+                    <h1 className="text-4xl font-black text-gradient">HTML Escape / Unescape</h1>
                     <p className="text-zinc-400">Safely escape HTML characters to prevent XSS or unescape them back to symbols.</p>
                 </div>
             </div>

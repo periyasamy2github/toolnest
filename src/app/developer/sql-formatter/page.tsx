@@ -36,7 +36,7 @@ export default function SqlFormatterPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">SQL Formatter</h1>
+                    <h1 className="text-4xl font-black text-gradient">SQL Formatter</h1>
                     <p className="text-zinc-400">Beautify and format your SQL queries for better readability.</p>
                 </div>
             </div>

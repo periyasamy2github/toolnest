@@ -149,7 +149,7 @@ export default function BreathingExercise() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Breathing Exercise</h1>
+                    <h1 className="text-4xl font-black text-gradient">Breathing Exercise</h1>
                     <p className="text-zinc-400">Calm your mind and body with guided breathing.</p>
                 </div>
             </div>

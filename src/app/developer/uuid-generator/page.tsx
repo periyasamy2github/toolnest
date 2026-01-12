@@ -36,7 +36,7 @@ export default function UuidGenerator() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">UUID Generator</h1>
+                    <h1 className="text-4xl font-black text-gradient">UUID Generator</h1>
                     <p className="text-zinc-400">Generate secure, random Version 4 UUIDs instantly.</p>
                 </div>
             </div>

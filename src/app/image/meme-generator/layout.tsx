@@ -1,12 +1,12 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Online Meme Generator - Create Custom Memes Free | ToolNest",
-    description: "Create funny memes online for free with our easy-to-use meme generator. Upload your own images or use popular templates. Fast, free, and no watermark.",
-    keywords: ["meme generator", "create memes", "online meme maker", "funny memes", "ToolNest", "free design tools"],
+    title: "Meme Generator - Create Viral Memes Online | ToolNest",
+    description: "Create custom memes with text, images, and emojis. Multi-layer editing support. Fast, free, and no watermark. Make viral content instantly.",
+    keywords: ["meme generator", "make memes", "meme maker", "add text to image", "funny pictures", "ToolNest", "viral content creator"],
     openGraph: {
-        title: "Online Meme Generator | ToolNest",
-        description: "Create and download custom memes in seconds with our free tool.",
+        title: "Free Online Meme Generator | ToolNest",
+        description: "Create custom memes with our advanced multi-layer editor.",
         type: "website",
     },
 };

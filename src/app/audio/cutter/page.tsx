@@ -94,7 +94,7 @@ export default function Mp3CutterPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">MP3 Cutter</h1>
+                    <h1 className="text-4xl font-black text-gradient">MP3 Cutter</h1>
                     <p className="text-zinc-400">Trim audio files precisely using FFmpeg.wasm.</p>
                 </div>
             </div>

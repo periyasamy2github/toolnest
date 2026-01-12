@@ -86,7 +86,7 @@ export default function UnitConverterPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Unit Converter</h1>
+                    <h1 className="text-4xl font-black text-gradient">Unit Converter</h1>
                     <p className="text-zinc-400">Convert between common units of measurement.</p>
                 </div>
             </div>

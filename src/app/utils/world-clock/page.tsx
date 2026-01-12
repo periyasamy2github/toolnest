@@ -55,7 +55,7 @@ export default function WorldClockPage() {
                         <ArrowLeft className="text-zinc-400" />
                     </Link>
                     <div>
-                        <h1 className="text-3xl font-bold text-zinc-100">World Clock</h1>
+                        <h1 className="text-4xl font-black text-gradient">World Clock</h1>
                         <p className="text-zinc-400">Track current time across major global cities.</p>
                     </div>
                 </div>

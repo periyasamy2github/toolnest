@@ -44,7 +44,7 @@ export default function LoremIpsumPage() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Lorem Ipsum Generator</h1>
+                    <h1 className="text-4xl font-black text-gradient">Lorem Ipsum Generator</h1>
                     <p className="text-zinc-400">Generate placeholder text for your designs.</p>
                 </div>
             </div>

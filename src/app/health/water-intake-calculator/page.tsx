@@ -75,7 +75,7 @@ export default function WaterIntakeCalculator() {
                     <ArrowLeft className="text-zinc-400" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Water Intake Calculator</h1>
+                    <h1 className="text-4xl font-black text-gradient">Water Intake Calculator</h1>
                     <p className="text-zinc-400">Calculate your daily hydration needs based on your lifestyle.</p>
                 </div>
             </div>

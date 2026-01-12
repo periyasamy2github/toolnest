@@ -32,16 +32,16 @@ const toolCategories = [
     href: "/developer",
     color: "text-blue-500",
     bg: "bg-blue-500/10",
-    tools: ["JSON Formatter", "SQL Formatter", "JWT Tool", "Regex Tester", "Base64 Encoder"]
+    tools: ["JSON Formatter", "Cron Generator", "SQL Formatter", "JWT Tool", "Regex Tester"]
   },
   {
     title: "Image Processing",
-    description: "Privacy-focused image editing. Compress images without quality loss, resize for social media, or remove backgrounds instantly. All processing happens locally.",
+    description: "Privacy-focused image editing. Compress, convert, crop, and enhance images with professional tools. Create memes, collages, and watermarks locally.",
     icon: ImageIcon,
     href: "/image",
     color: "text-purple-500",
     bg: "bg-purple-500/10",
-    tools: ["Compressor", "Resizer", "Background Remover", "Meme Generator"]
+    tools: ["Compressor", "Converter", "Cropper", "Filters", "Watermark", "Collage Maker", "Meme Generator"]
   },
   {
     title: "Content & Text",
@@ -50,7 +50,7 @@ const toolCategories = [
     href: "/text",
     color: "text-orange-500",
     bg: "bg-orange-500/10",
-    tools: ["Word Counter", "Keyword Density", "Readability Score", "Case Converter"]
+    tools: ["Word Counter", "Text Cleaner", "Keyword Density", "Readability Score", "Case Converter"]
   },
   {
     title: "Audio Utilities",
@@ -59,7 +59,7 @@ const toolCategories = [
     href: "/audio",
     color: "text-cyan-500",
     bg: "bg-cyan-500/10",
-    tools: ["MP3 Cutter", "Audio Merger"]
+    tools: ["MP3 Cutter", "Audio Merger", "Voice Recorder"]
   },
   {
     title: "Health & Wellness",
@@ -68,7 +68,7 @@ const toolCategories = [
     href: "/health",
     color: "text-pink-500",
     bg: "bg-pink-500/10",
-    tools: ["BMI Calculator", "Calories Calculator", "Health Score"]
+    tools: ["BMI Calculator", "Sleep Calculator", "Calories Calculator", "Health Score"]
   },
   {
     title: "Productivity Suite",
@@ -77,7 +77,7 @@ const toolCategories = [
     href: "/utils",
     color: "text-green-500",
     bg: "bg-green-500/10",
-    tools: ["Pomodoro Timer", "QR Code Generator", "Unit Converter"]
+    tools: ["Pomodoro Timer", "Signature Generator", "QR Code Generator", "Unit Converter"]
   },
 ];
 
@@ -106,15 +106,15 @@ export default function Home() {
                 variants={fadeInUp}
                 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight"
               >
-                The Ultimate <br />
-                <span className="text-blue-500">Tool Collection</span>
+                Professional Tools <br />
+                <span className="text-blue-500">For Everyone</span>
               </m.h1>
               <m.p
                 variants={fadeInUp}
                 className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto font-normal leading-relaxed"
               >
-                A comprehensive suite of professional tools for developers, creators, and everyone else.
-                Fast, secure, and built with your privacy as our top priority.
+                A powerful suite of tools for developers, creators, and professionals.
+                Fast, secure, and completely private—no data ever leaves your device.
               </m.p>
             </div>
 
@@ -166,36 +166,38 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
+                className="h-full"
               >
                 <Link
                   href={category.href}
-                  className="group block p-8 rounded-2xl bg-zinc-900/40 border border-white/5 hover:border-blue-500/30 transition-all duration-300"
+                  className="group flex flex-col h-full p-8 rounded-2xl bg-zinc-900/60 border border-white/5 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300"
                 >
-                  <div className={cn(
-                    "w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform group-hover:scale-110",
-                    category.bg,
-                    category.color
-                  )}>
-                    <category.icon size={24} />
+                  <div className="flex items-start justify-between mb-6">
+                    <div className={cn(
+                      "w-16 h-16 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110",
+                      category.bg,
+                      category.color
+                    )}>
+                      <category.icon size={32} />
+                    </div>
+                    <div className="p-2 rounded-full bg-white/5 text-zinc-400 group-hover:text-blue-400 group-hover:bg-blue-500/10 transition-colors">
+                      <ArrowRight size={16} className="-rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                    </div>
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
                     {category.title}
                   </h3>
-                  <p className="text-zinc-400 text-sm leading-relaxed mb-6">
+                  <p className="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow">
                     {category.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 mb-8">
+                  <div className="flex flex-wrap gap-2 mt-auto">
                     {category.tools.map((tool) => (
-                      <span key={tool} className="px-2.5 py-1 rounded-md bg-white/5 border border-white/5 text-xs font-medium text-zinc-300">
+                      <span key={tool} className="px-2 py-1 rounded-md bg-white/5 border border-white/5 text-[10px] uppercase tracking-wider font-semibold text-zinc-400 group-hover:border-blue-500/20 group-hover:text-blue-300 transition-colors">
                         {tool}
                       </span>
                     ))}
-                  </div>
-
-                  <div className="flex items-center gap-2 text-sm font-semibold text-blue-400 opacity-0 group-hover:opacity-100 transition-all">
-                    Open Tools <ArrowRight size={16} />
                   </div>
                 </Link>
               </m.div>
