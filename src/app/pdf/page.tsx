@@ -121,7 +121,7 @@ const pdfTools = [
 
 export default function PDFLandingPage() {
     return (
-        <div className="max-w-7xl mx-auto px-4 pt-6 pb-12 space-y-12">
+        <div className="max-w-7xl mx-auto px-4 pt-6 pb-24 space-y-12">
             <m.div
                 initial="initial"
                 animate="animate"
