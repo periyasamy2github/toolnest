@@ -27,12 +27,12 @@ import { fadeInUp, staggerContainer } from "@/components/Animations";
 const toolCategories = [
   {
     title: "Developer Tools",
-    description: "Professional-grade coding utilities. From JSON formatting and SQL optimization to JWT decoding and Regex testing, we provide the essential tools for modern software engineering.",
+    description: "Professional-grade coding utilities. From JSON formatting and API testing to gradient generation and JWT decoding, we provide the essential tools for modern software engineering.",
     icon: Code,
     href: "/developer",
     color: "text-blue-500",
     bg: "bg-blue-500/10",
-    tools: ["JSON Formatter", "Cron Generator", "SQL Formatter", "JWT Tool", "Regex Tester"]
+    tools: ["JSON Formatter", "API Tester", "Gradient Generator", "JWT Tool", "Regex Tester"]
   },
   {
     title: "Image Processing",
@@ -72,12 +72,12 @@ const toolCategories = [
   },
   {
     title: "Productivity Suite",
-    description: "Boost your daily efficiency. Manage time with Pomodoro timers, generate secure QR codes, or convert units instantly. Designed for focus.",
+    description: "Boost your daily efficiency. Create invoices, build resumes, manage PDFs, or track time with Pomodoro timers. Designed for professionals.",
     icon: Timer,
     href: "/utils",
     color: "text-green-500",
     bg: "bg-green-500/10",
-    tools: ["Pomodoro Timer", "Signature Generator", "QR Code Generator", "Unit Converter"]
+    tools: ["Invoice Generator", "PDF Tools", "Pomodoro Timer", "QR Code"]
   },
 ];
 

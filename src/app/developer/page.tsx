@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { m } from "framer-motion";
-import { ArrowLeft, ArrowRight, Braces, FileJson, Database, FileType, Code2, Scissors, FileCode2, Code, FileCode, Binary, Link as LinkIcon, ShieldCheck, Fingerprint, Lock, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight, Braces, FileJson, Database, FileType, Code2, Scissors, FileCode2, Code, FileCode, Binary, Link as LinkIcon, ShieldCheck, Fingerprint, Lock, Clock, Send, Palette } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/components/Animations";
 
 const tools = [
@@ -13,6 +13,22 @@ const tools = [
         href: "/developer/json-formatter",
         color: "text-yellow-400",
         bg: "bg-yellow-400/10",
+    },
+    {
+        title: "API Tester",
+        description: "Test REST APIs with GET, POST, PUT, DELETE requests.",
+        icon: Send,
+        href: "/developer/api-tester",
+        color: "text-green-400",
+        bg: "bg-green-400/10",
+    },
+    {
+        title: "Gradient Generator",
+        description: "Create beautiful CSS gradients visually.",
+        icon: Palette,
+        href: "/developer/gradient-generator",
+        color: "text-pink-400",
+        bg: "bg-pink-400/10",
     },
     {
         title: "Cron Generator",

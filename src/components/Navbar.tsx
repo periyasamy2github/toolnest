@@ -62,7 +62,9 @@ import {
     Mic,
     Eraser,
     PenTool,
-    Moon
+    Moon,
+    Send,
+    FileDown
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -127,6 +129,8 @@ const navItems = [
         bg: "bg-blue-500/10",
         subItems: [
             { name: "JSON Formatter", href: "/developer/json-formatter", icon: Braces, color: "text-blue-400" },
+            { name: "API Tester", href: "/developer/api-tester", icon: Send, color: "text-green-400" },
+            { name: "Gradient Generator", href: "/developer/gradient-generator", icon: Palette, color: "text-pink-400" },
             { name: "Cron Generator", href: "/developer/cron-generator", icon: Clock, color: "text-indigo-400" },
             { name: "JSON to TypeScript", href: "/developer/json-to-ts", icon: FileJson, color: "text-blue-300" },
             { name: "SQL Formatter", href: "/developer/sql-formatter", icon: Database, color: "text-indigo-400" },
@@ -143,7 +147,6 @@ const navItems = [
             { name: "Password Generator", href: "/developer/password-generator", icon: Lock, color: "text-red-400" },
         ]
     },
-
     {
         name: "Productivity",
         href: "/utils",
@@ -151,6 +154,8 @@ const navItems = [
         color: "text-green-500",
         bg: "bg-green-500/10",
         subItems: [
+            { name: "Invoice Generator", href: "/utils/invoice-generator", icon: FileText, color: "text-emerald-400" },
+            { name: "PDF Tools", href: "/utils/pdf-tools", icon: FileDown, color: "text-red-400" },
             { name: "Pomodoro Timer", href: "/utils/pomodoro", icon: Clock, color: "text-red-400" },
             { name: "Signature Generator", href: "/utils/signature-generator", icon: PenTool, color: "text-pink-400" },
             { name: "Stopwatch", href: "/utils/stopwatch", icon: Timer, color: "text-blue-400" },
@@ -279,9 +284,6 @@ export function Navbar() {
                     </div>
 
                     <div className="flex items-center gap-4">
-                        {/* Uply Monitor Link */}
-
-
                         {/* Mobile Menu Toggle */}
                         <button
                             onClick={() => setIsOpen(!isOpen)}

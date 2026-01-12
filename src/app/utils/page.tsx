@@ -2,10 +2,26 @@
 
 import Link from "next/link";
 import { m } from "framer-motion";
-import { ArrowLeft, ArrowRight, Clock, Timer, Globe, Dices, QrCode, Ruler, PenTool } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, Timer, Globe, Dices, QrCode, Ruler, PenTool, FileText, Briefcase, FileDown } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/components/Animations";
 
 const tools = [
+    {
+        title: "Invoice Generator",
+        description: "Create professional invoices with logo upload and PDF export.",
+        icon: FileText,
+        href: "/utils/invoice-generator",
+        color: "text-emerald-400",
+        bg: "bg-emerald-400/10",
+    },
+    {
+        title: "PDF Tools",
+        description: "Merge, split, and compress PDFs locally in your browser.",
+        icon: FileDown,
+        href: "/utils/pdf-tools",
+        color: "text-red-400",
+        bg: "bg-red-400/10",
+    },
     {
         title: "Pomodoro Timer",
         description: "Boost productivity with the Pomodoro technique.",
