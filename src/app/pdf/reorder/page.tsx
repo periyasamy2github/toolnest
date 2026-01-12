@@ -6,10 +6,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { PDFDocument } from "pdf-lib";
 import { Reorder, m, AnimatePresence } from "framer-motion";
-import * as pdfjs from "pdfjs-dist";
 
-// Set worker source for pdfjs
-pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.mjs";
 
 interface PDFPage {
     id: string;
@@ -51,6 +48,8 @@ export default function ReorderPDFPage() {
             const pageCount = pdfDoc.getPageCount();
 
             // Load for preview
+            const pdfjs = await import("pdfjs-dist");
+            pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.mjs";
             const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
             const newPages: PDFPage[] = [];
             const canvas = document.createElement("canvas");
@@ -64,7 +63,7 @@ export default function ReorderPDFPage() {
 
                 let previewUrl = "";
                 if (ctx) {
-                    await page.render({ canvasContext: ctx, viewport, canvas: canvas }).promise;
+                    await page.render({ canvasContext: ctx, viewport, canvas: canvas } as any).promise;
                     previewUrl = canvas.toDataURL("image/jpeg", 0.8);
                 }
 

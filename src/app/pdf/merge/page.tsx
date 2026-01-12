@@ -6,10 +6,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { PDFDocument } from "pdf-lib";
 import { m, AnimatePresence, Reorder } from "framer-motion";
-import * as pdfjs from "pdfjs-dist";
 
-// Set worker source for pdfjs
-pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.mjs";
 
 interface PDFFile {
     id: string;
@@ -50,6 +47,8 @@ export default function MergePDFPage() {
                     }
 
                     // Load for preview (first page only)
+                    const pdfjs = await import("pdfjs-dist");
+                    pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.mjs";
                     const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
                     const page = await pdf.getPage(1);
                     const viewport = page.getViewport({ scale: 0.3 });

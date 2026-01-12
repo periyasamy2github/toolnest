@@ -4,12 +4,8 @@ import { useState } from "react";
 import { ArrowLeft, Upload, FileText, ImageIcon, Download, Loader2, Trash2, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import * as pdfjs from "pdfjs-dist";
 import JSZip from "jszip";
 import { m, AnimatePresence } from "framer-motion";
-
-// Set worker source for pdfjs
-pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.mjs";
 
 export default function PDFToImagePage() {
     const [file, setFile] = useState<File | null>(null);
@@ -26,6 +22,8 @@ export default function PDFToImagePage() {
         try {
             const arrayBuffer = await selectedFile.arrayBuffer();
             try {
+                const pdfjs = await import("pdfjs-dist");
+                pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.mjs";
                 await pdfjs.getDocument({ data: arrayBuffer }).promise;
             } catch (err: any) {
                 if (err.message.includes("Password") || err.name === "PasswordException") {
@@ -46,6 +44,8 @@ export default function PDFToImagePage() {
 
         try {
             const arrayBuffer = await file.arrayBuffer();
+            const pdfjs = await import("pdfjs-dist");
+            pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.mjs";
             const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
             const zip = new JSZip();
             const canvas = document.createElement("canvas");
@@ -58,7 +58,7 @@ export default function PDFToImagePage() {
                 canvas.height = viewport.height;
 
                 if (ctx) {
-                    await page.render({ canvasContext: ctx, viewport }).promise;
+                    await page.render({ canvasContext: ctx, viewport } as any).promise;
                     const imageData = canvas.toDataURL("image/jpeg", 0.9);
                     const base64Data = imageData.replace(/^data:image\/jpeg;base64,/, "");
                     zip.file(`page-${i}.jpg`, base64Data, { base64: true });

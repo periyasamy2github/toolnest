@@ -96,12 +96,12 @@ export default function Home() {
     <div className="min-h-screen bg-[#030303] selection:bg-blue-500 selection:text-white font-sans">
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center justify-center pt-20 pb-32 overflow-hidden">
-        <div className="container mx-auto px-4 z-10">
+        <div className="z-10 w-full">
           <m.div
             initial="initial"
             animate="animate"
             variants={staggerContainer}
-            className="text-center space-y-8 max-w-5xl mx-auto"
+            className="text-center space-y-8 w-full mx-auto"
           >
             <m.div
               variants={fadeInUp}
@@ -152,8 +152,8 @@ export default function Home() {
       </section>
 
       {/* Explore Categories Section */}
-      <section id="explore" className="py-24 px-4 border-t border-white/5">
-        <div className="max-w-7xl mx-auto space-y-16">
+      <section id="explore" className="py-24 border-t border-white/5">
+        <div className="w-full mx-auto space-y-16">
           <div className="text-center space-y-4 max-w-2xl mx-auto">
             <div className="inline-flex items-center gap-2 text-blue-400 text-sm font-medium mb-2">
               <Search size={18} />
@@ -218,7 +218,7 @@ export default function Home() {
 
       {/* Why ToolNest Section */}
       <section className="py-24 border-t border-white/5 bg-zinc-950/20">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="w-full mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-1 space-y-4">
               <h2 className="text-3xl font-bold text-white tracking-tight">
@@ -253,7 +253,7 @@ export default function Home() {
 
       {/* Our Products Section */}
       <section className="py-24 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="w-full mx-auto">
           <div className="text-center space-y-4 max-w-2xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 text-blue-400 text-sm font-medium mb-2">
               <Zap size={18} />
@@ -301,7 +301,7 @@ export default function Home() {
 
       {/* Privacy Commitment Section */}
       <section id="privacy" className="py-24 border-t border-white/5 bg-zinc-950/40">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="w-full mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <m.div
               initial={{ opacity: 0, y: 20 }}

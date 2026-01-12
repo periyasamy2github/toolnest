@@ -12,6 +12,12 @@ export default function CompressPDFPage() {
     const [processing, setProcessing] = useState(false);
     const [dragOver, setDragOver] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [stats, setStats] = useState<{
+        originalSize: number;
+        compressedSize: number;
+        savedBytes: number;
+        savedPercentage: number;
+    } | null>(null);
 
     const handleFileUpload = async (uploadedFiles: FileList | null) => {
         if (!uploadedFiles || uploadedFiles.length === 0) return;
@@ -44,18 +50,64 @@ export default function CompressPDFPage() {
             const arrayBuffer = await file.arrayBuffer();
             const pdfDoc = await PDFDocument.load(arrayBuffer);
 
-            // Basic compression using object streams
-            const compressedBytes = await pdfDoc.save({
+            // Method 1: Basic compression with object streams
+            const compressedBytes1 = await pdfDoc.save({
                 useObjectStreams: true,
             });
 
-            const blob = new Blob([compressedBytes.buffer as any], { type: "application/pdf" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = `compressed_${file.name}`;
-            a.click();
-            URL.revokeObjectURL(url);
+            // Method 2: Re-create document (often removes unused resources)
+            const newPdfDoc = await PDFDocument.create();
+            const pages = await newPdfDoc.copyPages(pdfDoc, pdfDoc.getPageIndices());
+            pages.forEach((page) => newPdfDoc.addPage(page));
+            const compressedBytes2 = await newPdfDoc.save({
+                useObjectStreams: true,
+            });
+
+            // Compare results
+            const originalSize = file.size;
+            const size1 = compressedBytes1.byteLength;
+            const size2 = compressedBytes2.byteLength;
+
+            let finalBytes = compressedBytes1;
+            let compressedSize = size1;
+
+            // Pick the smallest size
+            if (size2 < size1) {
+                finalBytes = compressedBytes2;
+                compressedSize = size2;
+            }
+
+            let savedBytes = originalSize - compressedSize;
+            let savedPercentage = (savedBytes / originalSize) * 100;
+
+            let isOptimized = true;
+
+            // Check if we actually saved anything
+            if (compressedSize >= originalSize) {
+                compressedSize = originalSize;
+                savedBytes = 0;
+                savedPercentage = 0;
+                isOptimized = false;
+            }
+
+            setStats({
+                originalSize,
+                compressedSize,
+                savedBytes,
+                savedPercentage
+            });
+
+            if (isOptimized) {
+                const blob = new Blob([finalBytes as any], { type: "application/pdf" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `compressed_${file.name}`;
+                a.click();
+                URL.revokeObjectURL(url);
+            } else {
+                setError("File is already optimized. No further compression possible.");
+            }
         } catch (error) {
             console.error("Compression failed:", error);
             alert("Failed to compress PDF. Please try again.");
@@ -123,6 +175,15 @@ export default function CompressPDFPage() {
                             <p className="text-zinc-500 text-sm">Optimize your file for web and email</p>
                         </div>
                     </div>
+                    {error && (
+                        <m.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-center"
+                        >
+                            {error}
+                        </m.div>
+                    )}
                 </m.div>
             ) : (
                 <m.div
@@ -165,6 +226,31 @@ export default function CompressPDFPage() {
                             </>
                         )}
                     </button>
+                </m.div>
+            )}
+
+            {stats && (
+                <m.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="grid grid-cols-2 md:grid-cols-4 gap-4"
+                >
+                    <div className="p-4 rounded-xl bg-zinc-900 border border-white/5">
+                        <p className="text-zinc-500 text-xs mb-1">Original Size</p>
+                        <p className="text-xl font-bold text-white">{(stats.originalSize / 1024 / 1024).toFixed(2)} MB</p>
+                    </div>
+                    <div className="p-4 rounded-xl bg-zinc-900 border border-white/5">
+                        <p className="text-zinc-500 text-xs mb-1">Compressed Size</p>
+                        <p className="text-xl font-bold text-white">{(stats.compressedSize / 1024 / 1024).toFixed(2)} MB</p>
+                    </div>
+                    <div className="p-4 rounded-xl bg-green-500/10 border border-green-500/20">
+                        <p className="text-green-400 text-xs mb-1">Saved Space</p>
+                        <p className="text-xl font-bold text-green-400">{(stats.savedBytes / 1024 / 1024).toFixed(2)} MB</p>
+                    </div>
+                    <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                        <p className="text-blue-400 text-xs mb-1">Compression Ratio</p>
+                        <p className="text-xl font-bold text-blue-400">{stats.savedPercentage.toFixed(1)}%</p>
+                    </div>
                 </m.div>
             )}
 
