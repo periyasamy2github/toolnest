@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Activity, Calculator, Wind, Droplets, Flame, Dumbbell, HeartPulse, Brain, Coins, Hourglass } from "lucide-react";
+import { ArrowLeft, Activity, Calculator, Wind, Droplets, Flame, Dumbbell, HeartPulse, Brain, Coins, Hourglass, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/components/Animations";
@@ -106,23 +106,25 @@ export default function HealthToolsPage() {
                 </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
                 {tools.map((tool) => (
                     <motion.div key={tool.title} variants={fadeInUp} className="h-full">
                         <Link
                             href={tool.href}
                             className="group relative flex flex-col h-full overflow-hidden glass-card p-8"
                         >
-                            <div className={`p-4 rounded-2xl ${tool.bg} ${tool.color} w-fit mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
-                                <tool.icon size={32} />
+                            <div className={`p-4 rounded-2xl ${tool.bg} ${tool.color} w-fit mb-6 group-hover:scale-110 transition-transform duration-500 shadow-xl shadow-black/20`}>
+                                <tool.icon size={28} />
                             </div>
-
-                            <h2 className="text-2xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">
+                            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-500">
                                 {tool.title}
-                            </h2>
-                            <p className="text-zinc-400 text-base leading-relaxed group-hover:text-zinc-300 transition-colors flex-grow">
+                            </h3>
+                            <p className="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow group-hover:text-zinc-300 transition-colors duration-500">
                                 {tool.description}
                             </p>
+                            <div className="flex items-center gap-2 text-sm font-bold text-blue-400 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-500">
+                                Open Tool <ArrowRight size={16} />
+                            </div>
                         </Link>
                     </motion.div>
                 ))}

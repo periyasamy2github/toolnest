@@ -216,29 +216,29 @@ export default function Home() {
           whileInView="animate"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch max-w-7xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch max-w-7xl mx-auto"
         >
           {tools.map((tool) => (
             <motion.div key={tool.title} variants={fadeInUp} className="h-full">
               <Link
                 href={tool.href}
-                className="group relative flex flex-col h-full p-10 rounded-[2rem] glass-card overflow-hidden"
+                className="group relative flex flex-col h-full p-8 rounded-[2rem] glass-card overflow-hidden border border-white/5 hover:border-blue-500/30 transition-all duration-500"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className={`p-5 rounded-2xl ${tool.bg} ${tool.color} w-fit mb-8 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
-                  <tool.icon size={36} />
+                <div className={`p-5 rounded-2xl ${tool.bg} ${tool.color} w-fit mb-6 group-hover:scale-110 transition-transform duration-500 shadow-xl shadow-black/20`}>
+                  <tool.icon size={32} />
                 </div>
 
-                <h3 className="text-3xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors duration-500">
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-500">
                   {tool.title}
                 </h3>
-                <p className="text-zinc-400 text-lg leading-relaxed mb-8 flex-grow">
+                <p className="text-zinc-400 text-base leading-relaxed mb-8 flex-grow group-hover:text-zinc-300 transition-colors duration-500">
                   {tool.description}
                 </p>
 
                 <div className="flex items-center gap-2 text-base font-bold text-blue-400 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-500">
-                  Open Tool <ArrowRight size={20} />
+                  Open Tool <ArrowRight size={18} />
                 </div>
               </Link>
             </motion.div>
