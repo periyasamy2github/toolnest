@@ -187,16 +187,16 @@ export function Navbar() {
                 </div>
             </div>
 
-            <nav className="sticky top-0 z-50 w-full border-b border-white/5 bg-zinc-950/80 backdrop-blur-xl">
+            <nav className="sticky top-0 z-50 w-full border-b border-white/5 glass">
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-[1440px]">
                     <div className="flex items-center gap-4">
-                        <Link href="/" className="flex items-center gap-2 font-bold text-xl text-zinc-100">
-                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                                <LayoutGrid size={18} className="text-white" />
+                        <Link href="/" className="flex items-center gap-2 font-black text-2xl text-white group">
+                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform duration-500">
+                                <LayoutGrid size={22} className="text-white" />
                             </div>
-                            <span>ToolNest</span>
+                            <span className="text-gradient">ToolNest</span>
                         </Link>
-                        <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
+                        <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full glass text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
                             <span>Created by</span>
                             <span className="text-zinc-200">Professor</span>
                         </div>

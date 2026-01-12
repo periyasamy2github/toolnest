@@ -18,26 +18,38 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "ToolNest - All Your Everyday Tools in One Place",
+    default: "ToolNest - The Ultimate All-in-One Digital Toolbox",
     template: "%s | ToolNest"
   },
-  description: "A unified suite of powerful, private, and browser-based web tools for media, images, developers, and more. No uploads, no limits, 100% private.",
+  description: "ToolNest is a unified suite of powerful, private, and browser-based web tools for developers, creators, and everyday tasks. 100% private, no uploads, no limits.",
   keywords: [
     "web tools", "online tools", "image compressor", "background remover",
     "json formatter", "jwt tool", "unit converter", "qr code generator",
     "uptime monitoring", "developer utilities", "productivity tools",
-    "text tools", "audio tools", "health calculators"
+    "text tools", "audio tools", "health calculators", "free online tools",
+    "private web tools", "browser-based tools", "ToolNest"
   ],
   authors: [{ name: "Professor", url: "https://t.me/hey_mrprofessor" }],
   creator: "Professor",
   publisher: "ToolNest",
+  metadataBase: new URL("https://webtoolnest.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   openGraph: {
-    title: "ToolNest - All Your Everyday Tools in One Place",
-    description: "Powerful, private, and browser-based tools for everyone. Media, developers, and everyday tasks.",
+    title: "ToolNest - The Ultimate All-in-One Digital Toolbox",
+    description: "Powerful, private, and browser-based tools for everyone. Media, developers, and everyday tasks. 100% private.",
     url: "https://webtoolnest.vercel.app",
     siteName: "ToolNest",
     images: [
@@ -53,14 +65,18 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ToolNest - All Your Everyday Tools in One Place",
-    description: "Powerful, private, and browser-based tools for everyone. Media, developers, and everyday tasks.",
+    title: "ToolNest - The Ultimate All-in-One Digital Toolbox",
+    description: "Powerful, private, and browser-based tools for everyone. Media, developers, and everyday tasks. 100% private.",
     images: ["/og-image.png"],
+    creator: "@hey_mrprofessor",
   },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/favicon.ico",
+  },
+  verification: {
+    google: "your-google-verification-code", // User should replace this
   }
 };
 

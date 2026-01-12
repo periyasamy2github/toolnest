@@ -3,14 +3,14 @@ import { Send, Globe } from "lucide-react";
 
 export function Footer() {
     return (
-        <footer className="border-t border-white/5 bg-zinc-950/50 backdrop-blur-xl mt-auto">
-            <div className="container mx-auto px-4 py-8 max-w-[1440px]">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div className="flex flex-col items-center md:items-start gap-2">
-                        <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+        <footer className="border-t border-white/5 glass mt-auto">
+            <div className="container mx-auto px-4 py-12 max-w-[1440px]">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div className="flex flex-col items-center md:items-start gap-3">
+                        <h2 className="text-3xl font-black text-gradient">
                             ToolNest
                         </h2>
-                        <p className="text-zinc-500 text-sm">
+                        <p className="text-zinc-400 text-base font-medium">
                             Powerful, private, and browser-based tools for everyone.
                         </p>
                     </div>

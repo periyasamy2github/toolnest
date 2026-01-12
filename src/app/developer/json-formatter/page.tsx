@@ -49,28 +49,28 @@ export default function JsonFormatter() {
     };
 
     return (
-        <div className="max-w-6xl mx-auto space-y-8 pb-12">
-            <div className="flex items-center gap-4">
-                <Link href="/developer" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
+        <div className="max-w-6xl mx-auto space-y-12 pb-12">
+            <div className="flex items-center gap-6">
+                <Link href="/developer" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
+                    <ArrowLeft className="text-zinc-100" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">JSON Formatter & Validator</h1>
-                    <p className="text-zinc-400">Clean, format, and validate your JSON data instantly.</p>
+                    <h1 className="text-4xl font-black text-gradient">JSON Formatter & Validator</h1>
+                    <p className="text-zinc-400 text-lg">Clean, format, and validate your JSON data instantly with total privacy.</p>
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" style={{ height: '600px' }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12" style={{ height: '650px' }}>
                 {/* Input Area */}
-                <div className="flex flex-col space-y-4 h-full min-h-0">
+                <div className="flex flex-col space-y-4 h-full min-h-0 animate-in fade-in slide-in-from-left-4 duration-500">
                     <div className="flex items-center justify-between px-2">
-                        <label className="text-sm font-medium text-zinc-400 flex items-center gap-2">
+                        <label className="text-sm font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-2">
                             <FileJson size={16} className="text-blue-400" />
                             Input JSON
                         </label>
                         <button
                             onClick={clearAll}
-                            className="text-xs text-zinc-500 hover:text-red-400 transition-colors flex items-center gap-1"
+                            className="text-xs font-bold text-zinc-500 hover:text-red-400 transition-colors flex items-center gap-1 uppercase tracking-widest"
                         >
                             <Trash2 size={14} />
                             Clear
@@ -80,54 +80,54 @@ export default function JsonFormatter() {
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder='Paste your JSON here... e.g. {"name": "ToolNest", "version": 1.0}'
-                        className="flex-1 min-h-0 bg-zinc-900/50 border border-white/10 rounded-2xl p-6 text-zinc-100 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all resize-none"
+                        className="flex-1 min-h-0 glass-card p-8 text-zinc-100 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all resize-none placeholder:text-zinc-700"
                     />
-                    <div className="flex gap-3 flex-shrink-0">
+                    <div className="flex gap-4 flex-shrink-0">
                         <button
                             onClick={formatJson}
-                            className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/10"
+                            className="flex-1 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold py-4 rounded-2xl transition-all flex items-center justify-center gap-2 shadow-xl shadow-blue-500/20 hover:scale-[1.02] active:scale-95"
                         >
-                            <Maximize2 size={18} />
+                            <Maximize2 size={20} />
                             Format (Pretty)
                         </button>
                         <button
                             onClick={minifyJson}
-                            className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 font-medium py-3 rounded-xl transition-all flex items-center justify-center gap-2 border border-white/5"
+                            className="flex-1 glass hover:bg-white/10 text-white font-bold py-4 rounded-2xl transition-all flex items-center justify-center gap-2 border border-white/5 hover:scale-[1.02] active:scale-95"
                         >
-                            <Minimize2 size={18} />
+                            <Minimize2 size={20} />
                             Minify
                         </button>
                     </div>
                 </div>
 
                 {/* Output Area */}
-                <div className="flex flex-col space-y-4 h-full min-h-0">
+                <div className="flex flex-col space-y-4 h-full min-h-0 animate-in fade-in slide-in-from-right-4 duration-500">
                     <div className="flex items-center justify-between px-2">
-                        <label className="text-sm font-medium text-zinc-400 flex items-center gap-2">
-                            <Braces size={16} className="text-green-400" />
+                        <label className="text-sm font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+                            <Braces size={16} className="text-purple-400" />
                             Output
                         </label>
                         {output && (
                             <button
                                 onClick={copyToClipboard}
-                                className="text-xs text-zinc-500 hover:text-blue-400 transition-colors flex items-center gap-1"
+                                className="text-xs font-bold text-zinc-500 hover:text-blue-400 transition-colors flex items-center gap-1 uppercase tracking-widest"
                             >
                                 {copied ? <Check size={14} className="text-green-400" /> : <Copy size={14} />}
-                                {copied ? "Copied!" : "Copy"}
+                                {copied ? "Copied!" : "Copy Output"}
                             </button>
                         )}
                     </div>
                     <div className="flex-1 min-h-0 overflow-hidden">
                         <pre className={cn(
-                            "w-full h-full bg-zinc-950 border rounded-2xl p-6 overflow-auto font-mono text-sm transition-all",
+                            "w-full h-full glass-card p-8 overflow-auto font-mono text-sm transition-all",
                             error ? "border-red-500/50 bg-red-500/5" : "border-white/10"
                         )}>
                             {error ? (
-                                <div className="flex items-start gap-3 text-red-400">
-                                    <AlertCircle size={18} className="shrink-0 mt-0.5" />
-                                    <div className="space-y-1">
-                                        <p className="font-bold">Invalid JSON</p>
-                                        <p className="text-xs opacity-80">{error}</p>
+                                <div className="flex items-start gap-4 text-red-400">
+                                    <AlertCircle size={24} className="shrink-0 mt-1" />
+                                    <div className="space-y-2">
+                                        <p className="text-lg font-bold">Invalid JSON</p>
+                                        <p className="text-sm opacity-80 leading-relaxed">{error}</p>
                                     </div>
                                 </div>
                             ) : (
@@ -141,27 +141,27 @@ export default function JsonFormatter() {
             </div>
 
             {/* Features Info */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-zinc-900/30 border border-white/5 rounded-2xl p-6 space-y-2">
-                    <h3 className="text-zinc-100 font-medium flex items-center gap-2">
-                        <Check size={16} className="text-green-400" />
-                        Validation
-                    </h3>
-                    <p className="text-xs text-zinc-400">Instant validation with detailed error messages for syntax issues.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <div className="glass-card p-8 space-y-3 group hover:bg-white/5 transition-all">
+                    <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <Check size={24} className="text-green-400" />
+                    </div>
+                    <h3 className="text-white font-bold text-xl">Validation</h3>
+                    <p className="text-sm text-zinc-400 leading-relaxed">Instant validation with detailed error messages for syntax issues and structural problems.</p>
                 </div>
-                <div className="bg-zinc-900/30 border border-white/5 rounded-2xl p-6 space-y-2">
-                    <h3 className="text-zinc-100 font-medium flex items-center gap-2">
-                        <Maximize2 size={16} className="text-blue-400" />
-                        Pretty Print
-                    </h3>
-                    <p className="text-xs text-zinc-400">Formats messy JSON into a readable structure with 4-space indentation.</p>
+                <div className="glass-card p-8 space-y-3 group hover:bg-white/5 transition-all">
+                    <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <Maximize2 size={24} className="text-blue-400" />
+                    </div>
+                    <h3 className="text-white font-bold text-xl">Pretty Print</h3>
+                    <p className="text-sm text-zinc-400 leading-relaxed">Formats messy JSON into a readable structure with standard 4-space indentation for better clarity.</p>
                 </div>
-                <div className="bg-zinc-900/30 border border-white/5 rounded-2xl p-6 space-y-2">
-                    <h3 className="text-zinc-100 font-medium flex items-center gap-2">
-                        <Minimize2 size={16} className="text-purple-400" />
-                        Minification
-                    </h3>
-                    <p className="text-xs text-zinc-400">Removes all whitespace to reduce the size of your JSON payload.</p>
+                <div className="glass-card p-8 space-y-3 group hover:bg-white/5 transition-all">
+                    <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <Minimize2 size={24} className="text-purple-400" />
+                    </div>
+                    <h3 className="text-white font-bold text-xl">Minification</h3>
+                    <p className="text-sm text-zinc-400 leading-relaxed">Removes all unnecessary whitespace to reduce the size of your JSON payload for production use.</p>
                 </div>
             </div>
         </div>

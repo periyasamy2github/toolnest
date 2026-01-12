@@ -86,33 +86,33 @@ export default function TextToolsPage() {
             initial="initial"
             animate="animate"
             variants={staggerContainer}
-            className="space-y-8"
+            className="space-y-12"
         >
-            <motion.div variants={fadeInUp} className="flex items-center gap-4">
-                <Link href="/" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
+            <motion.div variants={fadeInUp} className="flex items-center gap-6">
+                <Link href="/" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
+                    <ArrowLeft className="text-zinc-100" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Text Tools</h1>
-                    <p className="text-zinc-400">Manipulate and generate text content.</p>
+                    <h1 className="text-4xl font-black text-gradient">Text Tools</h1>
+                    <p className="text-zinc-400 text-lg">Manipulate and generate text content with total privacy, right in your browser.</p>
                 </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
                 {tools.map((tool) => (
                     <motion.div key={tool.title} variants={fadeInUp} className="h-full">
                         <Link
                             href={tool.href}
-                            className="group relative flex flex-col h-full overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/50 p-6 hover:bg-zinc-900/80 transition-all duration-500 hover:border-white/20 hover:shadow-xl"
+                            className="group relative flex flex-col h-full overflow-hidden glass-card p-8"
                         >
-                            <div className={`p-3 rounded-xl ${tool.bg} ${tool.color} w-fit mb-4 group-hover:scale-110 transition-transform duration-500`}>
-                                <tool.icon size={24} />
+                            <div className={`p-4 rounded-2xl ${tool.bg} ${tool.color} w-fit mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
+                                <tool.icon size={32} />
                             </div>
 
-                            <h2 className="text-xl font-semibold mb-2 text-zinc-100 group-hover:text-white transition-colors">
+                            <h2 className="text-2xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">
                                 {tool.title}
                             </h2>
-                            <p className="text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors flex-grow">
+                            <p className="text-zinc-400 text-base leading-relaxed group-hover:text-zinc-300 transition-colors flex-grow">
                                 {tool.description}
                             </p>
                         </Link>

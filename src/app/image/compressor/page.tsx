@@ -73,50 +73,55 @@ export default function ImageCompressorPage() {
     };
 
     return (
-        <div className="max-w-6xl mx-auto space-y-8">
-            <div className="flex items-center gap-4">
-                <Link href="/image" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
+        <div className="max-w-6xl mx-auto space-y-12">
+            <div className="flex items-center gap-6">
+                <Link href="/image" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
+                    <ArrowLeft className="text-zinc-100" />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold text-zinc-100">Image Compressor</h1>
-                    <p className="text-zinc-400">Reduce image file size without significant quality loss.</p>
+                    <h1 className="text-4xl font-black text-gradient">Image Compressor</h1>
+                    <p className="text-zinc-400 text-lg">Reduce image file size without significant quality loss, 100% privately.</p>
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {/* Upload Section */}
-                <div className="space-y-6">
+                <div className="space-y-8">
                     <div
                         {...getRootProps()}
                         className={cn(
-                            "border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all duration-200 h-64 flex flex-col items-center justify-center",
-                            isDragActive ? "border-blue-500 bg-blue-500/10" : "border-zinc-700 hover:border-zinc-500 hover:bg-zinc-900/50"
+                            "group relative border-2 border-dashed rounded-3xl p-12 text-center cursor-pointer transition-all duration-500 h-80 flex flex-col items-center justify-center overflow-hidden",
+                            isDragActive
+                                ? "border-blue-500 bg-blue-500/10 scale-[1.02] shadow-2xl shadow-blue-500/20"
+                                : "border-white/10 glass hover:border-blue-500/50 hover:bg-white/5"
                         )}
                     >
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         <input {...getInputProps()} />
-                        <div className="bg-zinc-800 p-4 rounded-full mb-4">
-                            <Upload className="text-zinc-400" size={32} />
+                        <div className="relative bg-gradient-to-br from-blue-500 to-purple-600 p-5 rounded-2xl mb-6 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform duration-500">
+                            <Upload className="text-white" size={32} />
                         </div>
-                        {file ? (
-                            <div className="space-y-1">
-                                <p className="font-medium text-zinc-200">{file.name}</p>
-                                <p className="text-sm text-zinc-500">{formatSize(file.size)}</p>
-                            </div>
-                        ) : (
-                            <div className="space-y-1">
-                                <p className="font-medium text-zinc-200">Drop image here or click to upload</p>
-                                <p className="text-sm text-zinc-500">Supports JPG, PNG, WebP</p>
-                            </div>
-                        )}
+                        <div className="relative space-y-2">
+                            {file ? (
+                                <>
+                                    <p className="text-xl font-bold text-white">{file.name}</p>
+                                    <p className="text-zinc-400 font-medium">{formatSize(file.size)}</p>
+                                </>
+                            ) : (
+                                <>
+                                    <p className="text-xl font-bold text-white">Drop image here or click to upload</p>
+                                    <p className="text-zinc-400 font-medium">Supports JPG, PNG, WebP (Max 10MB)</p>
+                                </>
+                            )}
+                        </div>
                     </div>
 
                     {file && (
-                        <div className="glass-card p-6 space-y-6">
-                            <div className="space-y-4">
-                                <div className="flex justify-between text-sm">
-                                    <span className="text-zinc-400">Quality</span>
-                                    <span className="text-zinc-200">{Math.round(quality * 100)}%</span>
+                        <div className="glass-card p-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                            <div className="space-y-6">
+                                <div className="flex justify-between items-end">
+                                    <label className="text-lg font-bold text-white">Compression Quality</label>
+                                    <span className="text-2xl font-black text-blue-400">{Math.round(quality * 100)}%</span>
                                 </div>
                                 <input
                                     type="range"
@@ -125,65 +130,87 @@ export default function ImageCompressorPage() {
                                     step="0.1"
                                     value={quality}
                                     onChange={(e) => setQuality(parseFloat(e.target.value))}
-                                    className="w-full accent-blue-500"
+                                    className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-blue-500"
                                 />
+                                <div className="flex justify-between text-xs font-bold text-zinc-500 uppercase tracking-widest">
+                                    <span>Small Size</span>
+                                    <span>Best Quality</span>
+                                </div>
                             </div>
 
                             <button
                                 onClick={compressImage}
                                 disabled={isCompressing}
-                                className="w-full bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+                                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white py-4 rounded-2xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 shadow-xl shadow-blue-500/20 hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                {isCompressing ? <Loader2 className="animate-spin" /> : "Compress Image"}
+                                {isCompressing ? (
+                                    <>
+                                        <Loader2 className="animate-spin" size={24} />
+                                        <span>Optimizing...</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <ImageIcon size={24} />
+                                        <span>Compress Image</span>
+                                    </>
+                                )}
                             </button>
                         </div>
                     )}
                 </div>
 
                 {/* Result Section */}
-                <div className="space-y-6">
+                <div className="space-y-8">
                     {compressedFile ? (
-                        <div className="glass-card p-6 space-y-6 h-full flex flex-col">
-                            <h3 className="text-xl font-semibold text-zinc-100">Result</h3>
+                        <div className="glass-card p-8 space-y-8 h-full flex flex-col animate-in fade-in slide-in-from-right-4 duration-500">
+                            <div className="flex items-center justify-between">
+                                <h3 className="text-2xl font-bold text-white">Optimization Result</h3>
+                                <div className="px-4 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-sm font-bold">
+                                    Success
+                                </div>
+                            </div>
 
-                            <div className="flex-1 bg-zinc-950/50 rounded-xl border border-white/5 flex items-center justify-center p-4 overflow-hidden">
+                            <div className="flex-1 bg-zinc-950/50 rounded-3xl border border-white/5 flex items-center justify-center p-6 overflow-hidden relative group">
                                 <img
                                     src={URL.createObjectURL(compressedFile)}
                                     alt="Compressed"
-                                    className="max-w-full max-h-[300px] object-contain"
+                                    className="max-w-full max-h-[400px] object-contain rounded-lg shadow-2xl transition-transform duration-500 group-hover:scale-105"
                                 />
                             </div>
 
-                            <div className="space-y-4">
-                                <div className="flex justify-between items-center bg-zinc-900/50 p-4 rounded-lg border border-white/5">
-                                    <div className="text-sm text-zinc-400">Original Size</div>
-                                    <div className="font-mono text-zinc-200">{file ? formatSize(file.size) : '-'}</div>
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div className="glass p-4 rounded-2xl border border-white/5">
+                                    <div className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Original</div>
+                                    <div className="text-lg font-black text-white">{file ? formatSize(file.size) : '-'}</div>
                                 </div>
-                                <div className="flex justify-between items-center bg-green-500/10 p-4 rounded-lg border border-green-500/20">
-                                    <div className="text-sm text-green-400">Compressed Size</div>
-                                    <div className="font-mono text-green-300">{formatSize(compressedFile.size)}</div>
+                                <div className="bg-green-500/10 p-4 rounded-2xl border border-green-500/20">
+                                    <div className="text-xs font-bold text-green-500/60 uppercase tracking-widest mb-1">Optimized</div>
+                                    <div className="text-lg font-black text-green-400">{formatSize(compressedFile.size)}</div>
                                 </div>
-                                <div className="flex justify-between items-center bg-zinc-900/50 p-4 rounded-lg border border-white/5">
-                                    <div className="text-sm text-zinc-400">Reduction</div>
-                                    <div className="font-mono text-blue-400">
+                                <div className="bg-blue-500/10 p-4 rounded-2xl border border-blue-500/20">
+                                    <div className="text-xs font-bold text-blue-500/60 uppercase tracking-widest mb-1">Reduction</div>
+                                    <div className="text-lg font-black text-blue-400">
                                         {file ? Math.round((1 - compressedFile.size / file.size) * 100) : 0}%
                                     </div>
                                 </div>
-
-                                <a
-                                    href={URL.createObjectURL(compressedFile)}
-                                    download={`compressed-${file?.name.split('.')[0]}.jpg`}
-                                    className="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-500 text-white py-3 rounded-lg font-medium transition-colors"
-                                >
-                                    <Download size={20} />
-                                    Download Compressed Image
-                                </a>
                             </div>
+
+                            <a
+                                href={URL.createObjectURL(compressedFile)}
+                                download={`compressed-${file?.name.split('.')[0]}.jpg`}
+                                className="flex items-center justify-center gap-3 w-full bg-white text-zinc-950 hover:bg-zinc-200 py-4 rounded-2xl font-bold text-lg transition-all duration-300 shadow-xl hover:scale-[1.02] active:scale-95"
+                            >
+                                <Download size={24} />
+                                Download Result
+                            </a>
                         </div>
                     ) : (
-                        <div className="h-full border-2 border-dashed border-zinc-800 rounded-2xl flex flex-col items-center justify-center text-zinc-600 p-8">
-                            <ImageIcon size={48} className="mb-4 opacity-20" />
-                            <p>Compressed image will appear here</p>
+                        <div className="h-full border-2 border-dashed border-white/5 glass rounded-3xl flex flex-col items-center justify-center text-zinc-500 p-12 text-center">
+                            <div className="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center mb-6">
+                                <ImageIcon size={40} className="opacity-20" />
+                            </div>
+                            <p className="text-xl font-medium">Optimized preview will appear here</p>
+                            <p className="text-sm mt-2">Upload an image to see the magic</p>
                         </div>
                     )}
                 </div>
