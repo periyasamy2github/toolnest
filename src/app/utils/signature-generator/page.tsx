@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { ArrowLeft, PenTool, Download, Trash2, Undo, Palette, Type } from "lucide-react";
+import { ArrowLeft, PenTool, Download, Trash2, Palette, Type } from "lucide-react";
 import Link from "next/link";
 import SignatureCanvas from "react-signature-canvas";
 import { cn } from "@/lib/utils";
@@ -15,19 +15,10 @@ export default function SignatureGeneratorPage() {
 
     const clear = () => sigCanvas.current?.clear();
 
-    const download = (format: "png" | "jpg" | "svg") => {
+    const download = (format: "png" | "jpg") => {
         if (!sigCanvas.current) return;
 
-        let dataUrl;
-        if (format === "svg") {
-            // Basic SVG export logic or use library feature if available
-            // react-signature-canvas doesn't export SVG directly easily without plugin
-            // Fallback to PNG for now or implement custom SVG logic
-            // For simplicity in this demo, we'll stick to PNG/JPG
-            dataUrl = sigCanvas.current.getTrimmedCanvas().toDataURL("image/png");
-        } else {
-            dataUrl = sigCanvas.current.getTrimmedCanvas().toDataURL(`image/${format}`);
-        }
+        const dataUrl = sigCanvas.current.getTrimmedCanvas().toDataURL(`image/${format}`);
 
         const link = document.createElement("a");
         link.download = `signature.${format}`;
@@ -51,13 +42,15 @@ export default function SignatureGeneratorPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 {/* Canvas Area */}
                 <div className="lg:col-span-8 space-y-4">
-                    <div className="glass-card p-1 bg-white rounded-xl overflow-hidden relative shadow-2xl">
+                    <div className={cn(
+                        "glass-card p-1 rounded-xl overflow-hidden relative shadow-2xl",
+                        backgroundColor === "#ffffff" ? "bg-white" : "bg-transparent"
+                    )}>
                         <SignatureCanvas
                             ref={sigCanvas}
                             penColor={color}
                             minWidth={penWidth}
                             maxWidth={penWidth + 1.5}
-                            backgroundColor={backgroundColor === "transparent" ? "rgba(0,0,0,0)" : backgroundColor}
                             canvasProps={{
                                 className: "w-full h-[400px] cursor-crosshair",
                                 style: {
