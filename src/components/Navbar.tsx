@@ -64,7 +64,10 @@ import {
     PenTool,
     Moon,
     Send,
-    FileDown
+    FileDown,
+    RotateCw,
+    GripVertical,
+    Trash2
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -148,6 +151,27 @@ const navItems = [
         ]
     },
     {
+        name: "PDF",
+        href: "/pdf",
+        icon: FileDown,
+        color: "text-red-500",
+        bg: "bg-red-500/10",
+        subItems: [
+            { name: "Merge PDF", href: "/pdf/merge", icon: Merge, color: "text-blue-400" },
+            { name: "Split PDF", href: "/pdf/split", icon: Scissors, color: "text-green-400" },
+            { name: "Compress PDF", href: "/pdf/compress", icon: FileDown, color: "text-purple-400" },
+            { name: "Rotate PDF", href: "/pdf/rotate", icon: RotateCw, color: "text-orange-400" },
+            { name: "Reorder PDF", href: "/pdf/reorder", icon: GripVertical, color: "text-cyan-400" },
+            { name: "Watermark PDF", href: "/pdf/watermark", icon: Type, color: "text-pink-400" },
+            { name: "Image to PDF", href: "/pdf/image-to-pdf", icon: ImageIcon, color: "text-emerald-400" },
+            { name: "PDF to Image", href: "/pdf/pdf-to-image", icon: ImageIcon, color: "text-amber-400" },
+            { name: "Protect PDF", href: "/pdf/protect", icon: Lock, color: "text-red-400" },
+            { name: "Unlock PDF", href: "/pdf/unlock", icon: ShieldCheck, color: "text-green-400" },
+            { name: "Page Numbers", href: "/pdf/page-numbers", icon: Hash, color: "text-blue-400" },
+            { name: "Remove Pages", href: "/pdf/remove-pages", icon: Trash2, color: "text-rose-400" },
+        ]
+    },
+    {
         name: "Productivity",
         href: "/utils",
         icon: Timer,
@@ -155,7 +179,6 @@ const navItems = [
         bg: "bg-green-500/10",
         subItems: [
             { name: "Invoice Generator", href: "/utils/invoice-generator", icon: FileText, color: "text-emerald-400" },
-            { name: "PDF Tools", href: "/utils/pdf-tools", icon: FileDown, color: "text-red-400" },
             { name: "Pomodoro Timer", href: "/utils/pomodoro", icon: Clock, color: "text-red-400" },
             { name: "Signature Generator", href: "/utils/signature-generator", icon: PenTool, color: "text-pink-400" },
             { name: "Stopwatch", href: "/utils/stopwatch", icon: Timer, color: "text-blue-400" },

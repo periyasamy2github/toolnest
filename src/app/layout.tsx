@@ -96,8 +96,8 @@ export default function RootLayout({
       >
         <LazyMotionProvider>
           <Navbar />
-          <main className="flex-grow transition-all duration-300 pt-28">
-            <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 max-w-[1440px]">
+          <main className="flex-grow transition-all duration-300 pt-24">
+            <div className="container mx-auto px-4 py-0 sm:px-6 lg:px-8 max-w-[1440px]">
               <PageTransition>
                 {children}
               </PageTransition>

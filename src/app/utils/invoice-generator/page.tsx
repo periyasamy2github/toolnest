@@ -523,67 +523,66 @@ export default function InvoiceGeneratorPage() {
                     <div
                         ref={invoiceRef}
                         className={cn(
-                            "bg-white text-black p-8 rounded-lg shadow-2xl",
+                            "bg-white text-black p-8 rounded-lg",
                             template === "classic" && "font-serif"
                         )}
-                        style={{ minHeight: "900px" }}
+                        style={{ minHeight: "900px", boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
                     >
                         {/* Invoice Header */}
-                        <div className={cn(
-                            "flex justify-between items-start mb-8",
-                            template === "modern" && "pb-6 border-b-4 border-blue-600"
-                        )}>
+                        <div className="flex justify-between items-start mb-8" style={{
+                            paddingBottom: template === "modern" ? "1.5rem" : "0",
+                            borderBottom: template === "modern" ? "4px solid #2563eb" : "none"
+                        }}>
                             <div>
                                 {logo && <img src={logo} alt="Logo" className="h-16 w-auto object-contain mb-4" />}
-                                <h1 className={cn(
-                                    "text-3xl font-black",
-                                    template === "modern" ? "text-blue-600" : "text-gray-800"
-                                )}>INVOICE</h1>
+                                <h1 className="text-3xl font-black" style={{ color: template === "modern" ? "#2563eb" : "#1f2937" }}>
+                                    INVOICE
+                                </h1>
                             </div>
-                            <div className="text-right text-sm text-gray-600">
-                                <p className="font-bold text-gray-800 text-lg">{invoiceData.invoiceNumber}</p>
+                            <div className="text-right text-sm" style={{ color: "#4b5563" }}>
+                                <p className="font-bold text-lg" style={{ color: "#1f2937" }}>{invoiceData.invoiceNumber}</p>
                                 <p>Date: {invoiceData.date || "—"}</p>
                                 <p>Due: {invoiceData.dueDate || "—"}</p>
-                                <p className="text-xs mt-1 text-blue-600 font-semibold">{invoiceData.paymentTerms}</p>
+                                <p className="text-xs mt-1 font-semibold" style={{ color: "#2563eb" }}>{invoiceData.paymentTerms}</p>
                             </div>
                         </div>
 
                         {/* From / To */}
                         <div className="grid grid-cols-2 gap-8 mb-8">
                             <div>
-                                <p className="text-xs font-bold text-gray-400 uppercase mb-2">From</p>
-                                <p className="font-bold text-gray-800">{invoiceData.fromName || "Your Company"}</p>
-                                <p className="text-sm text-gray-600">{invoiceData.fromEmail}</p>
-                                <p className="text-sm text-gray-600 whitespace-pre-line">{invoiceData.fromAddress}</p>
+                                <p className="text-xs font-bold uppercase mb-2" style={{ color: "#9ca3af" }}>From</p>
+                                <p className="font-bold" style={{ color: "#1f2937" }}>{invoiceData.fromName || "Your Company"}</p>
+                                <p className="text-sm" style={{ color: "#4b5563" }}>{invoiceData.fromEmail}</p>
+                                <p className="text-sm whitespace-pre-line" style={{ color: "#4b5563" }}>{invoiceData.fromAddress}</p>
                             </div>
                             <div>
-                                <p className="text-xs font-bold text-gray-400 uppercase mb-2">Bill To</p>
-                                <p className="font-bold text-gray-800">{invoiceData.toName || "Client Name"}</p>
-                                <p className="text-sm text-gray-600">{invoiceData.toEmail}</p>
-                                <p className="text-sm text-gray-600 whitespace-pre-line">{invoiceData.toAddress}</p>
+                                <p className="text-xs font-bold uppercase mb-2" style={{ color: "#9ca3af" }}>Bill To</p>
+                                <p className="font-bold" style={{ color: "#1f2937" }}>{invoiceData.toName || "Client Name"}</p>
+                                <p className="text-sm" style={{ color: "#4b5563" }}>{invoiceData.toEmail}</p>
+                                <p className="text-sm whitespace-pre-line" style={{ color: "#4b5563" }}>{invoiceData.toAddress}</p>
                             </div>
                         </div>
 
                         {/* Items Table */}
                         <table className="w-full mb-8">
                             <thead>
-                                <tr className={cn(
-                                    "border-b-2",
-                                    template === "modern" ? "bg-blue-50 border-blue-200" : "border-gray-200"
-                                )}>
-                                    <th className="text-left py-3 px-2 text-xs font-bold text-gray-600 uppercase">Description</th>
-                                    <th className="text-center py-3 px-2 text-xs font-bold text-gray-600 uppercase">Qty</th>
-                                    <th className="text-right py-3 px-2 text-xs font-bold text-gray-600 uppercase">Rate</th>
-                                    <th className="text-right py-3 px-2 text-xs font-bold text-gray-600 uppercase">Amount</th>
+                                <tr className="border-b-2" style={{
+                                    backgroundColor: template === "modern" ? "#eff6ff" : "transparent",
+                                    borderColor: template === "modern" ? "#bfdbfe" : "#e5e7eb"
+                                }}>
+                                    <th className="text-left py-3 px-2 text-xs font-bold uppercase" style={{ color: "#4b5563" }}>Description</th>
+                                    <th className="text-center py-3 px-2 text-xs font-bold uppercase" style={{ color: "#4b5563" }}>Qty</th>
+                                    <th className="text-right py-3 px-2 text-xs font-bold uppercase" style={{ color: "#4b5563" }}>Rate</th>
+                                    <th className="text-right py-3 px-2 text-xs font-bold uppercase" style={{ color: "#4b5563" }}>Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {items.map((item) => (
-                                    <tr key={item.id} className="border-b border-gray-100">
-                                        <td className="py-3 px-2 text-gray-800">{item.description || "—"}</td>
-                                        <td className="py-3 px-2 text-center text-gray-600">{item.quantity}</td>
-                                        <td className="py-3 px-2 text-right text-gray-600">{currency.symbol}{item.rate.toFixed(2)}</td>
-                                        <td className="py-3 px-2 text-right font-semibold text-gray-800">{currency.symbol}{(item.quantity * item.rate).toFixed(2)}</td>
+                                    <tr key={item.id} className="border-b" style={{ borderColor: "#f3f4f6" }}>
+                                        <td className="py-3 px-2" style={{ color: "#1f2937" }}>{item.description || "—"}</td>
+                                        <td className="py-3 px-2 text-center" style={{ color: "#4b5563" }}>{item.quantity}</td>
+                                        <td className="py-3 px-2 text-right" style={{ color: "#4b5563" }}>{currency.symbol}{item.rate.toFixed(2)}</td>
+                                        <td className="py-3 px-2 text-right font-semibold" style={{ color: "#1f2937" }}>{currency.symbol}{(item.quantity * item.rate).toFixed(2)}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -592,26 +591,26 @@ export default function InvoiceGeneratorPage() {
                         {/* Totals */}
                         <div className="flex justify-end">
                             <div className="w-72 space-y-2">
-                                <div className="flex justify-between text-gray-600">
+                                <div className="flex justify-between" style={{ color: "#4b5563" }}>
                                     <span>Subtotal</span>
                                     <span>{currency.symbol}{subtotal.toFixed(2)}</span>
                                 </div>
                                 {discountValue > 0 && (
-                                    <div className="flex justify-between text-green-600">
+                                    <div className="flex justify-between" style={{ color: "#16a34a" }}>
                                         <span>Discount ({discountType === "percentage" ? `${discountValue}%` : "Fixed"})</span>
                                         <span>-{currency.symbol}{discountAmount.toFixed(2)}</span>
                                     </div>
                                 )}
                                 {invoiceData.taxRate > 0 && (
-                                    <div className="flex justify-between text-gray-600">
+                                    <div className="flex justify-between" style={{ color: "#4b5563" }}>
                                         <span>Tax ({invoiceData.taxRate}%)</span>
                                         <span>{currency.symbol}{tax.toFixed(2)}</span>
                                     </div>
                                 )}
-                                <div className={cn(
-                                    "flex justify-between text-xl font-bold border-t-2 pt-2",
-                                    template === "modern" ? "text-blue-600 border-blue-600" : "text-gray-800 border-gray-800"
-                                )}>
+                                <div className="flex justify-between text-xl font-bold border-t-2 pt-2" style={{
+                                    color: template === "modern" ? "#2563eb" : "#1f2937",
+                                    borderColor: template === "modern" ? "#2563eb" : "#1f2937"
+                                }}>
                                     <span>Total</span>
                                     <span>{currency.symbol}{total.toFixed(2)}</span>
                                 </div>
@@ -620,24 +619,24 @@ export default function InvoiceGeneratorPage() {
 
                         {/* Bank Details */}
                         {invoiceData.bankName && (
-                            <div className="mt-8 pt-6 border-t border-gray-200">
-                                <p className="text-xs font-bold text-gray-400 uppercase mb-3">Bank Details</p>
+                            <div className="mt-8 pt-6 border-t" style={{ borderColor: "#e5e7eb" }}>
+                                <p className="text-xs font-bold uppercase mb-3" style={{ color: "#9ca3af" }}>Bank Details</p>
                                 <div className="grid grid-cols-2 gap-4 text-sm">
                                     <div>
-                                        <p className="text-gray-500">Bank Name</p>
-                                        <p className="font-semibold text-gray-800">{invoiceData.bankName}</p>
+                                        <p style={{ color: "#6b7280" }}>Bank Name</p>
+                                        <p className="font-semibold" style={{ color: "#1f2937" }}>{invoiceData.bankName}</p>
                                     </div>
                                     <div>
-                                        <p className="text-gray-500">Account Name</p>
-                                        <p className="font-semibold text-gray-800">{invoiceData.accountName}</p>
+                                        <p style={{ color: "#6b7280" }}>Account Name</p>
+                                        <p className="font-semibold" style={{ color: "#1f2937" }}>{invoiceData.accountName}</p>
                                     </div>
                                     <div>
-                                        <p className="text-gray-500">Account Number</p>
-                                        <p className="font-semibold text-gray-800">{invoiceData.accountNumber}</p>
+                                        <p style={{ color: "#6b7280" }}>Account Number</p>
+                                        <p className="font-semibold" style={{ color: "#1f2937" }}>{invoiceData.accountNumber}</p>
                                     </div>
                                     <div>
-                                        <p className="text-gray-500">IFSC/SWIFT Code</p>
-                                        <p className="font-semibold text-gray-800">{invoiceData.ifscCode}</p>
+                                        <p style={{ color: "#6b7280" }}>IFSC/SWIFT Code</p>
+                                        <p className="font-semibold" style={{ color: "#1f2937" }}>{invoiceData.ifscCode}</p>
                                     </div>
                                 </div>
                             </div>
@@ -645,9 +644,9 @@ export default function InvoiceGeneratorPage() {
 
                         {/* Notes */}
                         {invoiceData.notes && (
-                            <div className="mt-8 pt-4 border-t border-gray-200">
-                                <p className="text-xs font-bold text-gray-400 uppercase mb-2">Notes</p>
-                                <p className="text-sm text-gray-600 whitespace-pre-line">{invoiceData.notes}</p>
+                            <div className="mt-8 pt-4 border-t" style={{ borderColor: "#e5e7eb" }}>
+                                <p className="text-xs font-bold uppercase mb-2" style={{ color: "#9ca3af" }}>Notes</p>
+                                <p className="text-sm whitespace-pre-line" style={{ color: "#4b5563" }}>{invoiceData.notes}</p>
                             </div>
                         )}
                     </div>

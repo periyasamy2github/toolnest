@@ -19,7 +19,8 @@ import {
   Search,
   CheckCircle2,
   Zap,
-  Timer
+  Timer,
+  FileDown
 } from "lucide-react";
 import { m } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/components/Animations";
@@ -71,13 +72,22 @@ const toolCategories = [
     tools: ["BMI Calculator", "Sleep Calculator", "Calories Calculator", "Health Score"]
   },
   {
+    title: "PDF Utilities",
+    description: "Complete PDF management suite. Merge, split, compress, and rotate PDFs. Add watermarks, protect with passwords, or convert images to PDF—all locally in your browser.",
+    icon: FileDown,
+    href: "/pdf",
+    color: "text-red-500",
+    bg: "bg-red-500/10",
+    tools: ["Merge PDF", "Split PDF", "Compress PDF", "Protect PDF", "Image to PDF"]
+  },
+  {
     title: "Productivity Suite",
-    description: "Boost your daily efficiency. Create invoices, build resumes, manage PDFs, or track time with Pomodoro timers. Designed for professionals.",
+    description: "Boost your daily efficiency. Create invoices, build resumes, or track time with Pomodoro timers. Designed for professionals.",
     icon: Timer,
     href: "/utils",
     color: "text-green-500",
     bg: "bg-green-500/10",
-    tools: ["Invoice Generator", "PDF Tools", "Pomodoro Timer", "QR Code"]
+    tools: ["Invoice Generator", "Pomodoro Timer", "QR Code", "Unit Converter"]
   },
 ];
 
@@ -158,7 +168,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {toolCategories.map((category, i) => (
               <m.div
                 key={category.title}
@@ -257,7 +267,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <m.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
