@@ -1,9 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import { Send, Globe } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export function Footer() {
+    const pathname = usePathname();
+    const isHome = pathname === "/";
+
     return (
-        <footer className="border-t border-white/5 glass mt-auto">
+        <footer className={cn(
+            "mt-auto transition-all duration-300",
+            isHome ? "bg-transparent border-none" : "glass border-t border-white/5"
+        )}>
             <div className="container mx-auto px-4 py-12 max-w-[1440px]">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                     <div className="flex flex-col items-center md:items-start gap-3">

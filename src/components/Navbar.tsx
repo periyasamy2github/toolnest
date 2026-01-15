@@ -316,21 +316,19 @@ export function Navbar() {
                         {/* Search Button */}
                         <button
                             onClick={() => window.dispatchEvent(new CustomEvent('open-search'))}
-                            className="hidden sm:flex items-center gap-3 px-4 py-2 rounded-full bg-zinc-900/50 border border-white/10 text-zinc-400 hover:text-white hover:border-blue-500/50 hover:bg-zinc-900/80 hover:shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] transition-all duration-300 group/search w-40 md:w-56 relative"
+                            className="w-10 h-10 rounded-full bg-zinc-900/50 border border-white/10 text-zinc-400 hover:text-white hover:border-blue-500/50 hover:bg-zinc-900/80 hover:shadow-[0_0_15px_-5px_rgba(59,130,246,0.5)] transition-all duration-300 flex items-center justify-center group/search relative"
                             title="Search Tools (Ctrl+K)"
                         >
-                            <Search size={18} className="group-hover/search:scale-110 group-hover/search:text-blue-400 transition-all duration-300" />
-                            <span className="text-sm font-medium tracking-tight">Search tools...</span>
-                            <div className="ml-auto flex items-center gap-1 px-2 py-0.5 rounded-full bg-zinc-800/50 border border-white/5 text-[10px] font-bold text-zinc-500 group-hover/search:text-blue-400 group-hover/search:border-blue-500/30 group-hover/search:bg-blue-500/10 transition-all duration-300">
-                                <span className="opacity-70">Ctrl</span>
-                                <span>K</span>
+                            <Search size={20} className="group-hover/search:scale-110 group-hover/search:text-blue-400 transition-all duration-300" />
+                            <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-zinc-800 border border-white/10 text-[8px] font-bold flex items-center justify-center text-zinc-500 group-hover/search:text-blue-400 group-hover/search:border-blue-500/30 group-hover/search:bg-blue-500/10 transition-all duration-300">
+                                K
                             </div>
                         </button>
 
                         {/* Mobile Search Icon */}
                         <button
                             onClick={() => window.dispatchEvent(new CustomEvent('open-search'))}
-                            className="sm:hidden w-11 h-11 rounded-full bg-zinc-900 border border-white/10 text-zinc-400 hover:text-white hover:border-blue-500/50 hover:shadow-[0_0_15px_-5px_rgba(59,130,246,0.5)] transition-all flex items-center justify-center group/search"
+                            className="sm:hidden w-10 h-10 rounded-full bg-zinc-900 border border-white/10 text-zinc-400 hover:text-white hover:border-blue-500/50 hover:shadow-[0_0_15px_-5px_rgba(59,130,246,0.5)] transition-all flex items-center justify-center group/search"
                         >
                             <Search size={20} className="group-hover/search:scale-110 transition-transform" />
                         </button>
