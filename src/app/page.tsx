@@ -7,14 +7,12 @@ import {
   Type,
   ArrowRight,
   Lock,
-  Cpu,
   Globe,
   Music,
   Code,
   Activity,
   LayoutGrid,
   ShieldCheck,
-  EyeOff,
   Database,
   Search,
   CheckCircle2,
@@ -82,12 +80,12 @@ const toolCategories = [
   },
   {
     title: "Productivity Suite",
-    description: "Boost your daily efficiency. Create invoices, build resumes, or track time with Pomodoro timers. Designed for professionals.",
+    description: "Boost your daily efficiency. Create invoices, build resumes, track time, or calculate your salary and compensation. Designed for professionals.",
     icon: Timer,
     href: "/utils",
     color: "text-green-500",
     bg: "bg-green-500/10",
-    tools: ["Invoice Generator", "Pomodoro Timer", "QR Code", "Unit Converter"]
+    tools: ["Invoice Generator", "Pomodoro Timer", "Salary Time Value", "QR Code", "Unit Converter"]
   },
 ];
 
@@ -134,17 +132,10 @@ export default function Home() {
             >
               <Link
                 href="#explore"
-                className="px-8 py-3.5 bg-white text-black text-sm font-semibold rounded-lg hover:bg-zinc-200 transition-all flex items-center gap-2"
+                className="px-8 py-3.5 bg-white text-black text-sm font-semibold rounded-lg hover:bg-zinc-200 transition-all flex items-center gap-2 shadow-xl shadow-white/10"
               >
                 Explore Tools
                 <ArrowRight size={18} />
-              </Link>
-              <Link
-                href="/developer"
-                className="px-8 py-3.5 bg-white/5 text-white text-sm font-semibold rounded-lg hover:bg-white/10 transition-all border border-white/10 flex items-center gap-2"
-              >
-                <Code size={18} />
-                Developer Hub
               </Link>
             </m.div>
           </m.div>
@@ -379,8 +370,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-
     </div>
   );
 }

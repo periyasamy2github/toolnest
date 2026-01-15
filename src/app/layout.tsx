@@ -5,6 +5,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SupportButton } from "@/components/SupportButton";
 import { PageTransition } from "@/components/Animations";
+import { Search } from "@/components/Search";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -95,6 +97,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-950 text-zinc-100 overflow-x-hidden flex flex-col min-h-screen`}
       >
         <LazyMotionProvider>
+          <ScrollToTop />
           <Navbar />
           <main className="flex-grow transition-all duration-300 pt-24">
             <div className="container mx-auto px-4 py-0 sm:px-6 lg:px-8 max-w-7xl">
@@ -105,6 +108,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <SupportButton />
+          <Search />
         </LazyMotionProvider>
       </body>
     </html>

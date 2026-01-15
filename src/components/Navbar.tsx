@@ -67,7 +67,12 @@ import {
     FileDown,
     RotateCw,
     GripVertical,
-    Trash2
+    Trash2,
+    Search,
+    Banknote,
+    TrendingUp,
+    Receipt,
+    Wallet
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -187,6 +192,7 @@ const navItems = [
             { name: "Random Picker", href: "/utils/random-picker", icon: Dices, color: "text-purple-400" },
             { name: "QR Code", href: "/utils/qr-code", icon: QrCode, color: "text-slate-200" },
             { name: "Unit Converter", href: "/utils/unit-converter", icon: Ruler, color: "text-orange-400" },
+            { name: "Salary Time Value", href: "/utils/salary-time-value", icon: Coins, color: "text-emerald-400" },
         ]
     },
     {
@@ -307,6 +313,18 @@ export function Navbar() {
                     </div>
 
                     <div className="flex items-center gap-4">
+                        {/* Search Button */}
+                        <button
+                            onClick={() => window.dispatchEvent(new CustomEvent('open-search'))}
+                            className="w-10 h-10 rounded-xl bg-zinc-900 border border-white/10 text-zinc-400 hover:text-white hover:border-blue-500/50 transition-all flex items-center justify-center group/search relative"
+                            title="Search Tools (⌘K)"
+                        >
+                            <Search size={20} className="group-hover/search:scale-110 transition-transform" />
+                            <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded bg-blue-600 text-[8px] font-bold flex items-center justify-center text-white border border-zinc-950">
+                                K
+                            </div>
+                        </button>
+
                         {/* Mobile Menu Toggle */}
                         <button
                             onClick={() => setIsOpen(!isOpen)}

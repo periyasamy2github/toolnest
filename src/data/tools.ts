@@ -54,7 +54,12 @@ import {
     RotateCw,
     GripVertical,
     Trash2,
-    Database
+    Database,
+    Wallet,
+    TrendingUp,
+    Receipt,
+    Percent,
+    Banknote
 } from "lucide-react";
 
 export interface Tool {
@@ -801,5 +806,16 @@ export const tools: Tool[] = [
         color: "text-indigo-400",
         bg: "bg-indigo-400/10",
         tags: ["utils", "convert", "units"]
+    },
+    // Employee Pay Tools
+    {
+        title: "Salary Time Value Calculator",
+        description: "Calculate the real value of your salary over time, adjusted for inflation and investment potential.",
+        icon: Coins,
+        href: "/utils/salary-time-value",
+        category: "utils",
+        color: "text-emerald-400",
+        bg: "bg-emerald-400/10",
+        tags: ["salary", "investment", "inflation", "planning", "productivity"]
     },
 ];

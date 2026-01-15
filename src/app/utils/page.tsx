@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { m } from "framer-motion";
-import { ArrowLeft, ArrowRight, Clock, Timer, Globe, Dices, QrCode, Ruler, PenTool, FileText, Briefcase, FileDown } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, Timer, Globe, Dices, QrCode, Ruler, PenTool, FileText, Briefcase, FileDown, Coins } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/components/Animations";
 
 const tools = [
@@ -13,14 +13,6 @@ const tools = [
         href: "/utils/invoice-generator",
         color: "text-emerald-400",
         bg: "bg-emerald-400/10",
-    },
-    {
-        title: "PDF Tools",
-        description: "Merge, split, and compress PDFs locally in your browser.",
-        icon: FileDown,
-        href: "/utils/pdf-tools",
-        color: "text-red-400",
-        bg: "bg-red-400/10",
     },
     {
         title: "Pomodoro Timer",
@@ -85,6 +77,14 @@ const tools = [
         href: "/utils/unit-converter",
         color: "text-indigo-400",
         bg: "bg-indigo-400/10",
+    },
+    {
+        title: "Salary Time Value",
+        description: "Project wealth growth and inflation impact on your salary.",
+        icon: Coins,
+        href: "/utils/salary-time-value",
+        color: "text-emerald-400",
+        bg: "bg-emerald-400/10",
     },
 ];
 
