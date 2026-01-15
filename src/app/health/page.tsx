@@ -102,7 +102,7 @@ export default function HealthToolsPage() {
             initial="initial"
             animate="animate"
             variants={staggerContainer}
-            className="space-y-12 pb-24"
+            className="space-y-12"
         >
             <m.div variants={fadeInUp} className="flex items-center gap-6">
                 <Link href="/" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">

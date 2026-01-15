@@ -170,7 +170,7 @@ const tools = [
 
 export default function DeveloperToolsPage() {
     return (
-        <div className="space-y-12 pb-24">
+        <div className="space-y-12">
             <m.div
                 initial="initial"
                 animate="animate"
