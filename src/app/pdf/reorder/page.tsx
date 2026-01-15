@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, Upload, FileText, Download, Loader2, Trash2, AlertCircle } from "lucide-react";
+import { ArrowLeft, Upload, FileText, Download, Loader2, Trash2, AlertCircle, GripVertical } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { PDFDocument } from "pdf-lib";
@@ -203,57 +203,67 @@ export default function ReorderPDFPage() {
                     ) : (
                         <div className="space-y-8">
                             <Reorder.Group
-                                axis="x"
+                                axis="y"
                                 values={pages}
                                 onReorder={setPages}
-                                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
+                                className="flex flex-col gap-3"
                             >
                                 <AnimatePresence mode="popLayout">
                                     {pages.map((page, i) => (
                                         <Reorder.Item
                                             key={page.id}
                                             value={page}
-                                            initial={{ opacity: 0, scale: 0.8 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            exit={{ opacity: 0, scale: 0.5 }}
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, scale: 0.95 }}
                                             whileDrag={{
-                                                scale: 1.05,
+                                                scale: 1.02,
                                                 zIndex: 50,
                                                 boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3)"
                                             }}
-                                            className="relative group/page cursor-grab active:cursor-grabbing"
+                                            className="relative group/page cursor-grab active:cursor-grabbing touch-none"
                                         >
-                                            <div className="relative aspect-[3/4] bg-zinc-900 rounded-xl overflow-hidden border border-white/5 group-hover/page:border-cyan-500/50 transition-all shadow-lg">
-                                                {page.previewUrl ? (
-                                                    <img
-                                                        src={page.previewUrl}
-                                                        alt={`Page ${page.index + 1}`}
-                                                        className="w-full h-full object-contain select-none"
-                                                        draggable={false}
-                                                    />
-                                                ) : (
-                                                    <div className="w-full h-full flex items-center justify-center">
-                                                        <FileText size={32} className="text-zinc-800" />
-                                                    </div>
-                                                )}
-
-                                                {/* Overlay info */}
-                                                <div className="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover/page:opacity-100 transition-opacity pointer-events-none">
-                                                    <p className="text-[10px] font-bold text-white text-center">Original Page {page.index + 1}</p>
+                                            <div className="flex items-center gap-4 bg-zinc-900/50 p-3 rounded-2xl border border-white/5 group-hover/page:border-cyan-500/30 transition-all group-active/page:bg-zinc-900">
+                                                {/* Drag Handle */}
+                                                <div className="p-2 text-zinc-600 group-hover/page:text-zinc-400 transition-colors">
+                                                    <GripVertical size={20} />
                                                 </div>
 
-                                                {/* Selection/Number badge */}
-                                                <div className="absolute top-2 left-2 w-6 h-6 rounded-lg bg-zinc-950/80 backdrop-blur-md border border-white/10 flex items-center justify-center text-[10px] font-bold text-cyan-400 shadow-sm">
+                                                {/* Page Number Badge */}
+                                                <div className="w-10 h-10 rounded-xl bg-zinc-950 border border-white/10 flex items-center justify-center text-sm font-bold text-cyan-400 shadow-inner">
                                                     {i + 1}
                                                 </div>
 
+                                                {/* Preview Thumbnail */}
+                                                <div className="w-16 h-20 bg-zinc-950 rounded-lg overflow-hidden border border-white/5 flex-shrink-0">
+                                                    {page.previewUrl ? (
+                                                        <img
+                                                            src={page.previewUrl}
+                                                            alt={`Page ${page.index + 1}`}
+                                                            className="w-full h-full object-contain select-none"
+                                                            draggable={false}
+                                                        />
+                                                    ) : (
+                                                        <div className="w-full h-full flex items-center justify-center">
+                                                            <FileText size={20} className="text-zinc-800" />
+                                                        </div>
+                                                    )}
+                                                </div>
+
+                                                {/* Page Info */}
+                                                <div className="flex-grow">
+                                                    <p className="text-sm font-semibold text-white">Page {i + 1}</p>
+                                                    <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-bold">Original: Page {page.index + 1}</p>
+                                                </div>
+
                                                 {/* Actions */}
-                                                <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover/page:opacity-100 transition-opacity">
+                                                <div className="flex items-center gap-2 pr-2">
                                                     <button
                                                         onClick={(e) => { e.stopPropagation(); removePage(page.id); }}
-                                                        className="p-1.5 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white transition-all shadow-sm"
+                                                        className="p-2.5 rounded-xl bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white transition-all shadow-sm"
+                                                        title="Remove Page"
                                                     >
-                                                        <Trash2 size={12} />
+                                                        <Trash2 size={16} />
                                                     </button>
                                                 </div>
                                             </div>
