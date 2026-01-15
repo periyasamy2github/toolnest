@@ -90,7 +90,7 @@ const tools = [
 
 export default function ImageToolsPage() {
     return (
-        <div className="max-w-7xl mx-auto px-4 pt-6 pb-24 space-y-12">
+        <div className="space-y-12 pb-24">
             <m.div
                 initial="initial"
                 animate="animate"
