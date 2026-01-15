@@ -53,7 +53,8 @@ import {
     PenTool,
     RotateCw,
     GripVertical,
-    Trash2
+    Trash2,
+    Database
 } from "lucide-react";
 
 export interface Tool {
@@ -182,7 +183,7 @@ export const tools: Tool[] = [
     {
         title: "Regex Tester",
         description: "Test and debug regular expressions.",
-        icon: FileCode,
+        icon: FileCode2,
         href: "/developer/regex-tester",
         category: "developer",
         color: "text-orange-400",
