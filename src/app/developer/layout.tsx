@@ -1,12 +1,13 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Developer Utilities - Format, Convert, and Debug Code Online",
-    description: "ToolNest offers essential utilities for web developers. JSON formatter, SQL beautifier, YAML to JSON, HTML to JSX, JWT tools, and secure generators. 100% private and browser-based.",
+    title: "Dev Tools & Converters - Format, Convert, and Debug Code | ToolNest",
+    description: "Essential utilities for developers and universal data converters. JSON formatter, SQL beautifier, YAML to JSON, HTML to JSX, JWT tools, and secure generators. 100% private and browser-based.",
     keywords: [
         "json formatter", "sql formatter", "html to jsx", "yaml to json",
         "jwt decoder", "uuid generator", "password generator", "regex tester",
-        "free developer tools", "online code formatter", "ToolNest developer tools"
+        "free developer tools", "online code formatter", "ToolNest developer tools",
+        "json to csv", "number base converter"
     ],
 };
 

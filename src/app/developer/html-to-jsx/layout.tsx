@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "HTML to JSX Converter - Online React Tool | ToolNest",
-    description: "Convert HTML code to JSX instantly. Perfect for React developers. Handles class to className, style objects, and more. Fast and free.",
+    title: "HTML to JSX Converter - Convert HTML to React JSX | ToolNest",
+    description: "Convert HTML code to JSX instantly. Perfect for React developers. Handles class to className, style objects, and more. Fast, free, and private.",
     keywords: ["html to jsx", "react converter", "html to react", "jsx generator", "developer tools", "ToolNest"],
     openGraph: {
         title: "HTML to JSX Converter | ToolNest",

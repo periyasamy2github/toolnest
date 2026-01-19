@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Watermark Tool - Add Text or Logo to Images | ToolNest",
-    description: "Protect your images by adding custom text or logo watermarks. Adjust opacity, position, rotation, and tiling. Secure local processing.",
+    title: "Watermark Tool - Add Text or Logo to Images Online | ToolNest",
+    description: "Protect your images by adding custom text or logo watermarks. Adjust opacity, position, rotation, and tiling. Secure local processing, 100% private.",
     keywords: ["watermark image", "add logo to photo", "copyright image", "watermark creator", "protect photos", "ToolNest", "free watermark tool"],
     openGraph: {
         title: "Free Online Watermark Tool | ToolNest",

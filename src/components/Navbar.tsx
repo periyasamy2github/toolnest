@@ -72,7 +72,20 @@ import {
     Banknote,
     TrendingUp,
     Receipt,
-    Wallet
+    Wallet,
+    Share2,
+    Youtube,
+    Twitter,
+    UserCircle2,
+    MessageSquare,
+    Minimize2,
+    MonitorPlay,
+    GraduationCap,
+    Film,
+    ArrowRightLeft,
+    FileSpreadsheet,
+    PieChart,
+    Percent
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -80,79 +93,36 @@ import { m, AnimatePresence } from "framer-motion";
 const navItems = [
     { name: "All Tools", href: "/", icon: LayoutGrid, color: "text-blue-500", bg: "bg-blue-500/10" },
     {
-        name: "Image",
-        href: "/image",
-        icon: ImageIcon,
+        name: "Media",
+        href: "/media",
+        icon: MonitorPlay,
         color: "text-purple-500",
         bg: "bg-purple-500/10",
         subItems: [
-            { name: "Compressor", href: "/image/compressor", icon: ImageIcon, color: "text-purple-400" },
-            { name: "Resizer", href: "/image/resizer", icon: Crop, color: "text-pink-400" },
-            { name: "Cropper", href: "/image/cropper", icon: Crop, color: "text-emerald-400" },
-            { name: "Converter", href: "/image/converter", icon: RefreshCw, color: "text-orange-400" },
-            { name: "Filters", href: "/image/filters", icon: Sliders, color: "text-indigo-400" },
+            // Image Tools
+            { name: "Image Compressor", href: "/image/compressor", icon: ImageIcon, color: "text-purple-400" },
+            { name: "Image Resizer", href: "/image/resizer", icon: Crop, color: "text-pink-400" },
+            { name: "Image Cropper", href: "/image/cropper", icon: Crop, color: "text-emerald-400" },
+            { name: "Image Converter", href: "/image/converter", icon: RefreshCw, color: "text-orange-400" },
+            { name: "Image Filters", href: "/image/filters", icon: Sliders, color: "text-indigo-400" },
             { name: "Background Remover", href: "/image/remove-bg", icon: Scissors, color: "text-indigo-400" },
             { name: "Meme Generator", href: "/image/meme-generator", icon: Smile, color: "text-yellow-400" },
             { name: "Watermark", href: "/image/watermark", icon: Stamp, color: "text-cyan-400" },
             { name: "Collage Maker", href: "/image/collage", icon: LayoutGrid, color: "text-rose-400" },
             { name: "Color Palette", href: "/image/color-palette", icon: Palette, color: "text-fuchsia-400" },
-        ]
-    },
-    {
-        name: "Audio",
-        href: "/audio",
-        icon: Music,
-        color: "text-cyan-500",
-        bg: "bg-cyan-500/10",
-        subItems: [
+            // Video Tools
+            { name: "Video Compressor", href: "/video/compressor", icon: Minimize2, color: "text-blue-400" },
+            { name: "Video Trimmer", href: "/video/trimmer", icon: Scissors, color: "text-red-400" },
+            { name: "Video Converter", href: "/video/converter", icon: RefreshCw, color: "text-green-400" },
+            { name: "Video to GIF", href: "/video/video-to-gif", icon: Film, color: "text-purple-400" },
+            { name: "Thumbnail Downloader", href: "/video/thumbnail-downloader", icon: ImageIcon, color: "text-orange-400" },
+            { name: "Screen Recorder", href: "/video/screen-recorder", icon: MonitorPlay, color: "text-pink-400" },
+            { name: "Extract Audio", href: "/video/extract-audio", icon: Music, color: "text-cyan-400" },
+            { name: "Video Cropper", href: "/video/cropper", icon: Crop, color: "text-yellow-400" },
+            // Audio Tools
             { name: "MP3 Cutter", href: "/audio/cutter", icon: Scissors, color: "text-cyan-400" },
             { name: "Audio Merger", href: "/audio/merger", icon: Merge, color: "text-blue-400" },
             { name: "Voice Recorder", href: "/audio/voice-recorder", icon: Mic, color: "text-red-400" },
-        ]
-    },
-    {
-        name: "Content",
-        href: "/text",
-        icon: FileText,
-        color: "text-orange-500",
-        bg: "bg-orange-500/10",
-        subItems: [
-            { name: "Word Counter", href: "/text/word-counter", icon: Hash, color: "text-orange-400" },
-            { name: "Text Cleaner", href: "/text/text-cleaner", icon: Eraser, color: "text-red-400" },
-            { name: "Case Converter", href: "/text/case-converter", icon: CaseSensitive, color: "text-amber-400" },
-            { name: "Lorem Ipsum", href: "/text/lorem-ipsum", icon: Type, color: "text-yellow-400" },
-            { name: "Diff Checker", href: "/text/diff-checker", icon: FileDiff, color: "text-red-400" },
-            { name: "Instagram Hashtags", href: "/text/instagram-hashtags", icon: Instagram, color: "text-pink-500" },
-            { name: "Headline Analyzer", href: "/text/headline-analyzer", icon: Newspaper, color: "text-emerald-400" },
-            { name: "Readability Score", href: "/text/readability", icon: BookOpen, color: "text-blue-400" },
-            { name: "Keyword Density", href: "/text/keyword-density", icon: BarChart3, color: "text-violet-400" },
-            { name: "Text to Speech", href: "/text/text-to-speech", icon: Volume2, color: "text-cyan-400" },
-        ]
-    },
-    {
-        name: "Developer",
-        href: "/developer",
-        icon: Braces,
-        color: "text-blue-500",
-        bg: "bg-blue-500/10",
-        subItems: [
-            { name: "JSON Formatter", href: "/developer/json-formatter", icon: Braces, color: "text-blue-400" },
-            { name: "API Tester", href: "/developer/api-tester", icon: Send, color: "text-green-400" },
-            { name: "Gradient Generator", href: "/developer/gradient-generator", icon: Palette, color: "text-pink-400" },
-            { name: "Cron Generator", href: "/developer/cron-generator", icon: Clock, color: "text-indigo-400" },
-            { name: "JSON to TypeScript", href: "/developer/json-to-ts", icon: FileJson, color: "text-blue-300" },
-            { name: "SQL Formatter", href: "/developer/sql-formatter", icon: Database, color: "text-indigo-400" },
-            { name: "YAML to JSON", href: "/developer/yaml-to-json", icon: FileType, color: "text-violet-400" },
-            { name: "HTML to JSX", href: "/developer/html-to-jsx", icon: Code2, color: "text-cyan-400" },
-            { name: "CSS Tools", href: "/developer/css-tools", icon: Scissors, color: "text-pink-400" },
-            { name: "Markdown Preview", href: "/developer/markdown-preview", icon: FileCode2, color: "text-emerald-400" },
-            { name: "HTML Entities", href: "/developer/html-entities", icon: Code, color: "text-amber-400" },
-            { name: "Regex Tester", href: "/developer/regex-tester", icon: FileCode, color: "text-orange-400" },
-            { name: "Base64 Encoder", href: "/developer/base64", icon: Binary, color: "text-slate-400" },
-            { name: "URL Encoder", href: "/developer/url-encoder", icon: LinkIcon, color: "text-blue-500" },
-            { name: "JWT Tool", href: "/developer/jwt", icon: ShieldCheck, color: "text-green-400" },
-            { name: "UUID Generator", href: "/developer/uuid-generator", icon: Fingerprint, color: "text-purple-400" },
-            { name: "Password Generator", href: "/developer/password-generator", icon: Lock, color: "text-red-400" },
         ]
     },
     {
@@ -177,12 +147,84 @@ const navItems = [
         ]
     },
     {
-        name: "Productivity",
-        href: "/utils",
-        icon: Timer,
-        color: "text-green-500",
-        bg: "bg-green-500/10",
+        name: "Writing & Social",
+        href: "/writing-social",
+        icon: FileText,
+        color: "text-orange-500",
+        bg: "bg-orange-500/10",
         subItems: [
+            // Content Tools
+            { name: "Word Counter", href: "/text/word-counter", icon: Hash, color: "text-orange-400" },
+            { name: "Text Cleaner", href: "/text/text-cleaner", icon: Eraser, color: "text-red-400" },
+            { name: "Case Converter", href: "/text/case-converter", icon: CaseSensitive, color: "text-amber-400" },
+            { name: "Lorem Ipsum", href: "/text/lorem-ipsum", icon: Type, color: "text-yellow-400" },
+            { name: "Diff Checker", href: "/text/diff-checker", icon: FileDiff, color: "text-red-400" },
+            { name: "Headline Analyzer", href: "/text/headline-analyzer", icon: Newspaper, color: "text-emerald-400" },
+            { name: "Readability Score", href: "/text/readability", icon: BookOpen, color: "text-blue-400" },
+            { name: "Keyword Density", href: "/text/keyword-density", icon: BarChart3, color: "text-violet-400" },
+            { name: "Text to Speech", href: "/text/text-to-speech", icon: Volume2, color: "text-cyan-400" },
+            // Social Tools
+            { name: "YouTube Tags", href: "/social/youtube-tag-generator", icon: Youtube, color: "text-red-500" },
+            { name: "Instagram Hashtags", href: "/social/instagram-hashtag-generator", icon: Instagram, color: "text-pink-500" },
+            { name: "Tweet Generator", href: "/social/twitter", icon: Twitter, color: "text-blue-400" },
+            { name: "Bio Generator", href: "/social/social-bio-generator", icon: UserCircle2, color: "text-purple-500" },
+            { name: "Caption Generator", href: "/social/caption-generator", icon: MessageSquare, color: "text-green-500" },
+        ]
+    },
+    {
+        name: "Dev Tools",
+        href: "/developer",
+        icon: Braces,
+        color: "text-blue-500",
+        bg: "bg-blue-500/10",
+        subItems: [
+            // Developer Tools
+            { name: "JSON Formatter", href: "/developer/json-formatter", icon: Braces, color: "text-blue-400" },
+            { name: "API Tester", href: "/developer/api-tester", icon: Send, color: "text-green-400" },
+            { name: "Gradient Generator", href: "/developer/gradient-generator", icon: Palette, color: "text-pink-400" },
+            { name: "Cron Generator", href: "/developer/cron-generator", icon: Clock, color: "text-indigo-400" },
+            { name: "JSON to TypeScript", href: "/developer/json-to-ts", icon: FileJson, color: "text-blue-300" },
+            { name: "SQL Formatter", href: "/developer/sql-formatter", icon: Database, color: "text-indigo-400" },
+            { name: "YAML to JSON", href: "/developer/yaml-to-json", icon: FileType, color: "text-violet-400" },
+            { name: "HTML to JSX", href: "/developer/html-to-jsx", icon: Code2, color: "text-cyan-400" },
+            { name: "CSS Tools", href: "/developer/css-tools", icon: Scissors, color: "text-pink-400" },
+            { name: "Markdown Preview", href: "/developer/markdown-preview", icon: FileCode2, color: "text-emerald-400" },
+            { name: "HTML Entities", href: "/developer/html-entities", icon: Code, color: "text-amber-400" },
+            { name: "Regex Tester", href: "/developer/regex-tester", icon: FileCode, color: "text-orange-400" },
+            { name: "Base64 Encoder", href: "/developer/base64", icon: Binary, color: "text-slate-400" },
+            { name: "URL Encoder", href: "/developer/url-encoder", icon: LinkIcon, color: "text-blue-500" },
+            { name: "JWT Tool", href: "/developer/jwt", icon: ShieldCheck, color: "text-green-400" },
+            { name: "UUID Generator", href: "/developer/uuid-generator", icon: Fingerprint, color: "text-purple-400" },
+            { name: "Password Generator", href: "/developer/password-generator", icon: Lock, color: "text-red-400" },
+            // Converters
+            { name: "JSON <> CSV", href: "/converters/json-csv", icon: FileSpreadsheet, color: "text-green-500" },
+            { name: "JSON <> XML", href: "/converters/json-xml", icon: FileCode2, color: "text-orange-500" },
+            { name: "YAML <> JSON", href: "/converters/yaml-json", icon: Database, color: "text-purple-500" },
+            { name: "Number Base", href: "/converters/number-base", icon: Binary, color: "text-blue-500" },
+            { name: "Text Case", href: "/converters/text-case", icon: CaseSensitive, color: "text-pink-500" },
+        ]
+    },
+    {
+        name: "Business & Finance",
+        href: "/finance",
+        icon: Wallet,
+        color: "text-emerald-500",
+        bg: "bg-emerald-500/10",
+        subItems: [
+            // Finance Tools
+            { name: "Loan EMI", href: "/finance/loan-emi", icon: Calculator, color: "text-emerald-400" },
+            { name: "SIP Calculator", href: "/finance/sip-calculator", icon: TrendingUp, color: "text-purple-400" },
+            { name: "Compound Interest", href: "/finance/compound-interest", icon: TrendingUp, color: "text-amber-400" },
+            { name: "FD Calculator", href: "/finance/fd-calculator", icon: Wallet, color: "text-cyan-400" },
+            { name: "PPF Calculator", href: "/finance/ppf-calculator", icon: Wallet, color: "text-pink-400" },
+            { name: "Income Tax", href: "/finance/income-tax", icon: Receipt, color: "text-red-400" },
+            { name: "Net Worth", href: "/finance/net-worth", icon: PieChart, color: "text-green-400" },
+            { name: "Retirement", href: "/finance/retirement-planner", icon: Wallet, color: "text-orange-400" },
+            { name: "GST Calculator", href: "/finance/gst-calculator", icon: Percent, color: "text-indigo-400" },
+            { name: "Currency", href: "/finance/currency-converter", icon: Banknote, color: "text-teal-400" },
+            { name: "Home Loan", href: "/finance/home-loan-affordability", icon: Calculator, color: "text-blue-400" },
+            { name: "Gratuity", href: "/finance/gratuity", icon: Coins, color: "text-yellow-400" },
+            // Productivity Tools
             { name: "Invoice Generator", href: "/utils/invoice-generator", icon: FileText, color: "text-emerald-400" },
             { name: "Pomodoro Timer", href: "/utils/pomodoro", icon: Clock, color: "text-red-400" },
             { name: "Signature Generator", href: "/utils/signature-generator", icon: PenTool, color: "text-pink-400" },
@@ -196,12 +238,13 @@ const navItems = [
         ]
     },
     {
-        name: "Health",
+        name: "Life & Learning",
         href: "/health",
         icon: Activity,
         color: "text-pink-500",
         bg: "bg-pink-500/10",
         subItems: [
+            // Health Tools
             { name: "BMI Calculator", href: "/health/bmi-calculator", icon: Calculator, color: "text-blue-400" },
             { name: "Sleep Calculator", href: "/health/sleep-calculator", icon: Moon, color: "text-indigo-400" },
             { name: "Body Fat", href: "/health/body-fat-calculator", icon: Activity, color: "text-pink-400" },
@@ -213,6 +256,9 @@ const navItems = [
             { name: "Burnout Risk", href: "/health/burnout-risk", icon: Brain, color: "text-purple-400" },
             { name: "Smoking Cost", href: "/health/smoking-cost", icon: Coins, color: "text-yellow-500" },
             { name: "Life Expectancy", href: "/health/life-expectancy", icon: Hourglass, color: "text-emerald-400" },
+            // Education Tools
+            { name: "GPA Calculator", href: "/education/gpa-calculator", icon: Calculator, color: "text-indigo-400" },
+            { name: "Grade Calculator", href: "/education/grade-calculator", icon: Calculator, color: "text-blue-400" },
         ]
     },
 ];

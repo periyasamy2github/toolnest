@@ -1,12 +1,13 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Health & Wellness Tools - Calculate BMI, Body Fat, and More Online",
-    description: "ToolNest provides simple and private health calculators and exercises. BMI calculator, body fat estimator, breathing exercises, and calorie tracking. 100% private and browser-based.",
+    title: "Life & Learning Tools - Health, Wellness & Education | ToolNest",
+    description: "ToolNest provides simple and private health calculators, wellness exercises, and academic tools. BMI calculator, sleep cycles, breathing exercises, and GPA calculators. 100% private and browser-based.",
     keywords: [
         "bmi calculator", "body fat calculator", "breathing exercises",
         "calorie calculator", "water intake calculator", "health tools",
-        "free health calculators", "online wellness tools", "ToolNest health tools"
+        "free health calculators", "online wellness tools", "ToolNest health tools",
+        "gpa calculator", "grade calculator"
     ],
 };
 

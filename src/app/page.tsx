@@ -6,72 +6,45 @@ import {
   ImageIcon,
   Type,
   ArrowRight,
-  Lock,
-  Globe,
   Music,
   Code,
-  Activity,
   LayoutGrid,
   ShieldCheck,
-  Database,
+  Wallet,
+  FileDown,
+  Timer,
   Search,
   CheckCircle2,
   Zap,
-  Timer,
-  FileDown
+  Database,
+  Lock,
+  Globe,
+  Film,
+  ArrowRightLeft,
+  Share2,
+  GraduationCap,
+  MonitorPlay,
+  FileText,
+  Activity
 } from "lucide-react";
 import { m } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/components/Animations";
 
+import { tools } from "@/data/tools";
+
 const toolCategories = [
   {
-    title: "Developer Tools",
-    description: "Professional-grade coding utilities. From JSON formatting and API testing to gradient generation and JWT decoding, we provide the essential tools for modern software engineering.",
-    icon: Code,
-    href: "/developer",
-    color: "text-blue-500",
-    bg: "bg-blue-500/10",
-    tools: ["JSON Formatter", "API Tester", "Gradient Generator", "JWT Tool", "Regex Tester"]
-  },
-  {
-    title: "Image Processing",
-    description: "Privacy-focused image editing. Compress, convert, crop, and enhance images with professional tools. Create memes, collages, and watermarks locally.",
-    icon: ImageIcon,
-    href: "/image",
+    title: "Media Processing",
+    description: "Privacy-focused image, video, and audio editing. Compress, convert, crop, and enhance media files with professional tools directly in your browser.",
+    icon: MonitorPlay,
+    href: "/media",
     color: "text-purple-500",
     bg: "bg-purple-500/10",
-    tools: ["Compressor", "Converter", "Cropper", "Filters", "Watermark", "Collage Maker", "Meme Generator"]
-  },
-  {
-    title: "Content & Text",
-    description: "Advanced text utilities for creators. Analyze keyword density, check readability scores, or generate placeholder text. Optimized for SEO specialists.",
-    icon: Type,
-    href: "/text",
-    color: "text-orange-500",
-    bg: "bg-orange-500/10",
-    tools: ["Word Counter", "Text Cleaner", "Keyword Density", "Readability Score", "Case Converter"]
-  },
-  {
-    title: "Audio Utilities",
-    description: "Simple yet powerful audio editing. Cut MP3 files for ringtones or merge multiple tracks into one. Fast, secure, and requires no installation.",
-    icon: Music,
-    href: "/audio",
-    color: "text-cyan-500",
-    bg: "bg-cyan-500/10",
-    tools: ["MP3 Cutter", "Audio Merger", "Voice Recorder"]
-  },
-  {
-    title: "Health & Wellness",
-    description: "Track your health metrics with precision. Calculate BMI, body fat percentage, and daily calorie needs. Maintain a healthy lifestyle with ease.",
-    icon: Activity,
-    href: "/health",
-    color: "text-pink-500",
-    bg: "bg-pink-500/10",
-    tools: ["BMI Calculator", "Sleep Calculator", "Calories Calculator", "Health Score"]
+    tools: ["Image Compressor", "Video Trimmer", "MP3 Cutter", "Background Remover", "Meme Generator"]
   },
   {
     title: "PDF Utilities",
-    description: "Complete PDF management suite. Merge, split, compress, and rotate PDFs. Add watermarks, protect with passwords, or convert images to PDF—all locally in your browser.",
+    description: "Complete PDF management suite. Merge, split, compress, and rotate PDFs. Add watermarks, protect with passwords, or convert images to PDF—all locally.",
     icon: FileDown,
     href: "/pdf",
     color: "text-red-500",
@@ -79,13 +52,40 @@ const toolCategories = [
     tools: ["Merge PDF", "Split PDF", "Compress PDF", "Protect PDF", "Image to PDF"]
   },
   {
-    title: "Productivity Suite",
-    description: "Boost your daily efficiency. Create invoices, build resumes, track time, or calculate your salary and compensation. Designed for professionals.",
-    icon: Timer,
-    href: "/utils",
-    color: "text-green-500",
-    bg: "bg-green-500/10",
-    tools: ["Invoice Generator", "Pomodoro Timer", "Salary Time Value", "QR Code", "Unit Converter"]
+    title: "Writing & Social",
+    description: "Boost your content and social presence. Analyze readability, generate hashtags, tweets, and bios optimized for engagement and growth.",
+    icon: FileText,
+    href: "/writing-social",
+    color: "text-orange-500",
+    bg: "bg-orange-500/10",
+    tools: ["Word Counter", "Instagram Hashtags", "Tweet Generator", "Readability Score", "Headline Analyzer"]
+  },
+  {
+    title: "Dev Tools & Converters",
+    description: "Professional-grade coding utilities and universal converters. From JSON formatting and API testing to data transformation and number base conversion.",
+    icon: Code,
+    href: "/developer",
+    color: "text-blue-500",
+    bg: "bg-blue-500/10",
+    tools: ["JSON Formatter", "API Tester", "JSON <> CSV", "JWT Tool", "YAML <> JSON"]
+  },
+  {
+    title: "Business & Finance",
+    description: "Professional financial calculators and productivity tools. Plan your loans, investments, taxes, and create invoices or track time with precision.",
+    icon: Wallet,
+    href: "/finance",
+    color: "text-emerald-500",
+    bg: "bg-emerald-500/10",
+    tools: ["Loan EMI", "SIP Calculator", "Invoice Generator", "Income Tax", "Salary Time Value"]
+  },
+  {
+    title: "Life & Learning",
+    description: "Academic and wellness tools. Calculate GPA, grades, BMI, and sleep cycles to stay on top of your health and studies.",
+    icon: Activity,
+    href: "/health",
+    color: "text-pink-500",
+    bg: "bg-pink-500/10",
+    tools: ["GPA Calculator", "BMI Calculator", "Sleep Calculator", "Grade Calculator", "Health Score"]
   },
 ];
 
@@ -118,7 +118,7 @@ export default function Home() {
                 variants={fadeInUp}
                 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[1.1]"
               >
-                All Your Tools <br />
+                {tools.length}+ Tools <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
                   One Workspace.
                 </span>

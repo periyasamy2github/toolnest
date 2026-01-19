@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Headline Analyzer - Write Catchy & SEO-Friendly Headlines | ToolNest",
-    description: "Analyze your headlines for SEO, emotional impact, and readability. Improve your click-through rates with our free online headline analyzer.",
+    title: "Headline Analyzer - Write Catchy and SEO-Friendly Headlines | ToolNest",
+    description: "Analyze your headlines for SEO, emotional impact, and readability. Improve your click-through rates with our free online headline analyzer. 100% private.",
     keywords: ["headline analyzer", "title analyzer", "seo headlines", "content marketing", "ToolNest", "text tools"],
     openGraph: {
         title: "Headline Analyzer | ToolNest",

@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "JWT Debugger - Decode, Verify & Generate JSON Web Tokens | ToolNest",
-    description: "Online JWT debugger to decode, verify, and generate JSON Web Tokens (JWT). Support for HS256 and other algorithms. Secure client-side processing.",
+    title: "JWT Debugger - Decode, Verify, and Generate JSON Web Tokens | ToolNest",
+    description: "Online JWT debugger to decode, verify, and generate JSON Web Tokens (JWT). Support for HS256 and other algorithms. Secure client-side processing. 100% private.",
     keywords: ["jwt debugger", "decode jwt", "verify jwt", "generate jwt", "json web token", "ToolNest", "developer tools"],
     openGraph: {
         title: "JWT Debugger | ToolNest",

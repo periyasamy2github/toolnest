@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "World Clock - Current Time in Major Cities | ToolNest",
-    description: "Check the current local time in major cities around the world. Easy-to-use world clock for travelers and global teams.",
+    title: "World Clock - Current Time in Major Cities Online | ToolNest",
+    description: "Check the current local time in major cities around the world. Easy-to-use world clock for travelers and global teams. 100% private.",
     keywords: ["world clock", "local time", "current time", "time zones", "ToolNest", "utility tools"],
     openGraph: {
         title: "World Clock | ToolNest",

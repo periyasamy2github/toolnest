@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Collage Maker - Create Photo Grids Online | ToolNest",
-    description: "Create beautiful photo collages with customizable layouts, borders, and backgrounds. Combine multiple images into a single photo instantly.",
+    title: "Collage Maker - Create Photo Grids and Layouts Online | ToolNest",
+    description: "Create beautiful photo collages with customizable layouts, borders, and backgrounds. Combine multiple images into a single photo instantly. 100% private.",
     keywords: ["collage maker", "photo grid", "combine photos", "picture layout", "online collage creator", "ToolNest", "free photo joiner"],
     openGraph: {
         title: "Free Online Collage Maker | ToolNest",

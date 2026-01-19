@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Online Timer - Set Countdown Alarms Free | ToolNest",
-    description: "Set a countdown timer with alarm online for free. Simple, reliable, and easy to use. Perfect for cooking, studying, and workouts.",
+    title: "Online Timer - Set Countdown Alarms Online Free | ToolNest",
+    description: "Set a countdown timer with alarm online for free. Simple, reliable, and easy to use. Perfect for cooking, studying, and workouts. 100% private.",
     keywords: ["online timer", "countdown timer", "timer with alarm", "utility tools", "ToolNest"],
     openGraph: {
         title: "Online Timer | ToolNest",

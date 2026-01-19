@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Invoice Generator - Create Professional PDF Invoices | ToolNest",
-    description: "Generate professional, customizable invoices with logo upload, auto-calculations, and instant PDF export. Free, private, and no signup required.",
+    title: "Invoice Generator - Create Professional PDF Invoices Online | ToolNest",
+    description: "Generate professional, customizable invoices with logo upload, auto-calculations, and instant PDF export. Free, 100% private, and no signup required.",
     keywords: ["invoice generator", "free invoice maker", "PDF invoice", "create invoice online", "invoice template", "business invoice", "ToolNest"],
     openGraph: {
         title: "Invoice Generator | ToolNest",

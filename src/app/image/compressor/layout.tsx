@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Online Image Compressor - Reduce Image Size without Quality Loss | ToolNest",
-    description: "Compress JPG, PNG, and WebP images online for free. Reduce file size by up to 90% while maintaining high quality. Fast, secure, and easy to use.",
+    title: "Online Image Compressor - Reduce Image Size Without Quality Loss | ToolNest",
+    description: "Compress JPG, PNG, and WebP images online for free. Reduce file size by up to 90% while maintaining high quality. Fast, secure, and 100% private.",
     keywords: ["image compressor", "reduce image size", "compress png", "compress jpg", "online image optimizer", "ToolNest", "free image compression"],
     openGraph: {
         title: "Online Image Compressor | ToolNest",

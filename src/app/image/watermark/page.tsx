@@ -125,7 +125,7 @@ export default function WatermarkPage() {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <Link href="/image" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
+                    <Link href="/media" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
                         <ArrowLeft className="text-zinc-400" />
                     </Link>
                     <div>

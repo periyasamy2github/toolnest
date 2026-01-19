@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Online Markdown Preview - Live Markdown Editor | ToolNest",
-    description: "Write and preview Markdown in real-time. Fast, free, and easy-to-use online Markdown editor with live preview. Perfect for developers and writers.",
+    title: "Markdown Preview - Live Markdown Editor and Previewer | ToolNest",
+    description: "Write and preview Markdown in real-time. Fast, free, and easy-to-use online Markdown editor with live preview. Perfect for developers and writers. 100% private.",
     keywords: ["markdown preview", "markdown editor", "online markdown", "live markdown", "developer tools", "ToolNest"],
     openGraph: {
         title: "Online Markdown Preview | ToolNest",

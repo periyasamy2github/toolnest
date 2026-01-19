@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Online UUID Generator - Generate v4 UUIDs Instantly | ToolNest",
-    description: "Generate unique UUIDs (v4) online for free. Create single or multiple UUIDs for your development projects. Fast and reliable.",
+    title: "UUID Generator - Generate Unique v4 UUIDs Instantly | ToolNest",
+    description: "Generate unique UUIDs (v4) online for free. Create single or multiple UUIDs for your development projects. Fast, reliable, and 100% private.",
     keywords: ["uuid generator", "guid generator", "generate uuid v4", "online uuid", "developer tools", "ToolNest"],
     openGraph: {
         title: "Online UUID Generator | ToolNest",

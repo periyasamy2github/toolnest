@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Guided Breathing Exercise - Relax & Reduce Stress | ToolNest",
+    title: "Guided Breathing Exercise - Relax and Reduce Stress Online | ToolNest",
     description: "Practice guided breathing exercises to reduce stress and anxiety. Simple, effective, and free online relaxation tool. 100% private.",
     keywords: ["breathing exercise", "stress relief", "relaxation tool", "guided breathing", "health tools", "ToolNest"],
     openGraph: {

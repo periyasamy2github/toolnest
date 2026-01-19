@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Smoking Cost Calculator - See How Much You Can Save | ToolNest",
-    description: "Calculate the financial cost of smoking and see how much money you could save by quitting. Get motivated to quit smoking with our free online tool.",
+    title: "Smoking Cost Calculator - See How Much You Can Save Online | ToolNest",
+    description: "Calculate the financial cost of smoking and see how much money you could save by quitting. 100% private and free online tool.",
     keywords: ["smoking cost calculator", "quit smoking savings", "cost of smoking", "health tools", "ToolNest", "financial health"],
     openGraph: {
         title: "Smoking Cost Calculator | ToolNest",
