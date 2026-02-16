@@ -4,6 +4,7 @@ import { useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { Search, X, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 type Element = {
     number: number;
@@ -66,6 +67,7 @@ export default function PeriodicTable() {
 
     return (
         <div className="max-w-7xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Periodic <span className="text-cyan-500">Table</span>

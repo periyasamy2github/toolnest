@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Copy, RefreshCw, Youtube, Check } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function YouTubeDescriptionGenerator() {
     const [title, setTitle] = useState("");
@@ -28,6 +29,7 @@ export default function YouTubeDescriptionGenerator() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     YouTube Description <span className="text-red-600">Generator</span>

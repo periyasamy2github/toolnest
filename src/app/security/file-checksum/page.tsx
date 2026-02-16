@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FileText, Upload, RefreshCw, Copy, Check } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function FileChecksum() {
     const [file, setFile] = useState<File | null>(null);
@@ -49,6 +50,7 @@ export default function FileChecksum() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     File <span className="text-yellow-500">Checksum</span>

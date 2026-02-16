@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Network, ArrowRight } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function CIDRCalculator() {
     const [rangeStart, setRangeStart] = useState("192.168.1.0");
@@ -68,6 +69,7 @@ export default function CIDRCalculator() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     CIDR <span className="text-indigo-500">Calculator</span>

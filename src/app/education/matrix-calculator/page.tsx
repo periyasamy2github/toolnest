@@ -4,6 +4,7 @@ import { useState } from "react";
 import { m } from "framer-motion";
 import { Plus, Minus, X, ArrowRight, RotateCcw, Grid } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 type Matrix = number[][];
 
@@ -124,6 +125,7 @@ export default function MatrixCalculator() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Matrix <span className="text-indigo-500">Calculator</span>

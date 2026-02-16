@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FileCode2, RefreshCw, Copy, Check, ArrowRightLeft } from "lucide-react";
 import { marked } from "marked";
+import BackButton from "@/components/BackButton";
 
 export default function MarkdownToHtml() {
     const [md, setMd] = useState("");
@@ -26,6 +27,7 @@ export default function MarkdownToHtml() {
 
     return (
         <div className="max-w-6xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Markdown to <span className="text-cyan-500">HTML</span>

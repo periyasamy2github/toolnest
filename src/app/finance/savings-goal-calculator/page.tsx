@@ -4,6 +4,7 @@ import { useState } from "react";
 import { m } from "framer-motion";
 import { TrendingUp, DollarSign, ArrowRight, RotateCcw, Target } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 export default function SavingsGoalCalculator() {
     const [goalAmount, setGoalAmount] = useState("");
@@ -64,6 +65,7 @@ export default function SavingsGoalCalculator() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Savings Goal <span className="text-emerald-500">Calculator</span>

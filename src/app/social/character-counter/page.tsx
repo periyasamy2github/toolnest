@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Type, AlignLeft, AlignCenter } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function CharacterCounter() {
     const [text, setText] = useState("");
@@ -23,6 +24,7 @@ export default function CharacterCounter() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Character <span className="text-green-500">Counter</span>

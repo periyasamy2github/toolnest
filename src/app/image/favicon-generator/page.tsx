@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Upload, Download, Image as ImageIcon, Check } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function FaviconGenerator() {
     const [image, setImage] = useState<string | null>(null);
@@ -68,6 +69,7 @@ export default function FaviconGenerator() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Favicon <span className="text-purple-500">Generator</span>

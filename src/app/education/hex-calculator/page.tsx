@@ -4,6 +4,7 @@ import { useState } from "react";
 import { m } from "framer-motion";
 import { Hash, Plus, Minus, X, Divide, ArrowRight, RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 export default function HexCalculator() {
     const [h1, setH1] = useState("");
@@ -46,6 +47,7 @@ export default function HexCalculator() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Hex <span className="text-purple-500">Calculator</span>

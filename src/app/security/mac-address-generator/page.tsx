@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { RefreshCw, Copy, Check, Fingerprint } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function MACAddressGenerator() {
     const [format, setFormat] = useState("colon"); // colon, dash, none
@@ -55,6 +56,7 @@ export default function MACAddressGenerator() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     MAC Address <span className="text-teal-500">Generator</span>

@@ -12,6 +12,7 @@ import {
     RefreshCw
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 export default function PasswordStrength() {
     const [password, setPassword] = useState("");
@@ -81,6 +82,7 @@ export default function PasswordStrength() {
 
     return (
         <div className="max-w-3xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             {/* Header */}
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">

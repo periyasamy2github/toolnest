@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Network, RefreshCw } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function SubnetCalculator() {
     const [ip, setIp] = useState("192.168.1.1");
@@ -59,6 +60,7 @@ export default function SubnetCalculator() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Subnet <span className="text-blue-500">Calculator</span>
@@ -124,6 +126,7 @@ export default function SubnetCalculator() {
 function ResultCard({ label, value }: { label: string; value: string }) {
     return (
         <div className="bg-zinc-950 border border-white/5 rounded-xl p-4 space-y-1">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-xs text-zinc-500 uppercase tracking-wider">{label}</div>
             <div className="text-lg font-mono font-semibold text-white truncate" title={value}>{value}</div>
         </div>

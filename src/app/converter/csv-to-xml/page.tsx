@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FileCode2, RefreshCw, Copy, Check, ArrowRightLeft } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function CsvToXml() {
     const [csv, setCsv] = useState("");
@@ -50,6 +51,7 @@ export default function CsvToXml() {
 
     return (
         <div className="max-w-6xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     CSV to <span className="text-orange-500">XML</span>

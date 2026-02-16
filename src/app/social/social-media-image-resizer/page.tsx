@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { Upload, Download, Image as ImageIcon, RefreshCw, Check } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 const PRESETS = [
     { name: "Instagram Post", width: 1080, height: 1080, ratio: "1:1" },
@@ -63,6 +64,7 @@ export default function SocialMediaImageResizer() {
 
     return (
         <div className="max-w-6xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Social Media <span className="text-indigo-500">Resizer</span>

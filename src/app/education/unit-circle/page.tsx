@@ -4,6 +4,7 @@ import { useState } from "react";
 import { m } from "framer-motion";
 import { Circle, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 type Angle = {
     deg: number;
@@ -41,6 +42,7 @@ export default function UnitCircle() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Unit <span className="text-indigo-500">Circle</span>

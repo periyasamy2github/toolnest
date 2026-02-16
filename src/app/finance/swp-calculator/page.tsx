@@ -4,6 +4,7 @@ import { useState } from "react";
 import { m } from "framer-motion";
 import { TrendingUp, DollarSign, ArrowRight, RotateCcw, Wallet } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 export default function SWPCalculator() {
     const [totalInvestment, setTotalInvestment] = useState("");
@@ -52,6 +53,7 @@ export default function SWPCalculator() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     SWP <span className="text-indigo-500">Calculator</span>

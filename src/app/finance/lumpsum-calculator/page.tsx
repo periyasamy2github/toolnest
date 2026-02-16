@@ -4,6 +4,7 @@ import { useState } from "react";
 import { m } from "framer-motion";
 import { TrendingUp, DollarSign, ArrowRight, RotateCcw, Coins } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 export default function LumpsumCalculator() {
     const [investment, setInvestment] = useState("");
@@ -41,6 +42,7 @@ export default function LumpsumCalculator() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Lumpsum <span className="text-cyan-500">Calculator</span>

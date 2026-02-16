@@ -4,6 +4,7 @@ import { useState } from "react";
 import { m } from "framer-motion";
 import { BookOpen, Copy, Check, RefreshCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 type CitationStyle = "APA" | "MLA" | "Chicago";
 type SourceType = "Website" | "Book" | "Journal";
@@ -87,6 +88,7 @@ export default function CitationGenerator() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Citation <span className="text-teal-500">Generator</span>

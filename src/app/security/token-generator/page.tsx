@@ -10,6 +10,7 @@ import {
     Settings2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 export default function TokenGenerator() {
     const [token, setToken] = useState("");
@@ -65,6 +66,7 @@ export default function TokenGenerator() {
 
     return (
         <div className="max-w-3xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             {/* Header */}
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">

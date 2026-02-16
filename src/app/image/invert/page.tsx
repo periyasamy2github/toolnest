@@ -11,6 +11,7 @@ import {
     X
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 export default function ImageInvert() {
     const [image, setImage] = useState<string | null>(null);
@@ -85,6 +86,7 @@ export default function ImageInvert() {
 
     return (
         <div className="max-w-6xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             {/* Header */}
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">

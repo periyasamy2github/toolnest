@@ -4,6 +4,7 @@ import { useState } from "react";
 import { m } from "framer-motion";
 import { Calculator, Delete, RotateCcw, Equal } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 export default function ScientificCalculator() {
     const [display, setDisplay] = useState("0");
@@ -94,6 +95,7 @@ export default function ScientificCalculator() {
 
     return (
         <div className="max-w-md mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl font-black text-white tracking-tight">
                     Scientific <span className="text-cyan-500">Calculator</span>

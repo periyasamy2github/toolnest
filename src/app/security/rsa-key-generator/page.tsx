@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Copy, RefreshCw, Key, Check, Shield } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function RSAKeyGenerator() {
     const [keySize, setKeySize] = useState("2048");
@@ -47,6 +48,7 @@ MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQ${Math.random().toString(36).s
 
     return (
         <div className="max-w-6xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     RSA Key <span className="text-green-500">Generator</span>

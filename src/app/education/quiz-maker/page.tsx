@@ -4,6 +4,7 @@ import { useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { Plus, Trash2, Play, CheckCircle2, XCircle, Trophy, RotateCcw, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 type Question = {
     id: string;
@@ -77,6 +78,7 @@ export default function QuizMaker() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Quiz <span className="text-red-500">Maker</span>

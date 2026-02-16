@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { User, RefreshCw, Mail, Phone, MapPin, Calendar } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function RandomUserGenerator() {
     const [user, setUser] = useState<any>(null);
@@ -22,6 +23,7 @@ export default function RandomUserGenerator() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Random User <span className="text-pink-500">Generator</span>
@@ -79,6 +81,7 @@ export default function RandomUserGenerator() {
 function InfoItem({ icon: Icon, label, value }: { icon: any, label: string, value: string }) {
     return (
         <div className="bg-zinc-950 border border-white/5 rounded-xl p-4 flex items-center gap-4">
+            <div className="mb-6"><BackButton /></div>
             <div className="w-10 h-10 rounded-full bg-pink-500/10 flex items-center justify-center flex-shrink-0">
                 <Icon size={18} className="text-pink-500" />
             </div>

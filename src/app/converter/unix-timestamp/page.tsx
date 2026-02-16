@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Clock, RefreshCw, Copy, Check } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function UnixTimestamp() {
     const [timestamp, setTimestamp] = useState(Math.floor(Date.now() / 1000));
@@ -35,6 +36,7 @@ export default function UnixTimestamp() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Unix <span className="text-orange-500">Timestamp</span>

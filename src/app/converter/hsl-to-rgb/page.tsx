@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Palette, Copy, Check } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function HslToRgb() {
     const [h, setH] = useState(0);
@@ -36,6 +37,7 @@ export default function HslToRgb() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     HSL to <span className="text-blue-500">RGB</span>

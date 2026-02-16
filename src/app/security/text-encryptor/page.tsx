@@ -12,6 +12,7 @@ import {
     AlertTriangle
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 export default function TextEncryptor() {
     const [mode, setMode] = useState<"encrypt" | "decrypt">("encrypt");
@@ -115,6 +116,7 @@ export default function TextEncryptor() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             {/* Header */}
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">

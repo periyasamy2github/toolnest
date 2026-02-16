@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowRightLeft, Copy, Check } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function AspectRatio() {
     const [width, setWidth] = useState(1920);
@@ -24,6 +25,7 @@ export default function AspectRatio() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Aspect Ratio <span className="text-indigo-500">Calculator</span>

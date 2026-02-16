@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Copy, RefreshCw, Terminal, Check } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function SSHKeyGenerator() {
     const [algo, setAlgo] = useState("rsa");
@@ -42,6 +43,7 @@ ${Math.random().toString(36).substring(2).repeat(20)}
 
     return (
         <div className="max-w-6xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     SSH Key <span className="text-orange-500">Generator</span>

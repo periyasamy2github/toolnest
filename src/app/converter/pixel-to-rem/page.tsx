@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowRightLeft, Copy, Check } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 export default function PixelToRem() {
     const [pixels, setPixels] = useState(16);
@@ -23,6 +24,7 @@ export default function PixelToRem() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     Pixel to <span className="text-teal-500">REM</span>

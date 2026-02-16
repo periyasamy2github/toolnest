@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FileCode2, RefreshCw, Copy, Check, ArrowRightLeft } from "lucide-react";
 import yaml from "js-yaml";
+import BackButton from "@/components/BackButton";
 
 export default function YamlToXml() {
     const [yml, setYml] = useState("");
@@ -56,6 +57,7 @@ export default function YamlToXml() {
 
     return (
         <div className="max-w-6xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     YAML to <span className="text-purple-500">XML</span>

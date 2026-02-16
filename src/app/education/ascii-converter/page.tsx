@@ -4,6 +4,7 @@ import { useState } from "react";
 import { m } from "framer-motion";
 import { Binary, ArrowRightLeft, Copy, Check, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/BackButton";
 
 export default function AsciiConverter() {
     const [text, setText] = useState("");
@@ -49,6 +50,7 @@ export default function AsciiConverter() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="mb-6"><BackButton /></div>
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                     ASCII <span className="text-blue-500">Converter</span>
