@@ -37,10 +37,10 @@ export default function HealthToolsPage() {
                             className="group relative flex flex-col items-center text-center h-full overflow-hidden glass-card p-4 hover:bg-white/[0.03] transition-all duration-300"
                             style={{ borderRadius: '0.5rem' }}
                         >
-                            <div className={`p-2.5 rounded-xl ${tool.bg} ${tool.color} w-fit mb-3 group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-black/20`}>
-                                <tool.icon size={24} />
+                            <div className={`p-3 rounded-xl ${tool.bg} ${tool.color} w-fit mb-3 group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-black/20`}>
+                                <tool.icon size={32} />
                             </div>
-                            <h3 className="text-sm font-bold text-white group-hover:text-pink-400 transition-colors duration-300 leading-tight">
+                            <h3 className="text-sm font-medium text-white group-hover:text-pink-400 transition-colors duration-300 leading-tight">
                                 {tool.title}
                             </h3>
                         </Link>
