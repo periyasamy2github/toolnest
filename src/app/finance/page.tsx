@@ -24,11 +24,14 @@ export default function FinancePage() {
         >
             <m.div variants={fadeInUp} className="flex items-center gap-6">
                 <BackButton />
-                <div className="flex items-center gap-4">
-                    <h1 className="text-4xl font-black text-gradient">Finance Tools</h1>
-                    <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-sm font-bold text-emerald-400">
-                        {tools.length} Tools
-                    </span>
+                <div>
+                    <div className="flex items-center gap-4">
+                        <h1 className="text-4xl font-black text-gradient">Finance Tools</h1>
+                        <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-sm font-bold text-emerald-400">
+                            {tools.length} Tools
+                        </span>
+                    </div>
+                    <p className="text-zinc-400 text-lg mt-2">Professional financial calculators for loans, investments, and planning.</p>
                 </div>
             </m.div>
 

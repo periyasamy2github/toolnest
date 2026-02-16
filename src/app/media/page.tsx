@@ -43,11 +43,14 @@ export default function MediaToolsPage() {
             >
                 <m.div variants={fadeInUp} className="flex items-center gap-6">
                     <BackButton />
-                    <div className="flex items-center gap-4">
-                        <h1 className="text-4xl font-black text-gradient">Media Tools</h1>
-                        <span className="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-sm font-bold text-purple-400">
-                            {tools.length} Tools
-                        </span>
+                    <div>
+                        <div className="flex items-center gap-4">
+                            <h1 className="text-4xl font-black text-gradient">Media Tools</h1>
+                            <span className="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-sm font-bold text-purple-400">
+                                {tools.length} Tools
+                            </span>
+                        </div>
+                        <p className="text-zinc-400 text-lg mt-2">Edit and optimize images, videos, and audio in your browser with total privacy.</p>
                     </div>
                 </m.div>
 

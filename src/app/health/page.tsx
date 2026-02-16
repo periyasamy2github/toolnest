@@ -21,11 +21,14 @@ export default function HealthToolsPage() {
         >
             <m.div variants={fadeInUp} className="flex items-center gap-6">
                 <BackButton />
-                <div className="flex items-center gap-4">
-                    <h1 className="text-4xl font-black text-gradient">Health Tools</h1>
-                    <span className="px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/20 text-sm font-bold text-pink-400">
-                        {tools.length} Tools
-                    </span>
+                <div>
+                    <div className="flex items-center gap-4">
+                        <h1 className="text-4xl font-black text-gradient">Health Tools</h1>
+                        <span className="px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/20 text-sm font-bold text-pink-400">
+                            {tools.length} Tools
+                        </span>
+                    </div>
+                    <p className="text-zinc-400 text-lg mt-2">Simple and private tools for a healthier lifestyle, right in your browser.</p>
                 </div>
             </m.div>
 

@@ -40,11 +40,14 @@ export default function WritingSocialToolsPage() {
             >
                 <m.div variants={fadeInUp} className="flex items-center gap-6">
                     <BackButton />
-                    <div className="flex items-center gap-4">
-                        <h1 className="text-4xl font-black text-gradient">Writing & Social Tools</h1>
-                        <span className="px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-sm font-bold text-orange-400">
-                            {tools.length} Tools
-                        </span>
+                    <div>
+                        <div className="flex items-center gap-4">
+                            <h1 className="text-4xl font-black text-gradient">Writing & Social Tools</h1>
+                            <span className="px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-sm font-bold text-orange-400">
+                                {tools.length} Tools
+                            </span>
+                        </div>
+                        <p className="text-zinc-400 text-lg mt-2">Optimize your content and social media presence with professional tools.</p>
                     </div>
                 </m.div>
 
