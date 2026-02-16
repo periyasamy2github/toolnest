@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowLeft, Code2, Copy, Check, RefreshCw, Code } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
 export default function HtmlToJsxPage() {
@@ -51,9 +52,7 @@ export default function HtmlToJsxPage() {
     return (
         <div className="max-w-6xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/developer" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">HTML to JSX</h1>
                     <p className="text-zinc-400">Convert standard HTML snippets into React-friendly JSX code.</p>

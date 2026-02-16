@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft, Copy, Check, Plus, Trash2, RotateCcw, Palette } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 interface ColorStop {
@@ -88,9 +89,7 @@ export default function GradientGeneratorPage() {
         <div className="max-w-6xl mx-auto space-y-8 pb-12">
             {/* Header */}
             <div className="flex items-center gap-4">
-                <Link href="/developer" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Gradient Generator</h1>
                     <p className="text-zinc-400 text-lg">Create beautiful CSS gradients visually.</p>

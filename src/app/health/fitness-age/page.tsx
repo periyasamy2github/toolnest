@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, Dumbbell, RefreshCw, TrendingDown, TrendingUp, Minus } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 export default function FitnessAgeCalculator() {
@@ -106,9 +107,7 @@ export default function FitnessAgeCalculator() {
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/health" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Fitness Age Calculator</h1>
                     <p className="text-zinc-400">Discover your fitness age based on your lifestyle and health metrics.</p>

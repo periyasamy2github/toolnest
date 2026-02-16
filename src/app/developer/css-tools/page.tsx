@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowLeft, Scissors, Copy, Check, RefreshCw, AlignLeft, Minimize2 } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
 export default function CssToolsPage() {
@@ -50,9 +51,7 @@ export default function CssToolsPage() {
     return (
         <div className="max-w-6xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/developer" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">CSS Tools</h1>
                     <p className="text-zinc-400">Minify or beautify your CSS code for optimization or readability.</p>

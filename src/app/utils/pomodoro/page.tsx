@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { ArrowLeft, Clock, Play, Pause, RotateCcw, Coffee, Brain, Bell, BellOff } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 export default function PomodoroPage() {
@@ -61,9 +62,7 @@ export default function PomodoroPage() {
         <div className="max-w-4xl mx-auto space-y-8">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <Link href="/utils" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                        <ArrowLeft className="text-zinc-400" />
-                    </Link>
+                    <BackButton />
                     <div>
                         <h1 className="text-4xl font-black text-gradient">Pomodoro Timer</h1>
                         <p className="text-zinc-400">Stay focused and productive with timed work sessions.</p>

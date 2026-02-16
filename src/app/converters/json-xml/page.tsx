@@ -14,6 +14,7 @@ import {
     CheckCircle2
 } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 import { fadeInUp, staggerContainer } from "@/components/Animations";
 
@@ -193,9 +194,7 @@ export default function JsonXmlPage() {
                 className="flex flex-col md:flex-row md:items-center justify-between gap-6"
             >
                 <div className="flex items-center gap-6">
-                    <Link href="/converters" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
-                        <ArrowLeft className="text-zinc-100" />
-                    </Link>
+                    <BackButton />
                     <div>
                         <m.h1 variants={fadeInUp} className="text-4xl font-black text-gradient">JSON &lt;&gt; XML Converter</m.h1>
                         <m.p variants={fadeInUp} className="text-zinc-400 text-lg">Seamless API data transformation.</m.p>

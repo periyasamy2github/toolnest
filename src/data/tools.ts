@@ -1923,7 +1923,7 @@ export const tools: Tool[] = [
         description: "Resize images for social media.",
         icon: Image,
         href: "/social/social-media-image-resizer",
-        category: "writing-social",
+        category: "media",
         color: "text-indigo-500",
         bg: "bg-indigo-500/10",
         tags: ["social", "image", "resizer", "tool"]

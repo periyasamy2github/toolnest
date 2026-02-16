@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft, Copy, Check, Trash2, Shield, ArrowRightLeft, Code2 } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 export default function HtmlEntitiesTool() {
@@ -62,9 +63,7 @@ export default function HtmlEntitiesTool() {
     return (
         <div className="max-w-4xl mx-auto space-y-8 pb-12">
             <div className="flex items-center gap-4">
-                <Link href="/developer" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">HTML Escape / Unescape</h1>
                     <p className="text-zinc-400">Safely escape HTML characters to prevent XSS or unescape them back to symbols.</p>

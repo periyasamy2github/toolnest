@@ -5,6 +5,7 @@ import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile, toBlobURL } from "@ffmpeg/util";
 import { ArrowLeft, Upload, Scissors, Download, Loader2, AlertCircle, Music } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 export default function Mp3CutterPage() {
@@ -90,9 +91,7 @@ export default function Mp3CutterPage() {
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/media" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">MP3 Cutter</h1>
                     <p className="text-zinc-400">Trim audio files precisely using FFmpeg.wasm.</p>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, Key, Copy, Check, Trash2, AlertCircle, ShieldCheck, Eye, EyeOff, Settings2 } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 export default function JwtTool() {
@@ -78,9 +79,7 @@ export default function JwtTool() {
     return (
         <div className="max-w-6xl mx-auto space-y-12 pb-12">
             <div className="flex items-center gap-6">
-                <Link href="/developer" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
-                    <ArrowLeft className="text-zinc-100" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">JWT Debugger</h1>
                     <p className="text-zinc-400 text-lg">Decode, verify, and generate JSON Web Tokens with total privacy.</p>

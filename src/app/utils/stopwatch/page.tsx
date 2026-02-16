@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { ArrowLeft, Timer, Play, Pause, RotateCcw, Flag } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
 export default function StopwatchPage() {
@@ -43,9 +44,7 @@ export default function StopwatchPage() {
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/utils" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Stopwatch</h1>
                     <p className="text-zinc-400">Precise stopwatch with lap timing capabilities.</p>

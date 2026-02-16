@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { ArrowLeft, Upload, Download, Image as ImageIcon, Loader2 } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 export default function ImageCompressorPage() {
@@ -75,9 +76,7 @@ export default function ImageCompressorPage() {
     return (
         <div className="max-w-6xl mx-auto space-y-12">
             <div className="flex items-center gap-6">
-                <Link href="/media" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
-                    <ArrowLeft className="text-zinc-100" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Image Compressor</h1>
                     <p className="text-zinc-400 text-lg">Reduce image file size without significant quality loss, 100% privately.</p>

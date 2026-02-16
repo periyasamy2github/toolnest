@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ArrowLeft, Upload, Download, Image as ImageIcon, LayoutGrid, Grid, Square, Columns } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 type LayoutType = "grid-2x2" | "grid-3x3" | "row" | "column" | "masonry";
@@ -140,9 +141,7 @@ export default function CollageMakerPage() {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <Link href="/media" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                        <ArrowLeft className="text-zinc-400" />
-                    </Link>
+                    <BackButton />
                     <div>
                         <h1 className="text-4xl font-black text-gradient">Collage Maker</h1>
                         <p className="text-zinc-400 text-lg">Combine your photos into beautiful layouts.</p>

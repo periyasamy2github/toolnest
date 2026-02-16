@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft, Eraser, Copy, Check, Trash2, RefreshCw, Settings2 } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 export default function TextCleanerPage() {
@@ -74,9 +75,7 @@ export default function TextCleanerPage() {
         <div className="max-w-6xl mx-auto space-y-8 pb-12">
             {/* Header */}
             <div className="flex items-center gap-4">
-                <Link href="/text" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Text Cleaner</h1>
                     <p className="text-zinc-400 text-lg">Clean, format, and optimize your text instantly.</p>

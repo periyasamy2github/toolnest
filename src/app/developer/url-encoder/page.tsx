@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft, Copy, Check, Trash2, Link as LinkIcon, ArrowRightLeft, Globe } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 export default function UrlEncoderTool() {
@@ -54,9 +55,7 @@ export default function UrlEncoderTool() {
     return (
         <div className="max-w-4xl mx-auto space-y-8 pb-12">
             <div className="flex items-center gap-4">
-                <Link href="/developer" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">URL Encoder / Decoder</h1>
                     <p className="text-zinc-400">Safely encode or decode URLs and query parameters.</p>

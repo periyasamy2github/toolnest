@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { m } from "framer-motion";
 import { Upload, FileVideo, Info, X, Film, Clock, HardDrive, Monitor, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 export default function VideoMetadataViewer() {
@@ -74,9 +75,7 @@ export default function VideoMetadataViewer() {
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <div className="flex items-center gap-6">
-                <Link href="/media" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
-                    <ArrowLeft className="text-zinc-100" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                         Video Metadata <span className="text-blue-500">Viewer</span>

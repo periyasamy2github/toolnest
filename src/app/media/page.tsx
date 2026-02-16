@@ -1,5 +1,6 @@
 "use client";
 
+import BackButton from "@/components/BackButton";
 import Link from "next/link";
 import { m } from "framer-motion";
 import {
@@ -41,9 +42,7 @@ export default function MediaToolsPage() {
                 className="space-y-12"
             >
                 <m.div variants={fadeInUp} className="flex items-center gap-6">
-                    <Link href="/" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
-                        <ArrowLeft className="text-zinc-100" />
-                    </Link>
+                    <BackButton />
                     <div>
                         <h1 className="text-4xl font-black text-gradient">Media Tools</h1>
                         <p className="text-zinc-400 text-lg">Edit and optimize images, videos, and audio in your browser with total privacy.</p>

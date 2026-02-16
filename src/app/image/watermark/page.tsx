@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ArrowLeft, Upload, Download, Image as ImageIcon, Type, Grid, LayoutGrid, Move } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 type WatermarkType = "text" | "image";
@@ -125,9 +126,7 @@ export default function WatermarkPage() {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <Link href="/media" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                        <ArrowLeft className="text-zinc-400" />
-                    </Link>
+                    <BackButton />
                     <div>
                         <h1 className="text-4xl font-black text-gradient">Watermark Tool</h1>
                         <p className="text-zinc-400 text-lg">Protect your images with custom watermarks.</p>

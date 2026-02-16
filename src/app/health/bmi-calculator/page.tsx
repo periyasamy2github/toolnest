@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, Info, Activity, RefreshCw } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 type UnitSystem = "metric" | "imperial";
@@ -89,9 +90,7 @@ export default function BMICalculator() {
     return (
         <div className="max-w-5xl mx-auto space-y-12">
             <div className="flex items-center gap-6">
-                <Link href="/health" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
-                    <ArrowLeft className="text-zinc-100" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">BMI Calculator</h1>
                     <p className="text-zinc-400 text-lg">Calculate your Body Mass Index and check your health status with total privacy.</p>

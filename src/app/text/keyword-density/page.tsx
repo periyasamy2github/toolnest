@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowLeft, BarChart3, RefreshCw, Search, Info } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
 export default function KeywordDensityPage() {
@@ -39,9 +40,7 @@ export default function KeywordDensityPage() {
     return (
         <div className="max-w-6xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/text" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Keyword Density</h1>
                     <p className="text-zinc-400">Analyze the frequency and density of keywords in your content.</p>

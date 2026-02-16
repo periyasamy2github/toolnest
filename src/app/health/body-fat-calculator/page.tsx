@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, Info, Activity, RefreshCw, User, UserPlus } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 type UnitSystem = "metric" | "imperial";
@@ -105,9 +106,7 @@ export default function BodyFatCalculator() {
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/health" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Body Fat Calculator</h1>
                     <p className="text-zinc-400">Estimate your body fat percentage using the US Navy method.</p>

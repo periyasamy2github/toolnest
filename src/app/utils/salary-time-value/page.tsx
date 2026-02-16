@@ -23,6 +23,7 @@ import {
     Clock as ClockIcon
 } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 import { fadeInUp, staggerContainer } from "@/components/Animations";
 
@@ -106,9 +107,7 @@ export default function SalaryTimeValuePage() {
                 className="flex flex-col md:flex-row md:items-center justify-between gap-6"
             >
                 <div className="flex items-center gap-6">
-                    <Link href="/utils" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
-                        <ArrowLeft className="text-zinc-100" />
-                    </Link>
+                    <BackButton />
                     <div>
                         <motion.h1 variants={fadeInUp} className="text-4xl font-black text-gradient">Salary Time Value</motion.h1>
                         <motion.p variants={fadeInUp} className="text-zinc-400 text-lg">Project your wealth, adjust for inflation, and see the power of compounding.</motion.p>

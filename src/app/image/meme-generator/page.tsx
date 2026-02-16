@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { ArrowLeft, Upload, Download, Image as ImageIcon, Type, Plus, Trash2, Move, RotateCw, Palette, Layers, Smile } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 import { m, AnimatePresence } from "framer-motion";
 
@@ -320,9 +321,7 @@ export default function MemeGeneratorPage() {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <Link href="/media" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                        <ArrowLeft className="text-zinc-400" />
-                    </Link>
+                    <BackButton />
                     <div>
                         <h1 className="text-4xl font-black text-gradient">Meme Generator</h1>
                         <p className="text-zinc-400 text-lg">Multi-layer editing, custom styles, and more.</p>

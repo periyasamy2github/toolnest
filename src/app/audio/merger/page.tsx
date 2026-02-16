@@ -5,6 +5,7 @@ import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile, toBlobURL } from "@ffmpeg/util";
 import { ArrowLeft, Upload, Merge, Download, Loader2, AlertCircle, Music, X } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 export default function AudioMergerPage() {
@@ -99,9 +100,7 @@ export default function AudioMergerPage() {
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/media" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Audio Merger</h1>
                     <p className="text-zinc-400">Combine multiple audio files into a single track.</p>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { ArrowLeft, Volume2, Play, Pause, Square, RefreshCw, Settings2 } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
 export default function TextToSpeechPage() {
@@ -77,9 +78,7 @@ export default function TextToSpeechPage() {
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/text" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Text to Speech</h1>
                     <p className="text-zinc-400">Convert your text into natural-sounding speech using browser voices.</p>

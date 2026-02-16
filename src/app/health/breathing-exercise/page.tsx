@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { ArrowLeft, Play, Pause, RotateCcw, Info, Wind, Settings2 } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 interface BreathingTechnique {
@@ -145,9 +146,7 @@ export default function BreathingExercise() {
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/health" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Breathing Exercise</h1>
                     <p className="text-zinc-400">Calm your mind and body with guided breathing.</p>

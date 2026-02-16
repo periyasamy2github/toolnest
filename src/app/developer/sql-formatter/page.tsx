@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowLeft, Database, Copy, Check, RefreshCw, AlignLeft } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import Link from "next/link";
 import { format } from "sql-formatter";
 
@@ -32,9 +33,7 @@ export default function SqlFormatterPage() {
     return (
         <div className="max-w-6xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/developer" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">SQL Formatter</h1>
                     <p className="text-zinc-400">Beautify and format your SQL queries for better readability.</p>

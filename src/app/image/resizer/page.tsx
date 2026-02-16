@@ -5,6 +5,7 @@ import ReactCrop, { Crop, PixelCrop, centerCrop, makeAspectCrop } from "react-im
 import "react-image-crop/dist/ReactCrop.css";
 import { ArrowLeft, Upload, Crop as CropIcon, Download, Image as ImageIcon, RefreshCw } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: number) {
@@ -128,9 +129,7 @@ export default function ImageResizerPage() {
     return (
         <div className="max-w-6xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/media" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Image Resizer & Cropper</h1>
                     <p className="text-zinc-400">Crop and resize images directly in your browser.</p>

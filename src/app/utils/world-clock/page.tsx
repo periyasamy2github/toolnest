@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ArrowLeft, Globe, Clock, Search, Plus, X } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
 const CITIES = [
@@ -51,9 +52,7 @@ export default function WorldClockPage() {
         <div className="max-w-6xl mx-auto space-y-8">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <Link href="/utils" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                        <ArrowLeft className="text-zinc-400" />
-                    </Link>
+                    <BackButton />
                     <div>
                         <h1 className="text-4xl font-black text-gradient">World Clock</h1>
                         <p className="text-zinc-400">Track current time across major global cities.</p>

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Upload, Download, Rewind, Play, Pause, Loader2, ArrowLeft } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
 export default function ReverseAudio() {
@@ -165,9 +166,7 @@ export default function ReverseAudio() {
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <div className="flex items-center gap-6">
-                <Link href="/media" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
-                    <ArrowLeft className="text-zinc-100" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                         Reverse <span className="text-purple-500">Audio</span>

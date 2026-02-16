@@ -5,6 +5,7 @@ import { ArrowLeft, Upload, Download, Image as ImageIcon, RotateCw, FlipHorizont
 import Link from "next/link";
 import ReactCrop, { type Crop, type PixelCrop, centerCrop, makeAspectCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: number) {
@@ -133,9 +134,7 @@ export default function ImageCropperPage() {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <Link href="/media" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                        <ArrowLeft className="text-zinc-400" />
-                    </Link>
+                    <BackButton />
                     <div>
                         <h1 className="text-4xl font-black text-gradient">Image Cropper</h1>
                         <p className="text-zinc-400 text-lg">Crop, rotate, and flip images with precision.</p>

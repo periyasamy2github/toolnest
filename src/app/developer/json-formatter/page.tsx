@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft, Copy, Check, Trash2, Braces, AlertCircle, FileJson, Minimize2, Maximize2 } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 export default function JsonFormatter() {
@@ -51,9 +52,7 @@ export default function JsonFormatter() {
     return (
         <div className="max-w-6xl mx-auto space-y-12 pb-12">
             <div className="flex items-center gap-6">
-                <Link href="/developer" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
-                    <ArrowLeft className="text-zinc-100" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">JSON Formatter & Validator</h1>
                     <p className="text-zinc-400 text-lg">Clean, format, and validate your JSON data instantly with total privacy.</p>

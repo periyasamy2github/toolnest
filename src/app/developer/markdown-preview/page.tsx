@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ArrowLeft, FileCode2, Eye, Edit3 } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import Link from "next/link";
 import { marked } from "marked";
 
@@ -25,9 +26,7 @@ export default function MarkdownPreviewPage() {
     return (
         <div className="max-w-6xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/developer" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Markdown Previewer</h1>
                     <p className="text-zinc-400">Write Markdown and see the rendered HTML in real-time.</p>

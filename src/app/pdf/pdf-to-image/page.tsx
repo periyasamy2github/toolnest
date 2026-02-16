@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft, Upload, FileText, ImageIcon, Download, Loader2, Trash2, AlertCircle } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 import JSZip from "jszip";
 import { m, AnimatePresence } from "framer-motion";
@@ -83,9 +84,7 @@ export default function PDFToImagePage() {
     return (
         <div className="max-w-7xl mx-auto px-4 pt-6 pb-12 space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/pdf" className="p-2 rounded-xl bg-zinc-900 border border-white/5 hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-3xl font-bold text-white">PDF to Image</h1>
                     <p className="text-zinc-400">Convert each PDF page into a high-quality JPG image instantly.</p>

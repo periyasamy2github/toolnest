@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, Search, Trash2, AlertCircle, Check, Copy, Flag } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 export default function RegexTester() {
@@ -49,9 +50,7 @@ export default function RegexTester() {
     return (
         <div className="max-w-5xl mx-auto space-y-8 pb-12">
             <div className="flex items-center gap-4">
-                <Link href="/developer" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Regex Tester</h1>
                     <p className="text-zinc-400">Test and debug regular expressions with live match highlighting.</p>

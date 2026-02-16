@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft, Upload, ImageIcon, Trash2, Download, Loader2, FileText } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 import { PDFDocument } from "pdf-lib";
 import { m, AnimatePresence, Reorder } from "framer-motion";
@@ -87,9 +88,7 @@ export default function ImageToPDFPage() {
     return (
         <div className="max-w-5xl mx-auto px-4 pt-6 pb-12 space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/pdf" className="p-2 rounded-xl bg-zinc-900 border border-white/5 hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-3xl font-bold text-white">Image to PDF</h1>
                     <p className="text-zinc-400">Convert your images to a single PDF document with premium drag and drop.</p>

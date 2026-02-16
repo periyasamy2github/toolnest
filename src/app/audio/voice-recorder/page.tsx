@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ArrowLeft, Mic, Square, Play, Pause, Download, Trash2, Volume2 } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 export default function VoiceRecorderPage() {
@@ -165,9 +166,7 @@ export default function VoiceRecorderPage() {
         <div className="max-w-4xl mx-auto space-y-8 pb-12">
             {/* Header */}
             <div className="flex items-center gap-4">
-                <Link href="/media" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Voice Recorder</h1>
                     <p className="text-zinc-400 text-lg">Record high-quality audio directly in your browser.</p>

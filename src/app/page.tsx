@@ -34,59 +34,113 @@ import { tools } from "@/data/tools";
 
 const toolCategories = [
   {
-    title: "Media Processing",
-    description: "Privacy-focused image, video, and audio editing. Compress, convert, crop, and enhance media files with professional tools directly in your browser.",
-    icon: MonitorPlay,
+    title: "Image Tools",
+    description: "Professional image manipulation. Compress, resize, crop, and convert images locally without quality loss.",
+    icon: ImageIcon,
     href: "/media",
     color: "text-purple-500",
     bg: "bg-purple-500/10",
-    tools: ["Image Compressor", "Video Trimmer", "MP3 Cutter", "Background Remover", "Meme Generator"]
+    tools: ["Compressor", "Resizer", "Social Resizer", "Cropper", "Converter", "Filters", "Remove BG", "Meme Gen", "Watermark", "Collage", "Palette", "OCR", "Favicon", "Blur", "Img2Base64", "SVG Blob", "Brightness", "Hue/Sat", "Invert", "Sepia"]
+  },
+  {
+    title: "Video Tools",
+    description: "Complete video toolkit. Trim, compress, convert, and extract audio from videos with ease.",
+    icon: Film,
+    href: "/media",
+    color: "text-pink-500",
+    bg: "bg-pink-500/10",
+    tools: ["Compressor", "Trimmer", "Converter", "GIF Maker", "Thumbnail", "Screen Rec", "Extract Audio", "Cropper", "Watermark", "Metadata"]
+  },
+  {
+    title: "Audio Tools",
+    description: "Simple audio editing. Cut, merge, and record audio directly in your browser.",
+    icon: Music,
+    href: "/media",
+    color: "text-cyan-500",
+    bg: "bg-cyan-500/10",
+    tools: ["MP3 Cutter", "Merger", "Recorder", "Converter", "Vol Booster", "Speed Changer", "Reverse", "Pitch Shifter"]
   },
   {
     title: "PDF Utilities",
-    description: "Complete PDF management suite. Merge, split, compress, and rotate PDFs. Add watermarks, protect with passwords, or convert images to PDF—all locally.",
+    description: "Secure PDF management. Merge, split, compress, protect, and unlock PDF documents.",
     icon: FileDown,
     href: "/pdf",
     color: "text-red-500",
     bg: "bg-red-500/10",
-    tools: ["Merge PDF", "Split PDF", "Compress PDF", "Protect PDF", "Image to PDF"]
+    tools: ["Merge", "Split", "Compress", "Rotate", "Reorder", "Watermark", "Img to PDF", "PDF to Img", "Protect", "Unlock", "Page Numbers", "Remove Pages"]
   },
   {
-    title: "Writing & Social",
-    description: "Boost your content and social presence. Analyze readability, generate hashtags, tweets, and bios optimized for engagement and growth.",
+    title: "Content Tools",
+    description: "Enhance your writing. Analyze text, count words, and clean up formatting instantly.",
     icon: FileText,
     href: "/writing-social",
     color: "text-orange-500",
     bg: "bg-orange-500/10",
-    tools: ["Word Counter", "Instagram Hashtags", "Tweet Generator", "Readability Score", "Headline Analyzer"]
+    tools: ["Word Counter", "Text Cleaner", "Case Conv", "Lorem Ipsum", "Diff Checker", "Headline Analyzer", "Readability", "Keyword Density", "Text to Speech"]
   },
   {
-    title: "Dev Tools & Converters",
-    description: "Professional-grade coding utilities and universal converters. From JSON formatting and API testing to data transformation and number base conversion.",
-    icon: Code,
-    href: "/developer",
+    title: "Social Media",
+    description: "Boost engagement. Generate hashtags, tweets, bios, and captions for social platforms.",
+    icon: Share2,
+    href: "/writing-social",
     color: "text-blue-500",
     bg: "bg-blue-500/10",
-    tools: ["JSON Formatter", "API Tester", "JSON <> CSV", "JWT Tool", "YAML <> JSON"]
+    tools: ["Hashtags", "Tweet Gen", "Bio Gen", "Caption Gen", "LinkedIn Post", "FB Post", "TikTok Caption", "YT Tags", "YT Title", "YT Desc", "Emoji Picker", "Hashtag Count", "Char Count", "Engagement Rate"]
   },
   {
-    title: "Business & Finance",
-    description: "Professional financial calculators and productivity tools. Plan your loans, investments, taxes, and create invoices or track time with precision.",
+    title: "Developer Tools",
+    description: "Essential utilities for devs. Formatters, validators, generators, and testers in one place.",
+    icon: Code,
+    href: "/developer",
+    color: "text-green-500",
+    bg: "bg-green-500/10",
+    tools: ["JSON Fmt", "API Tester", "Gradient", "Cron", "JSON2TS", "SQL Fmt", "HTML2JSX", "CSS Tools", "Markdown", "Entities", "Regex", "Base64", "URL Encode", "JWT", "UUID", "Pass Gen", "Pass Strength", "Hash Gen", "Token Gen", "Encryptor", "HMAC", "Bcrypt", "RSA Key", "SSH Key", "Slug Gen", "URL Parser", "User Agent", "Keycode", "Meta Tags", "Chmod", "Credit Card", "IBAN", "Subnet", "CIDR", "MAC Gen", "User Gen", "Checksum"]
+  },
+  {
+    title: "Converters",
+    description: "Universal data conversion. Transform between JSON, XML, CSV, YAML, and number bases.",
+    icon: ArrowRightLeft,
+    href: "/developer",
+    color: "text-yellow-500",
+    bg: "bg-yellow-500/10",
+    tools: ["YAML2JSON", "JSON<>CSV", "JSON<>XML", "YAML<>JSON", "Number Base", "Text Case", "CSV2JSON", "CSV2XML", "XML2JSON", "XML2CSV", "YAML2XML", "XML2YAML", "MD2HTML", "HTML2MD", "RGB2HEX", "HEX2RGB", "HSL2RGB", "RGB2HSL", "CMYK2RGB", "RGB2CMYK", "Unix Time", "Text2Bin", "Bin2Text", "Morse", "Px2Rem", "Aspect Ratio"]
+  },
+  {
+    title: "Finance Tools",
+    description: "Smart financial planning. Calculators for loans, investments, taxes, and retirement.",
     icon: Wallet,
     href: "/finance",
     color: "text-emerald-500",
     bg: "bg-emerald-500/10",
-    tools: ["Loan EMI", "SIP Calculator", "Invoice Generator", "Income Tax", "Salary Time Value"]
+    tools: ["Loan EMI", "SIP", "Compound Int", "FD", "PPF", "Income Tax", "Net Worth", "Retirement", "GST", "Currency", "Home Loan", "Gratuity", "ROI", "CAGR", "Inflation", "Salary Hike", "Mutual Fund", "Lumpsum", "SWP", "RD", "NPS", "HRA", "Simple Int", "Discount", "Margin", "VAT", "Sales Tax", "Break Even", "Debt Payoff", "Savings Goal"]
   },
   {
-    title: "Life & Learning",
-    description: "Academic and wellness tools. Calculate GPA, grades, BMI, and sleep cycles to stay on top of your health and studies.",
+    title: "Productivity",
+    description: "Boost efficiency. Invoicing, time management, QR codes, and unit conversion tools.",
+    icon: Timer,
+    href: "/finance",
+    color: "text-indigo-500",
+    bg: "bg-indigo-500/10",
+    tools: ["Invoice", "Pomodoro", "Signature", "Stopwatch", "Timer", "World Clock", "Random Picker", "QR Code", "Unit Converter", "Salary Value"]
+  },
+  {
+    title: "Health & Wellness",
+    description: "Track your well-being. BMI, calories, sleep, and hydration calculators for a healthier you.",
     icon: Activity,
     href: "/health",
-    color: "text-pink-500",
-    bg: "bg-pink-500/10",
-    tools: ["GPA Calculator", "BMI Calculator", "Sleep Calculator", "Grade Calculator", "Health Score"]
+    color: "text-rose-500",
+    bg: "bg-rose-500/10",
+    tools: ["BMI", "Sleep", "Body Fat", "Breathing", "Water", "Calories", "Fitness Age", "Health Score", "Burnout", "Smoking Cost", "Life Expectancy"]
   },
+  {
+    title: "Education",
+    description: "Academic helpers. Calculate GPA, grades, and track academic progress.",
+    icon: GraduationCap,
+    href: "/health",
+    color: "text-teal-500",
+    bg: "bg-teal-500/10",
+    tools: ["GPA", "Grade", "Percentage", "Scientific", "Fraction", "Time", "Date", "Age", "Roman", "Binary", "Hex", "ASCII", "Citation", "Flashcard", "Quiz", "Periodic Table", "Unit Circle", "Statistics", "Matrix", "Equation"]
+  }
 ];
 
 export default function Home() {

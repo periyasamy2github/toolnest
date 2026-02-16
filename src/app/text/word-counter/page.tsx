@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowLeft, AlignLeft } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
 export default function WordCounterPage() {
@@ -18,9 +19,7 @@ export default function WordCounterPage() {
     return (
         <div className="max-w-6xl mx-auto space-y-12">
             <div className="flex items-center gap-6">
-                <Link href="/text" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
-                    <ArrowLeft className="text-zinc-100" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Word Counter</h1>
                     <p className="text-zinc-400 text-lg">Analyze text statistics in real-time with total privacy.</p>

@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ArrowLeft, Download } from "lucide-react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import { cn } from "@/lib/utils";
 
 // All available dot styles from qr-code-styling
@@ -127,9 +128,7 @@ export default function QrCodePage() {
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-                <Link href="/utils" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <ArrowLeft className="text-zinc-400" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">QR Code Generator</h1>
                     <p className="text-zinc-400">Create custom QR codes with advanced styling.</p>

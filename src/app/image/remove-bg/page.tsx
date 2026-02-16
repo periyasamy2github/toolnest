@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ArrowLeft, Upload, Image as ImageIcon, Download, Loader2, AlertCircle, Eraser } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import Link from "next/link";
 import { removeBackground } from "@imgly/background-removal";
 
@@ -49,9 +50,7 @@ export default function RemoveBgPage() {
     return (
         <div className="max-w-6xl mx-auto space-y-12">
             <div className="flex items-center gap-6">
-                <Link href="/media" className="p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
-                    <ArrowLeft className="text-zinc-100" />
-                </Link>
+                <BackButton />
                 <div>
                     <h1 className="text-4xl font-black text-gradient">Background Remover</h1>
                     <p className="text-zinc-400 text-lg">Remove image backgrounds automatically using AI, 100% privately in your browser.</p>
