@@ -21,31 +21,28 @@ export default function HealthToolsPage() {
         >
             <m.div variants={fadeInUp} className="flex items-center gap-6">
                 <BackButton />
-                <div>
+                <div className="flex items-center gap-4">
                     <h1 className="text-4xl font-black text-gradient">Health Tools</h1>
-                    <p className="text-zinc-400 text-lg">Simple and private tools for a healthier lifestyle, right in your browser.</p>
+                    <span className="px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/20 text-sm font-bold text-pink-400">
+                        {tools.length} Tools
+                    </span>
                 </div>
             </m.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 items-stretch">
                 {tools.map((tool) => (
                     <m.div key={tool.title} variants={fadeInUp} className="h-full">
                         <Link
                             href={tool.href}
-                            className="group relative flex flex-col h-full overflow-hidden glass-card p-6"
+                            className="group relative flex flex-col items-center text-center h-full overflow-hidden glass-card p-4 hover:bg-white/[0.03] transition-all duration-300"
+                            style={{ borderRadius: '0.5rem' }}
                         >
-                            <div className={`p-3 rounded-2xl ${tool.bg} ${tool.color} w-fit mb-4 group-hover:scale-110 transition-transform duration-500 shadow-xl shadow-black/20`}>
+                            <div className={`p-2.5 rounded-xl ${tool.bg} ${tool.color} w-fit mb-3 group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-black/20`}>
                                 <tool.icon size={24} />
                             </div>
-                            <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors duration-500">
+                            <h3 className="text-sm font-bold text-white group-hover:text-pink-400 transition-colors duration-300 leading-tight">
                                 {tool.title}
                             </h3>
-                            <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-grow group-hover:text-zinc-300 transition-colors duration-500">
-                                {tool.description}
-                            </p>
-                            <div className="flex items-center gap-2 text-sm font-bold text-blue-400 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-500">
-                                Open Tool <ArrowRight size={16} />
-                            </div>
                         </Link>
                     </m.div>
                 ))}
