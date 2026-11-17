@@ -73,7 +73,7 @@ export default function YamlToJsonPage() {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             className="w-full h-full bg-transparent border-none focus:outline-none text-zinc-200 font-mono text-sm resize-none placeholder:text-zinc-600"
-                            placeholder={mode === "yaml-to-json" ? "name: ToolNest\nversion: 1.0" : '{ "name": "ToolNest", "version": 1.0 }'}
+                            placeholder={mode === "yaml-to-json" ? "name: WebToolNest\nversion: 1.0" : '{ "name": "WebToolNest", "version": 1.0 }'}
                         />
                     </div>
                     {error && <p className="text-red-400 text-sm">{error}</p>}

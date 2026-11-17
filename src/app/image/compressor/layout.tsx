@@ -1,11 +1,14 @@
+import { OG_IMAGE } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Online Image Compressor - Reduce Image Size Without Quality Loss | ToolNest",
+    alternates: { canonical: "/image/compressor" },
+    title: "Online Image Compressor - Reduce Image Size Without Quality Loss",
     description: "Compress JPG, PNG, and WebP images online for free. Reduce file size by up to 90% while maintaining high quality. Fast, secure, and 100% private.",
-    keywords: ["image compressor", "reduce image size", "compress png", "compress jpg", "online image optimizer", "ToolNest", "free image compression"],
+    keywords: ["image compressor", "reduce image size", "compress png", "compress jpg", "online image optimizer", "WebToolNest", "free image compression"],
     openGraph: {
-        title: "Online Image Compressor | ToolNest",
+        images: [OG_IMAGE],
+        title: "Online Image Compressor",
         description: "Reduce image file size by up to 90% without losing quality.",
         type: "website",
     },

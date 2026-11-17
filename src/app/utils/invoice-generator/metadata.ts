@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +9,8 @@ export const metadata: Metadata = {
         "invoice template", "business invoice", "professional invoice", "download invoice pdf"
     ],
     openGraph: {
-        title: "Invoice Generator - Create Professional PDF Invoices | ToolNest",
+        images: [OG_IMAGE],
+        title: "Invoice Generator - Create Professional PDF Invoices",
         description: "Generate professional invoices with logo, auto-calculations, and PDF export. 100% free and private.",
         type: "website",
     },

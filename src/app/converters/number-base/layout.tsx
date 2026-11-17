@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Number Base Converter | ToolNest",
+    alternates: { canonical: "/converters/number-base" },
+    title: "Number Base Converter",
     description: "Convert numbers between Binary, Octal, Decimal, and Hexadecimal systems. Essential for computer science and programming.",
 };
 

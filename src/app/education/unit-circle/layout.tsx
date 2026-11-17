@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Interactive Unit Circle - Learn Trigonometry Online | ToolNest",
+    alternates: { canonical: "/education/unit-circle" },
+    title: "Interactive Unit Circle - Learn Trigonometry Online",
     description: "Explore the unit circle and learn trigonometric functions like sine, cosine, and tangent. Interactive and easy-to-use learning tool. 100% private.",
-    keywords: ["unit circle", "trigonometry tool", "sine cosine tangent", "math learning", "ToolNest"],
+    keywords: ["unit circle", "trigonometry tool", "sine cosine tangent", "math learning", "WebToolNest"],
 };
 
 export default function UnitCircleLayout({

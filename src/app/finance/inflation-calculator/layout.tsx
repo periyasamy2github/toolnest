@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Inflation Calculator - Calculate Purchasing Power Over Time | ToolNest",
+    alternates: { canonical: "/finance/inflation-calculator" },
+    title: "Inflation Calculator - Calculate Purchasing Power Over Time",
     description: "Calculate how inflation affects the value of your money over time. See the purchasing power of your savings in the future. 100% private.",
-    keywords: ["inflation calculator", "purchasing power", "money value", "financial planning", "ToolNest"],
+    keywords: ["inflation calculator", "purchasing power", "money value", "financial planning", "WebToolNest"],
 };
 
 export default function InflationCalculatorLayout({

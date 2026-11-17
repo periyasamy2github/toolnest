@@ -1,11 +1,14 @@
+import { OG_IMAGE } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Fitness Age Calculator - How Fit Are You Really Online | ToolNest",
+    alternates: { canonical: "/health/fitness-age" },
+    title: "Fitness Age Calculator - How Fit Are You Really Online",
     description: "Calculate your fitness age based on your physical activity and health metrics. See how your body compares to your chronological age. 100% private.",
-    keywords: ["fitness age", "calculate fitness", "health metrics", "body age", "health tools", "ToolNest"],
+    keywords: ["fitness age", "calculate fitness", "health metrics", "body age", "health tools", "WebToolNest"],
     openGraph: {
-        title: "Fitness Age Calculator | ToolNest",
+        images: [OG_IMAGE],
+        title: "Fitness Age Calculator",
         description: "Discover your fitness age and improve your health status.",
         type: "website",
     },

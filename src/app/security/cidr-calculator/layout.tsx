@@ -1,3 +1,7 @@
+import { toolMetadata } from "@/lib/seo";
+
+export const metadata = toolMetadata("/security/cidr-calculator");
+
 export default function SecurityLayout({
     children,
 }: {

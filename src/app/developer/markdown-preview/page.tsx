@@ -7,7 +7,7 @@ import Link from "next/link";
 import { marked } from "marked";
 
 export default function MarkdownPreviewPage() {
-    const [markdown, setMarkdown] = useState("# Welcome to ToolNest\\n\\nEdit this text to see the **live preview**.\\n\\n- Feature 1\\n- Feature 2\\n\\n```javascript\\nconsole.log('Hello World');\\n```");
+    const [markdown, setMarkdown] = useState("# Welcome to WebToolNest\\n\\nEdit this text to see the **live preview**.\\n\\n- Feature 1\\n- Feature 2\\n\\n```javascript\\nconsole.log('Hello World');\\n```");
     const [html, setHtml] = useState("");
 
     useEffect(() => {

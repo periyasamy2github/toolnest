@@ -1,11 +1,14 @@
+import { OG_IMAGE } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Watermark Tool - Add Text or Logo to Images Online | ToolNest",
+    alternates: { canonical: "/image/watermark" },
+    title: "Watermark Tool - Add Text or Logo to Images Online",
     description: "Protect your images by adding custom text or logo watermarks. Adjust opacity, position, rotation, and tiling. Secure local processing, 100% private.",
-    keywords: ["watermark image", "add logo to photo", "copyright image", "watermark creator", "protect photos", "ToolNest", "free watermark tool"],
+    keywords: ["watermark image", "add logo to photo", "copyright image", "watermark creator", "protect photos", "WebToolNest", "free watermark tool"],
     openGraph: {
-        title: "Free Online Watermark Tool | ToolNest",
+        images: [OG_IMAGE],
+        title: "Free Online Watermark Tool",
         description: "Add custom text or logo watermarks to your images securely.",
         type: "website",
     },

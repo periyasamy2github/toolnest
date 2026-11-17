@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Business & Finance Tools - Financial Calculators & Productivity | ToolNest",
+    alternates: { canonical: "/finance" },
+    title: "Business & Finance Tools - Financial Calculators & Productivity",
     description: "Comprehensive suite of financial calculators and productivity tools. Plan loans, investments, taxes, and retirement, or create invoices and track time. 100% free and private.",
     keywords: [
         "finance tools", "emi calculator", "sip calculator", "tax calculator",

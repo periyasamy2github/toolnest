@@ -92,7 +92,7 @@ export default function JsonToTsPage() {
                             value={json}
                             onChange={(e) => setJson(e.target.value)}
                             className="w-full h-full bg-transparent border-none focus:outline-none text-zinc-200 font-mono text-sm resize-none placeholder:text-zinc-600"
-                            placeholder='{ "name": "ToolNest", "version": 1.0 }'
+                            placeholder='{ "name": "WebToolNest", "version": 1.0 }'
                         />
                     </div>
                     {error && <p className="text-red-400 text-sm">{error}</p>}

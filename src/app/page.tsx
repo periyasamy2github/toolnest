@@ -1,460 +1,295 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-import {
-  ImageIcon,
-  Type,
-  ArrowRight,
-  Music,
-  Code,
-  LayoutGrid,
-  ShieldCheck,
-  Wallet,
-  FileDown,
-  Timer,
-  Search,
-  CheckCircle2,
-  Zap,
-  Database,
-  Lock,
-  Globe,
-  Film,
-  ArrowRightLeft,
-  Share2,
-  GraduationCap,
-  MonitorPlay,
-  FileText,
-  Activity
-} from "lucide-react";
-import { m } from "framer-motion";
-import { fadeInUp, staggerContainer } from "@/components/Animations";
-
 import { tools } from "@/data/tools";
+import { categories, toolsIn } from "@/data/categories";
+import { ToolFinder } from "@/components/ToolFinder";
+import { SITE_URL } from "@/lib/seo";
 
-const toolCategories = [
-  {
-    title: "Image Tools",
-    description: "Professional image manipulation. Compress, resize, crop, and convert images locally without quality loss.",
-    icon: ImageIcon,
-    href: "/media",
-    color: "text-purple-500",
-    bg: "bg-purple-500/10",
-    tools: ["Compressor", "Resizer", "Social Resizer", "Cropper", "Converter", "Filters", "Remove BG", "Meme Gen", "Watermark", "Collage", "Palette", "OCR", "Favicon", "Blur", "Img2Base64", "SVG Blob", "Brightness", "Hue/Sat", "Invert", "Sepia"]
-  },
-  {
-    title: "Video Tools",
-    description: "Complete video toolkit. Trim, compress, convert, and extract audio from videos with ease.",
-    icon: Film,
-    href: "/media",
-    color: "text-pink-500",
-    bg: "bg-pink-500/10",
-    tools: ["Compressor", "Trimmer", "Converter", "GIF Maker", "Thumbnail", "Screen Rec", "Extract Audio", "Cropper", "Watermark", "Metadata"]
-  },
-  {
-    title: "Audio Tools",
-    description: "Simple audio editing. Cut, merge, and record audio directly in your browser.",
-    icon: Music,
-    href: "/media",
-    color: "text-cyan-500",
-    bg: "bg-cyan-500/10",
-    tools: ["MP3 Cutter", "Merger", "Recorder", "Converter", "Vol Booster", "Speed Changer", "Reverse", "Pitch Shifter"]
-  },
-  {
-    title: "PDF Utilities",
-    description: "Secure PDF management. Merge, split, compress, protect, and unlock PDF documents.",
-    icon: FileDown,
-    href: "/pdf",
-    color: "text-red-500",
-    bg: "bg-red-500/10",
-    tools: ["Merge", "Split", "Compress", "Rotate", "Reorder", "Watermark", "Img to PDF", "PDF to Img", "Protect", "Unlock", "Page Numbers", "Remove Pages"]
-  },
-  {
-    title: "Content Tools",
-    description: "Enhance your writing. Analyze text, count words, and clean up formatting instantly.",
-    icon: FileText,
-    href: "/writing-social",
-    color: "text-orange-500",
-    bg: "bg-orange-500/10",
-    tools: ["Word Counter", "Text Cleaner", "Case Conv", "Lorem Ipsum", "Diff Checker", "Headline Analyzer", "Readability", "Keyword Density", "Text to Speech"]
-  },
-  {
-    title: "Social Media",
-    description: "Boost engagement. Generate hashtags, tweets, bios, and captions for social platforms.",
-    icon: Share2,
-    href: "/writing-social",
-    color: "text-blue-500",
-    bg: "bg-blue-500/10",
-    tools: ["Hashtags", "Tweet Gen", "Bio Gen", "Caption Gen", "LinkedIn Post", "FB Post", "TikTok Caption", "YT Tags", "YT Title", "YT Desc", "Emoji Picker", "Hashtag Count", "Char Count", "Engagement Rate"]
-  },
-  {
-    title: "Developer Tools",
-    description: "Essential utilities for devs. Formatters, validators, generators, and testers in one place.",
-    icon: Code,
-    href: "/developer",
-    color: "text-green-500",
-    bg: "bg-green-500/10",
-    tools: ["JSON Fmt", "API Tester", "Gradient", "Cron", "JSON2TS", "SQL Fmt", "HTML2JSX", "CSS Tools", "Markdown", "Entities", "Regex", "Base64", "URL Encode", "JWT", "UUID", "Pass Gen", "Pass Strength", "Hash Gen", "Token Gen", "Encryptor", "HMAC", "Bcrypt", "RSA Key", "SSH Key", "Slug Gen", "URL Parser", "User Agent", "Keycode", "Meta Tags", "Chmod", "Credit Card", "IBAN", "Subnet", "CIDR", "MAC Gen", "User Gen", "Checksum"]
-  },
-  {
-    title: "Converters",
-    description: "Universal data conversion. Transform between JSON, XML, CSV, YAML, and number bases.",
-    icon: ArrowRightLeft,
-    href: "/developer",
-    color: "text-yellow-500",
-    bg: "bg-yellow-500/10",
-    tools: ["YAML2JSON", "JSON<>CSV", "JSON<>XML", "YAML<>JSON", "Number Base", "Text Case", "CSV2JSON", "CSV2XML", "XML2JSON", "XML2CSV", "YAML2XML", "XML2YAML", "MD2HTML", "HTML2MD", "RGB2HEX", "HEX2RGB", "HSL2RGB", "RGB2HSL", "CMYK2RGB", "RGB2CMYK", "Unix Time", "Text2Bin", "Bin2Text", "Morse", "Px2Rem", "Aspect Ratio"]
-  },
-  {
-    title: "Finance Tools",
-    description: "Smart financial planning. Calculators for loans, investments, taxes, and retirement.",
-    icon: Wallet,
-    href: "/finance",
-    color: "text-emerald-500",
-    bg: "bg-emerald-500/10",
-    tools: ["Loan EMI", "SIP", "Compound Int", "FD", "PPF", "Income Tax", "Net Worth", "Retirement", "GST", "Currency", "Home Loan", "Gratuity", "ROI", "CAGR", "Inflation", "Salary Hike", "Mutual Fund", "Lumpsum", "SWP", "RD", "NPS", "HRA", "Simple Int", "Discount", "Margin", "VAT", "Sales Tax", "Break Even", "Debt Payoff", "Savings Goal"]
-  },
-  {
-    title: "Productivity",
-    description: "Boost efficiency. Invoicing, time management, QR codes, and unit conversion tools.",
-    icon: Timer,
-    href: "/finance",
-    color: "text-indigo-500",
-    bg: "bg-indigo-500/10",
-    tools: ["Invoice", "Pomodoro", "Signature", "Stopwatch", "Timer", "World Clock", "Random Picker", "QR Code", "Unit Converter", "Salary Value"]
-  },
-  {
-    title: "Health & Wellness",
-    description: "Track your well-being. BMI, calories, sleep, and hydration calculators for a healthier you.",
-    icon: Activity,
-    href: "/health",
-    color: "text-rose-500",
-    bg: "bg-rose-500/10",
-    tools: ["BMI", "Sleep", "Body Fat", "Breathing", "Water", "Calories", "Fitness Age", "Health Score", "Burnout", "Smoking Cost", "Life Expectancy"]
-  },
-  {
-    title: "Education",
-    description: "Academic helpers. Calculate GPA, grades, and track academic progress.",
-    icon: GraduationCap,
-    href: "/health",
-    color: "text-teal-500",
-    bg: "bg-teal-500/10",
-    tools: ["GPA", "Grade", "Percentage", "Scientific", "Fraction", "Time", "Date", "Age", "Roman", "Binary", "Hex", "ASCII", "Citation", "Flashcard", "Quiz", "Periodic Table", "Unit Circle", "Statistics", "Matrix", "Equation"]
-  }
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+const quickLinks = [
+  { label: "Compress an image", href: "/image/compressor", tone: "bg-bone text-bark" },
+  { label: "Merge PDF files", href: "/pdf/merge", tone: "bg-bone-2 text-bark" },
+  { label: "Format JSON", href: "/developer/json-formatter", tone: "bg-clay text-bone" },
+  { label: "Make a QR code", href: "/utils/qr-code", tone: "bg-bark text-bone" },
 ];
 
-export default function Home() {
-  return (
-    <div className="min-h-screen bg-[#030303] selection:bg-blue-500 selection:text-white font-sans">
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-20 pb-32 overflow-hidden w-screen -ml-[calc((100vw-100%)/2)]">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-zinc-950/0 to-zinc-950/0 pointer-events-none" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+const facts = [
+  `${tools.length} tools in ${categories.length} categories`,
+  "Free, with no sign-up",
+  "Files stay on your device",
+  "Works on phone and desktop",
+  "Open source on GitHub",
+];
 
-        <div className="z-10 w-full max-w-5xl mx-auto px-4">
-          <m.div
-            initial="initial"
-            animate="animate"
-            variants={staggerContainer}
-            className="text-center space-y-10 w-full mx-auto"
-          >
-            <m.div
-              variants={fadeInUp}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-blue-400 backdrop-blur-md"
-            >
-              <LayoutGrid size={16} />
-              <span>Professional Utility Suite</span>
-            </m.div>
+const faqs = [
+  {
+    q: "Is WebToolNest free?",
+    a: "Yes. Every tool is free to use, with no account, no trial and no paid tier.",
+  },
+  {
+    q: "Are my files uploaded to a server?",
+    a: "No. Image, PDF, video, audio and text tools read your file in the browser and do the work on your device with JavaScript and WebAssembly. A few tools that need live data, such as the API tester or currency rates, only send the requests you ask them to.",
+  },
+  {
+    q: "Do I need to install anything?",
+    a: "No. The tools run in any current browser on Windows, macOS, Linux, Android and iOS.",
+  },
+  {
+    q: "Is there a file size limit?",
+    a: "There is no limit set by us. Very large videos depend on your device's memory and take longer on a phone than on a laptop.",
+  },
+  {
+    q: "Can I use the results for work?",
+    a: "Yes. What you make is yours, including compressed images, merged PDFs, invoices and generated QR codes.",
+  },
+  {
+    q: "Who makes WebToolNest?",
+    a: "It is built and maintained by Periyasamy S. The source code is public on GitHub.",
+  },
+];
 
-            <div className="space-y-6">
-              <m.h1
-                variants={fadeInUp}
-                className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[1.1]"
-              >
-                {tools.length}+ Tools <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-                  One Workspace.
-                </span>
-              </m.h1>
-              <m.p
-                variants={fadeInUp}
-                className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto font-medium leading-relaxed"
-              >
-                A powerful suite of privacy-focused tools for developers and creators.
-                <br className="hidden md:block" />
-                Fast, secure, and completely local.
-              </m.p>
-            </div>
+const stages = [
+  { time: "A second", grow: 1, tone: "bg-bone text-bark", text: "Open the tool. It loads in your browser like any page." },
+  { time: "A few seconds", grow: 2, tone: "bg-bone-2 text-bark", text: "Choose your file. It is read from your device, not sent anywhere." },
+  { time: "Under a minute", grow: 5, tone: "bg-clay text-bone", text: "Your own processor compresses, merges or converts it." },
+  { time: "Instantly", grow: 1, tone: "bg-accent text-accent-ink", text: "Save the result. No copy is kept, because none was made." },
+];
 
-            {/* Central Search Bar */}
-            <m.div variants={fadeInUp} className="max-w-2xl mx-auto w-full relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl opacity-20 group-hover:opacity-40 blur transition duration-500" />
-              <button
-                onClick={() => window.dispatchEvent(new CustomEvent('open-search'))}
-                className="relative w-full flex items-center gap-4 p-5 rounded-2xl bg-zinc-900/90 border border-white/10 text-left hover:bg-zinc-900 transition-all duration-300 shadow-2xl"
-              >
-                <Search size={24} className="text-zinc-400 group-hover:text-blue-400 transition-colors" />
-                <div className="flex-1">
-                  <div className="text-zinc-400 text-lg font-medium group-hover:text-zinc-200 transition-colors">Search for tools...</div>
-                </div>
-                <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-bold text-zinc-500 group-hover:text-zinc-300 transition-colors">
-                  <span className="opacity-70">Ctrl</span>
-                  <span>K</span>
-                </div>
-              </button>
-            </m.div>
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ItemList",
+      name: "WebToolNest tools",
+      numberOfItems: tools.length,
+      itemListElement: tools.map((t, i) => ({ "@type": "ListItem", position: i + 1, name: t.title, url: `${SITE_URL}${t.href}` })),
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+    },
+  ],
+};
 
-            <m.div
-              variants={fadeInUp}
-              className="flex flex-wrap items-center justify-center gap-4 pt-4"
-            >
-              <div className="flex items-center gap-8 text-zinc-500 text-sm font-medium">
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 size={16} className="text-blue-500" /> No Signup
-                </span>
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 size={16} className="text-blue-500" /> 100% Free
-                </span>
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 size={16} className="text-blue-500" /> Private
-                </span>
-              </div>
-            </m.div>
-          </m.div>
+const Home = () => (
+  <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }} />
+
+    {/* first screen: name band, category links, then nest, live finder and quick links */}
+    <section className="grid grid-cols-2 lg:grid-cols-12 gap-2 pt-2 lg:h-[calc(100svh-72px)] lg:min-h-[760px] lg:grid-rows-[200px_64px_1fr]">
+      <h1 className="col-span-2 lg:col-span-12 h-[96px] lg:h-auto rounded-[var(--radius)] bg-surface text-accent overflow-hidden flex items-center justify-center whitespace-nowrap font-semibold tracking-[-0.045em] leading-[0.8] text-[14.6vw] lg:text-[clamp(160px,17vw,300px)]">
+        <span className="block translate-y-[4%]">WebToolNest</span>
+        <span className="sr-only">: free online tools</span>
+      </h1>
+
+      <p className="col-span-2 order-2 lg:hidden text-[6.4vw] sm:text-[28px] leading-[1.15] font-medium tracking-[-0.015em] px-1 pt-3 pb-1">
+        {tools.length} free online tools. Your files never leave your device.
+      </p>
+
+      <ul className="contents">
+        {categories.map((c) => (
+          <li key={c.href} className="order-6 lg:order-none lg:col-span-2 lg:row-start-2">
+            <Link href={c.href} className="tile h-[64px] flex items-center justify-between gap-2 px-4 text-base font-medium hover:bg-surface-2 transition-colors">
+              {c.name}
+              <span className="text-muted tabular-nums">{toolsIn(c.key).length}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      <ul className="col-span-2 lg:col-start-1 lg:col-span-2 lg:row-start-3 order-7 lg:order-none tile p-5 flex flex-col gap-4 text-lg font-medium leading-snug min-h-0">
+        {facts.map((f) => (
+          <li key={f}>{f}</li>
+        ))}
+      </ul>
+
+      <div className="col-span-2 lg:col-start-3 lg:col-span-8 lg:row-start-3 order-3 lg:order-none tile p-2 flex flex-col gap-2 min-h-0">
+        <p className="hidden lg:block text-[clamp(24px,2.2vw,34px)] leading-[1.15] font-medium tracking-[-0.015em] px-4 pt-3 pb-2 max-w-[34ch]">
+          {tools.length} free online tools. Your files never leave your device.
+        </p>
+        <div className="flex-1 min-h-0">
+          <ToolFinder />
         </div>
-      </section>
+      </div>
 
-      {/* Explore Categories Section */}
-      <section id="explore" className="py-24 border-t border-white/5">
-        <div className="w-full mx-auto space-y-16">
-          <div className="text-center space-y-4 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 text-blue-400 text-sm font-medium mb-2">
-              <Search size={18} />
-              <span>Discover the Suite</span>
-            </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
-              Explore Our <span className="text-blue-500">Tools</span>
-            </h2>
-            <p className="text-zinc-400 text-lg leading-relaxed">
-              Find the perfect tool for your needs. From image editing to developer utilities,
-              we have everything you need in one secure place.
-            </p>
-          </div>
+      <ul className="col-span-2 lg:col-start-11 lg:col-span-2 lg:row-start-3 order-5 lg:order-none grid grid-cols-2 lg:grid-cols-1 lg:grid-rows-5 gap-2">
+        {quickLinks.map((l) => (
+          <li key={l.href}>
+            <Link href={l.href} className={`${l.tone} h-full min-h-[72px] flex items-start p-4 rounded-[var(--radius)] text-[15px] font-medium leading-snug transition-transform hover:-translate-y-0.5`}>
+              {l.label}
+            </Link>
+          </li>
+        ))}
+        <li className="col-span-2 lg:col-span-1">
+          <Link href="#tools" className="bg-accent text-accent-ink h-full min-h-[72px] flex flex-col justify-between p-4 rounded-[var(--radius)] font-semibold text-lg leading-tight transition-transform hover:-translate-y-0.5 active:translate-y-0">
+            See all {tools.length} tools
+            <svg aria-hidden width="28" height="28" viewBox="0 0 28 28" className="self-end">
+              <path d="M14 4 V24 M6 16 L14 24 L22 16" fill="none" stroke="currentColor" strokeWidth="3" />
+            </svg>
+          </Link>
+        </li>
+      </ul>
+    </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {toolCategories.map((category, i) => (
-              <m.div
-                key={category.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className={cn(
-                  "group relative h-full",
-                  i === 0 || i === 3 ? "lg:col-span-2" : "" // Bento grid effect
-                )}
-              >
-                <Link
-                  href={category.href}
-                  className="relative flex flex-col h-full p-8 rounded-3xl bg-transparent border border-white/10 overflow-hidden transition-all duration-500 hover:border-blue-500/50 hover:bg-white/[0.02] hover:shadow-2xl hover:shadow-blue-500/10 group-hover:-translate-y-1"
-                >
-                  {/* Glass Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  {/* Header */}
-                  <div className="relative z-10 flex items-start justify-between mb-8">
-                    <div className={cn(
-                      "w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-3",
-                      category.bg,
-                      category.color
-                    )}>
-                      <category.icon size={28} />
-                    </div>
-                    <div className="p-2 rounded-full bg-white/5 text-zinc-500 group-hover:text-white group-hover:bg-blue-500 transition-all duration-300">
-                      <ArrowRight size={16} className="-rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="relative z-10 mb-8 flex-grow">
-                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
-                      {category.title}
-                    </h3>
-                    <p className="text-zinc-400 text-sm leading-relaxed">
-                      {category.description}
-                    </p>
-                  </div>
-
-                  {/* Tool Tags */}
-                  <div className="relative z-10 flex flex-wrap gap-2 mt-auto">
-                    {category.tools.slice(0, 5).map((tool) => (
-                      <span key={tool} className="px-3 py-1 rounded-full bg-zinc-950/50 border border-white/5 text-[10px] uppercase tracking-wider font-bold text-zinc-500 group-hover:text-zinc-300 group-hover:border-white/10 transition-colors">
-                        {tool}
-                      </span>
+    {/* every tool, by category, as filled bars that open in place */}
+    <section id="tools" aria-labelledby="tools-heading" className="mt-40 scroll-mt-20">
+      <div>
+        <h2 id="tools-heading" className="reveal font-semibold tracking-[-0.05em] leading-[0.8] text-[clamp(96px,16vw,240px)] -ml-[0.04em]">
+          Tools<span className="sr-only">: all {tools.length}, by category</span>
+        </h2>
+        <div className="mt-6 space-y-1.5">
+          {categories.map((c, i) => {
+            const list = toolsIn(c.key);
+            return (
+              <details key={c.key} open={i === 0} name="categories" className="reveal group tile" style={{ "--d": `${i * 70}ms` } as React.CSSProperties}>
+                <summary className="flex items-center justify-between gap-4 h-14 px-5 cursor-pointer text-base font-medium hover:text-accent transition-colors">
+                  <span>{c.title} <span className="text-muted tabular-nums">{list.length}</span></span>
+                  <span className="faq-plus" aria-hidden />
+                </summary>
+                <div className="px-5 pb-6">
+                  <p className="text-muted mb-4 max-w-[60ch]">{c.summary}</p>
+                  <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-2.5">
+                    {list.map((t) => (
+                      <li key={t.href}>
+                        <Link href={t.href} className="flex justify-between gap-3 hover:text-accent transition-colors">
+                          <span>{t.title}</span>
+                        </Link>
+                      </li>
                     ))}
-                    {category.tools.length > 5 && (
-                      <span className="px-3 py-1 rounded-full bg-zinc-950/50 border border-white/5 text-[10px] font-bold text-zinc-500">
-                        +{category.tools.length - 5}
-                      </span>
-                    )}
-                  </div>
-                </Link>
-              </m.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why ToolNest Section */}
-      <section className="py-32 border-t border-white/5 relative overflow-hidden w-screen -ml-[calc((100vw-100%)/2)]">
-        <div className="absolute inset-0 bg-zinc-950/50" />
-        <div className="w-full max-w-7xl mx-auto px-4 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
-              Built for <span className="text-blue-500">Performance</span>
-            </h2>
-            <p className="text-zinc-400 text-lg leading-relaxed">
-              Experience the power of local-first computing. No server latency, no data transfer, just instant results.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Zap, title: "Instant Results", desc: "Zero latency. Tools run directly in your browser's engine.", color: "text-amber-400", bg: "bg-amber-400/10" },
-              { icon: ShieldCheck, title: "Bank-Grade Privacy", desc: "Your data never leaves your device. 100% local processing.", color: "text-emerald-400", bg: "bg-emerald-400/10" },
-              { icon: Globe, title: "Offline Capable", desc: "Most tools work perfectly even without an internet connection.", color: "text-blue-400", bg: "bg-blue-400/10" },
-              { icon: Database, title: "No Limits", desc: "Process files of any size. Your hardware is the only limit.", color: "text-purple-400", bg: "bg-purple-400/10" }
-            ].map((item, i) => (
-              <m.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group p-8 rounded-3xl bg-transparent border border-white/10 hover:bg-white/[0.02] hover:border-blue-500/50 transition-all duration-500"
-              >
-                <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110", item.bg, item.color)}>
-                  <item.icon size={28} />
+                  </ul>
+                  <Link href={c.href} className="inline-block mt-5 text-accent font-medium hover:underline">
+                    Open the {c.name.toLowerCase()} board
+                  </Link>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  {item.desc}
-                </p>
-              </m.div>
-            ))}
-          </div>
+              </details>
+            );
+          })}
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* Our Products Section */}
-      <section className="py-32 border-t border-white/5 w-screen -ml-[calc((100vw-100%)/2)]">
-        <div className="w-full max-w-7xl mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2 space-y-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-wider">
-                <Zap size={14} />
-                <span>Featured Product</span>
-              </div>
-              <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-[1.1]">
-                Monitor Your <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-                  Digital Presence
-                </span>
-              </h2>
-              <p className="text-zinc-400 text-lg leading-relaxed max-w-xl">
-                Meet <strong>Uply Monitor</strong>. The next-generation uptime monitoring solution that keeps watch while you sleep. Get instant alerts, detailed analytics, and beautiful status pages.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href="https://uply-monitor.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-4 rounded-xl bg-white text-black font-bold hover:bg-zinc-200 transition-colors flex items-center gap-2"
-                >
-                  Try Uply Monitor <ArrowRight size={18} />
-                </Link>
-              </div>
-            </div>
+    {/* close-ups: real readouts from the tools, enlarged and cropped by the tile edges */}
+    <section aria-labelledby="closeups-heading" className="mt-40 grid grid-cols-2 lg:grid-cols-12 auto-rows-[28vw] lg:auto-rows-[104px] gap-2">
+      <div className="reveal col-span-2 row-span-2 lg:col-span-6 lg:row-span-2 tile p-6">
+        <h2 id="closeups-heading" className="text-[9vw] lg:text-[clamp(36px,4vw,60px)] leading-[1.02] font-semibold tracking-[-0.035em] max-w-[14ch]">
+          Small tools, done properly.
+        </h2>
+      </div>
 
-            <div className="lg:w-1/2 w-full">
-              <m.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="relative group"
-              >
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl opacity-20 group-hover:opacity-40 blur-xl transition duration-500" />
-                <Link
-                  href="https://uply-monitor.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative block p-1 rounded-3xl bg-zinc-950 border border-white/10 overflow-hidden"
-                >
-                  <div className="aspect-video rounded-2xl bg-zinc-900/50 flex items-center justify-center overflow-hidden relative">
-                    {/* Abstract UI representation */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(59,130,246,0.1),transparent)]" />
-                    <div className="text-center space-y-4">
-                      <div className="w-20 h-20 mx-auto rounded-2xl bg-blue-500 flex items-center justify-center shadow-2xl shadow-blue-500/20">
-                        <Zap size={40} className="text-white" />
-                      </div>
-                      <div className="space-y-2">
-                        <div className="h-2 w-24 bg-zinc-800 rounded-full mx-auto" />
-                        <div className="h-2 w-16 bg-zinc-800 rounded-full mx-auto" />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </m.div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CloseUp href="/developer/password-generator" className="col-span-2 row-span-3 lg:col-start-7 lg:col-span-3 lg:row-span-4 lg:row-start-1 bg-accent text-accent-ink" name="Password Generator" line="Strong passwords made on your device." d={60}>
+        <span data-ui className="absolute left-5 top-4 font-semibold tracking-[-0.03em] leading-[0.95] text-[15vw] lg:text-[6.2vw] break-all w-[3.6em]">
+          k7#Vq9!mZ2
+        </span>
+      </CloseUp>
 
-      {/* Privacy Commitment Section */}
-      <section id="privacy" className="py-32 border-t border-white/5 bg-transparent relative overflow-hidden w-screen -ml-[calc((100vw-100%)/2)] -mb-6">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <CloseUp href="/developer/json-formatter" className="col-span-1 row-span-2 lg:col-start-10 lg:col-span-3 lg:row-span-4 lg:row-start-1 bg-bark text-bone" name="JSON Formatter" line="Beautify, validate and minify." d={120}>
+        <pre data-ui className="absolute left-0 top-3 text-[4.4vw] lg:text-[2.2vw] leading-[1.25] text-bone-2">
+          <code>{`{\n  "tool": "json",\n  "valid": true,\n  "size": 1284\n}`}</code>
+        </pre>
+      </CloseUp>
 
-        <div className="w-full max-w-4xl mx-auto px-4 relative z-10 text-center">
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-bold uppercase tracking-wider">
-              <Lock size={14} />
-              <span>Privacy First Architecture</span>
-            </div>
+      <CloseUp href="/image/compressor" className="col-span-1 row-span-2 lg:col-start-1 lg:col-span-6 lg:row-span-4 lg:row-start-3 bg-bone text-bark" name="Image Compressor" line="Shrink JPG, PNG and WebP without uploading them." d={60}>
+        <span data-ui className="absolute right-5 top-5 text-right font-semibold tracking-[-0.05em] leading-[0.9] text-[13vw] lg:text-[11vw] tabular-nums">
+          −75%
+          <span className="block text-base lg:text-2xl tracking-normal font-medium text-clay pt-2">2.4 MB to 612 KB</span>
+        </span>
+      </CloseUp>
 
-            <h2 className="text-5xl md:text-7xl font-black text-white tracking-tight">
-              Your Data. <br />
-              <span className="text-zinc-600">Period.</span>
-            </h2>
+      <CloseUp href="/finance/loan-emi" className="col-span-1 row-span-2 lg:col-start-7 lg:col-span-3 lg:row-span-2 bg-clay text-bone" name="Loan EMI" line="₹10,00,000 at 9% for 5 years." d={120}>
+        <span data-ui className={figure}>₹20,758</span>
+      </CloseUp>
 
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-              We don't just promise privacy; we architected our entire platform around it.
-              Everything happens on your device. Nothing is ever sent to our servers.
-            </p>
+      <CloseUp href="/pdf/merge" className="col-span-1 row-span-2 lg:col-start-10 lg:col-span-3 lg:row-span-2 bg-surface-2 text-foreground" name="Merge PDF" line="Three files in, one file out." d={180}>
+        <span data-ui className={figure}>3 → 1</span>
+      </CloseUp>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12">
-              {[
-                { label: "Logs Kept", value: "0", sub: "Forever" },
-                { label: "Trackers", value: "0", sub: "Blocked" },
-                { label: "Encryption", value: "100%", sub: "Client-Side" }
-              ].map((stat, i) => (
-                <div key={i} className="p-6 rounded-2xl bg-transparent border border-white/10 hover:border-white/20 transition-colors">
-                  <div className="text-4xl font-black text-white mb-1">{stat.value}</div>
-                  <div className="text-sm font-bold text-zinc-400 uppercase tracking-wider">{stat.label}</div>
-                  <div className="text-xs text-zinc-600 font-medium mt-1">{stat.sub}</div>
-                </div>
-              ))}
-            </div>
-          </m.div>
-        </div>
-      </section>
+      <CloseUp href="/health/bmi-calculator" className="col-span-1 row-span-2 lg:col-start-1 lg:col-span-3 lg:row-span-2 bg-bone-2 text-bark" name="BMI" line="70 kg at 177 cm." d={60}>
+        <span data-ui className={figure}>22.3</span>
+      </CloseUp>
+
+      <CloseUp href="/text/word-counter" className="col-span-1 row-span-2 lg:col-start-4 lg:col-span-3 lg:row-span-2 bg-surface text-foreground" name="Word Counter" line="Words, characters and reading time." d={120}>
+        <span data-ui className={figure}>1,284</span>
+      </CloseUp>
+
+      <CloseUp href="/utils/unit-converter" className="col-span-2 row-span-2 lg:col-start-7 lg:col-span-6 lg:row-span-2 bg-bone text-bark" name="Unit Converter" line="Length, weight, temperature and more." d={180}>
+        <span data-ui className={figure}>1 mi = 1.609 km</span>
+      </CloseUp>
+    </section>
+
+    {/* how it works: the stages as one bar, widths from how long each takes */}
+    <section aria-labelledby="how-heading" className="mt-40">
+      <h2 id="how-heading" className="reveal text-[11vw] lg:text-[clamp(48px,6.4vw,104px)] leading-[0.95] font-semibold tracking-[-0.04em] mb-16 max-w-[16ch] px-1">
+        Nothing leaves your device
+      </h2>
+      <ol data-ui className="flex flex-col lg:flex-row gap-1.5">
+        {stages.map((s, i) => (
+          <li key={s.time} className="reveal lg:min-w-[12%] flex flex-col gap-3" style={{ flexGrow: s.grow, flexBasis: 0, "--d": `${i * 90}ms` } as React.CSSProperties}>
+            <span className={`${s.tone} rounded-[var(--radius)] p-5 min-h-[72px] lg:h-[22vh] text-[22px] lg:text-[clamp(20px,2vw,30px)] font-semibold tracking-[-0.02em] leading-tight`}>
+              {s.time}
+            </span>
+            <span className="text-[17px] leading-snug max-w-[24ch] px-1">{s.text}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    {/* the one loud moment: the claim, travelling */}
+    <div className="marquee mt-40 -mx-4 lg:-mx-3 overflow-hidden bg-accent text-accent-ink py-6" aria-hidden>
+      <div className="marquee-track flex w-max whitespace-nowrap text-[clamp(56px,9vw,150px)] font-semibold tracking-[-0.045em] leading-none">
+        {[0, 1].map((k) => (
+          <span key={k} className="pr-[0.5em]">
+            Your files stay on your device · {tools.length} free tools · WebToolNest ·&nbsp;
+          </span>
+        ))}
+      </div>
     </div>
-  );
-}
+
+    {/* questions */}
+    <section aria-labelledby="faq-heading" className="mt-40 grid lg:grid-cols-12 gap-2">
+      <div className="lg:col-span-4">
+        <div className="lg:sticky lg:top-24 space-y-6">
+          <h2 id="faq-heading" className="reveal text-[9vw] lg:text-[4vw] leading-[0.98] font-semibold tracking-[-0.04em] px-1">
+            Questions, answered
+          </h2>
+        </div>
+      </div>
+      <div className="lg:col-span-8 space-y-2">
+        {faqs.map((f, i) => (
+          <details key={f.q} name="faq" open={i === 1} className="reveal group rounded-[var(--radius)] bg-surface open:bg-accent open:text-accent-ink transition-colors" style={{ "--d": `${i * 60}ms` } as React.CSSProperties}>
+            <summary className="flex items-center justify-between gap-6 min-h-[72px] px-6 cursor-pointer text-lg lg:text-xl font-medium">
+              <h3>{f.q}</h3>
+              <span className="faq-plus" aria-hidden />
+            </summary>
+            <p className="px-6 pb-6 text-[17px] leading-relaxed max-w-[52ch]">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  </>
+);
+
+// one size for every readout so the board reads as one system
+const figure = "absolute right-5 top-4 font-semibold tracking-[-0.04em] leading-none text-[8.5vw] lg:text-[4.6vw] tabular-nums";
+
+type CloseUpProps ={ href: string; className: string; name: string; line: string; d: number; children: React.ReactNode };
+
+// one tile of the close-up board: an enlarged readout, captioned bottom-left
+const CloseUp = ({ href, className, name, line, d, children }: CloseUpProps) => (
+  <Link
+    href={href}
+    data-ui
+    className={`reveal group relative overflow-hidden rounded-[var(--radius)] p-5 flex flex-col justify-end transition-[filter] hover:brightness-110 ${className}`}
+    style={{ "--d": `${d}ms` } as React.CSSProperties}
+  >
+    <span className="transition-transform duration-500 group-hover:-translate-y-1">{children}</span>
+    <span className="relative">
+      <span className="block text-lg font-medium leading-tight">{name}</span>
+      <span className="block text-[15px] leading-snug opacity-80">{line}</span>
+    </span>
+  </Link>
+);
+
+export default Home;

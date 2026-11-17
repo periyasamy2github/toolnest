@@ -1,35 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  // Trigger reload
   reactCompiler: true,
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'www.chai4.me',
-        pathname: '/**',
-      },
-    ],
-  },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          {
-            key: "Cross-Origin-Opener-Policy",
-            value: "same-origin",
-          },
-          {
-            key: "Cross-Origin-Embedder-Policy",
-            value: "require-corp",
-          },
-        ],
-      },
-    ];
-  },
+  // static export for Firebase Hosting; COOP/COEP headers live in firebase.json
+  output: "export",
+  images: { unoptimized: true },
 };
 
 export default nextConfig;

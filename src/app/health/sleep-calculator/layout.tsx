@@ -1,11 +1,14 @@
+import { OG_IMAGE } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Sleep Calculator - Calculate Sleep Cycles and Wake Up Time | ToolNest",
+    alternates: { canonical: "/health/sleep-calculator" },
+    title: "Sleep Calculator - Calculate Sleep Cycles and Wake Up Time",
     description: "Calculate the best time to go to sleep or wake up. Based on 90-minute sleep cycles. Wake up feeling refreshed and energized. 100% private.",
-    keywords: ["sleep calculator", "sleep cycles", "wake up time", "bedtime calculator", "sleep cycle calculator", "ToolNest", "health tools"],
+    keywords: ["sleep calculator", "sleep cycles", "wake up time", "bedtime calculator", "sleep cycle calculator", "WebToolNest", "health tools"],
     openGraph: {
-        title: "Free Online Sleep Cycle Calculator | ToolNest",
+        images: [OG_IMAGE],
+        title: "Free Online Sleep Cycle Calculator",
         description: "Calculate your perfect sleep schedule for better rest and energy.",
         type: "website",
     },

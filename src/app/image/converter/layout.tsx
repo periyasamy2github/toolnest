@@ -1,11 +1,14 @@
+import { OG_IMAGE } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Image Converter - Convert JPG, PNG, WEBP, BMP, and GIF | ToolNest",
+    alternates: { canonical: "/image/converter" },
+    title: "Image Converter - Convert JPG, PNG, WEBP, BMP, and GIF",
     description: "Convert images between JPG, PNG, WEBP, BMP, and GIF formats instantly. Free online image converter with no file size limits. 100% private and secure.",
-    keywords: ["image converter", "convert jpg to png", "convert png to jpg", "webp converter", "image format converter", "ToolNest", "free image converter"],
+    keywords: ["image converter", "convert jpg to png", "convert png to jpg", "webp converter", "image format converter", "WebToolNest", "free image converter"],
     openGraph: {
-        title: "Free Online Image Converter | ToolNest",
+        images: [OG_IMAGE],
+        title: "Free Online Image Converter",
         description: "Convert images between multiple formats instantly and securely.",
         type: "website",
     },

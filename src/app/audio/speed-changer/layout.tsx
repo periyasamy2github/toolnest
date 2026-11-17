@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Audio Speed Changer - Change Audio Speed Online | ToolNest",
+    alternates: { canonical: "/audio/speed-changer" },
+    title: "Audio Speed Changer - Change Audio Speed Online",
     description: "Speed up or slow down your audio files online for free. Change playback speed of MP3, WAV, and other formats without losing pitch. 100% private.",
-    keywords: ["audio speed changer", "change audio speed", "speed up mp3", "slow down audio", "audio playback speed", "ToolNest", "free audio tools"],
+    keywords: ["audio speed changer", "change audio speed", "speed up mp3", "slow down audio", "audio playback speed", "WebToolNest", "free audio tools"],
 };
 
 export default function Layout({

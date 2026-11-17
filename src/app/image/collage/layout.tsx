@@ -1,11 +1,14 @@
+import { OG_IMAGE } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Collage Maker - Create Photo Grids and Layouts Online | ToolNest",
+    alternates: { canonical: "/image/collage" },
+    title: "Collage Maker - Create Photo Grids and Layouts Online",
     description: "Create beautiful photo collages with customizable layouts, borders, and backgrounds. Combine multiple images into a single photo instantly. 100% private.",
-    keywords: ["collage maker", "photo grid", "combine photos", "picture layout", "online collage creator", "ToolNest", "free photo joiner"],
+    keywords: ["collage maker", "photo grid", "combine photos", "picture layout", "online collage creator", "WebToolNest", "free photo joiner"],
     openGraph: {
-        title: "Free Online Collage Maker | ToolNest",
+        images: [OG_IMAGE],
+        title: "Free Online Collage Maker",
         description: "Create stunning photo collages and grids in seconds.",
         type: "website",
     },

@@ -42,3 +42,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# design and build working files
+.taste-skill/
+/assets/
+build.log
+.firebase/

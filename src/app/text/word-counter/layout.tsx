@@ -1,11 +1,14 @@
+import { OG_IMAGE } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Word Counter - Count Words and Characters in Real-Time | ToolNest",
+    alternates: { canonical: "/text/word-counter" },
+    title: "Word Counter - Count Words and Characters in Real-Time",
     description: "Free online word counter tool. Count words, characters, sentences, and paragraphs in real-time. Perfect for writers, students, and SEO professionals. 100% private.",
-    keywords: ["word counter", "character count", "sentence counter", "text statistics", "online word count", "ToolNest", "text tools"],
+    keywords: ["word counter", "character count", "sentence counter", "text statistics", "online word count", "WebToolNest", "text tools"],
     openGraph: {
-        title: "Online Word Counter | ToolNest",
+        images: [OG_IMAGE],
+        title: "Online Word Counter",
         description: "Analyze your text statistics instantly with our free word counter.",
         type: "website",
     },

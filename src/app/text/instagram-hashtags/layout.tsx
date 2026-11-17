@@ -1,11 +1,14 @@
+import { OG_IMAGE } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Instagram Hashtag Generator - Find Trending Hashtags Online | ToolNest",
+    alternates: { canonical: "/text/instagram-hashtags" },
+    title: "Instagram Hashtag Generator - Find Trending Hashtags Online",
     description: "Generate trending and relevant hashtags for your Instagram posts. Increase your reach and engagement with our free hashtag generator. 100% private.",
-    keywords: ["instagram hashtags", "hashtag generator", "trending hashtags", "social media tools", "ToolNest"],
+    keywords: ["instagram hashtags", "hashtag generator", "trending hashtags", "social media tools", "WebToolNest"],
     openGraph: {
-        title: "Instagram Hashtag Generator | ToolNest",
+        images: [OG_IMAGE],
+        title: "Instagram Hashtag Generator",
         description: "Find the best hashtags to grow your Instagram presence.",
         type: "website",
     },

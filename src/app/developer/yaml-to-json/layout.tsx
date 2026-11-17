@@ -1,11 +1,14 @@
+import { OG_IMAGE } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "YAML to JSON Converter - Convert YAML to JSON Instantly | ToolNest",
+    alternates: { canonical: "/developer/yaml-to-json" },
+    title: "YAML to JSON Converter - Convert YAML to JSON Instantly",
     description: "Convert YAML to JSON and vice versa instantly. Fast, free, and secure online converter for developers. Handles complex YAML structures with ease.",
-    keywords: ["yaml to json", "json to yaml", "yaml converter", "developer tools", "ToolNest"],
+    keywords: ["yaml to json", "json to yaml", "yaml converter", "developer tools", "WebToolNest"],
     openGraph: {
-        title: "YAML to JSON Converter | ToolNest",
+        images: [OG_IMAGE],
+        title: "YAML to JSON Converter",
         description: "Convert between YAML and JSON formats instantly and securely.",
         type: "website",
     },

@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +9,8 @@ export const metadata: Metadata = {
         "http client", "api testing tool", "free api tester", "web api tester"
     ],
     openGraph: {
-        title: "API Tester - Test REST APIs Online | ToolNest",
+        images: [OG_IMAGE],
+        title: "API Tester - Test REST APIs Online",
         description: "Test REST APIs in your browser with custom headers and body. 100% private.",
         type: "website",
     },

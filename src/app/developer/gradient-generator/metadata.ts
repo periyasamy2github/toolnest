@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +9,8 @@ export const metadata: Metadata = {
         "gradient maker", "css gradient tool", "color gradient", "gradient css generator"
     ],
     openGraph: {
-        title: "CSS Gradient Generator - Create Beautiful Gradients | ToolNest",
+        images: [OG_IMAGE],
+        title: "CSS Gradient Generator - Create Beautiful Gradients",
         description: "Create stunning CSS gradients visually and copy the code instantly.",
         type: "website",
     },

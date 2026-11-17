@@ -78,7 +78,7 @@ export default function JsonFormatter() {
                     <textarea
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        placeholder='Paste your JSON here... e.g. {"name": "ToolNest", "version": 1.0}'
+                        placeholder='Paste your JSON here... e.g. {"name": "WebToolNest", "version": 1.0}'
                         className="flex-1 min-h-0 glass-card p-8 text-zinc-100 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all resize-none placeholder:text-zinc-700"
                     />
                     <div className="flex gap-4 flex-shrink-0">

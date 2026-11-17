@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "JSON to XML Converter | ToolNest",
+    alternates: { canonical: "/converters/json-xml" },
+    title: "JSON to XML Converter",
     description: "Convert JSON data to XML and vice versa. Free, secure, and client-side conversion for developers and API integrations.",
 };
 

@@ -1,11 +1,14 @@
+import { OG_IMAGE } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Online Case Converter - Change Text Case Instantly | ToolNest",
+    alternates: { canonical: "/text/case-converter" },
+    title: "Online Case Converter - Change Text Case Instantly",
     description: "Convert text between UPPERCASE, lowercase, Title Case, Sentence case, and more. Fast, free, and easy-to-use online text case converter.",
-    keywords: ["case converter", "text case", "uppercase to lowercase", "title case converter", "sentence case", "ToolNest", "text tools"],
+    keywords: ["case converter", "text case", "uppercase to lowercase", "title case converter", "sentence case", "WebToolNest", "text tools"],
     openGraph: {
-        title: "Online Case Converter | ToolNest",
+        images: [OG_IMAGE],
+        title: "Online Case Converter",
         description: "Change your text case instantly with our free online tool.",
         type: "website",
     },

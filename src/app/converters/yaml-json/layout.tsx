@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "YAML to JSON Converter | ToolNest",
+    alternates: { canonical: "/converters/yaml-json" },
+    title: "YAML to JSON Converter",
     description: "Convert YAML configuration files to JSON and vice versa. Essential for DevOps and configuration management.",
 };
 

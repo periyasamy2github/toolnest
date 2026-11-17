@@ -15,10 +15,10 @@ export default function BackButton({ className }: BackButtonProps) {
     return (
         <button
             onClick={() => router.back()}
-            className={cn("p-3 rounded-xl glass hover:bg-white/10 transition-all hover:scale-110 active:scale-95", className)}
+            className={cn("p-3 rounded-[var(--radius)] bg-surface hover:bg-surface-2 transition-colors active:scale-95", className)}
             aria-label="Go back"
         >
-            <ArrowLeft className="text-zinc-100" />
+            <ArrowLeft className="text-foreground" />
         </button>
     );
 }

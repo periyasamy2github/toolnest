@@ -1,11 +1,14 @@
+import { OG_IMAGE } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Media Tools - Edit Image, Video, and Audio Online | ToolNest",
+    alternates: { canonical: "/media" },
+    title: "Media Tools - Edit Image, Video, and Audio Online",
     description: "A comprehensive suite of media tools to edit, compress, and convert images, videos, and audio files directly in your browser. Fast, secure, and private.",
-    keywords: ["media tools", "image editor", "video compressor", "audio cutter", "online media tools", "ToolNest"],
+    keywords: ["media tools", "image editor", "video compressor", "audio cutter", "online media tools", "WebToolNest"],
     openGraph: {
-        title: "Media Tools | ToolNest",
+        images: [OG_IMAGE],
+        title: "Media Tools",
         description: "Professional-grade image, video, and audio tools in one place.",
         type: "website",
     },

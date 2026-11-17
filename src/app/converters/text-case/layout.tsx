@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Text Case Converter | ToolNest",
+    alternates: { canonical: "/converters/text-case" },
+    title: "Text Case Converter",
     description: "Convert text case instantly: Uppercase, Lowercase, Title Case, Camel Case, Snake Case, and more.",
 };
 

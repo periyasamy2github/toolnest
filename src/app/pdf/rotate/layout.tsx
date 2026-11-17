@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+    alternates: { canonical: "/pdf/rotate" },
     title: "Rotate PDF - Rotate PDF Pages Online",
     description: "Rotate your PDF pages permanently for free. Works in your browser, no file uploads required. Secure and private.",
     keywords: ["rotate pdf", "turn pdf", "flip pdf", "pdf rotator", "free pdf tools"],

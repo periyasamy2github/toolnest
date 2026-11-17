@@ -1,116 +1,110 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { OG_IMAGE } from "@/lib/seo";
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { SupportButton } from "@/components/SupportButton";
-import { PageTransition } from "@/components/Animations";
+import { PageFrame } from "@/components/Animations";
 import { Search } from "@/components/Search";
 import ScrollToTop from "@/components/ScrollToTop";
+import { RevealObserver } from "@/components/Reveal";
+import { LazyMotionProvider } from "@/components/LazyMotionProvider";
+import { tools } from "@/data/tools";
+import { SITE_NAME, SITE_URL } from "@/lib/seo";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+// self-hosted so the build never depends on fetching Google Fonts
+const albert = localFont({
+  src: "./fonts/AlbertSans-latin.woff2",
+  variable: "--font-albert",
+  weight: "400 600",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const description = `${tools.length} free online tools that run in your browser: compress images, merge PDFs, format JSON, calculate EMI and more. No sign-up, and your files never leave your device.`;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "ToolNest - The Ultimate All-in-One Digital Toolbox",
-    template: "%s | ToolNest"
+    default: `${SITE_NAME} – ${tools.length} Free Online Tools That Run in Your Browser`,
+    template: `%s | ${SITE_NAME}`,
   },
-  description: "ToolNest is a unified suite of powerful, private, and browser-based web tools for developers, creators, and everyday tasks. 100% private, no uploads, no limits.",
+  description,
+  applicationName: SITE_NAME,
   keywords: [
-    "web tools", "online tools", "image compressor", "background remover",
-    "json formatter", "jwt tool", "unit converter", "qr code generator",
-    "uptime monitoring", "developer utilities", "productivity tools",
-    "text tools", "audio tools", "health calculators", "free online tools",
-    "private web tools", "browser-based tools", "ToolNest"
+    "free online tools", "browser-based tools", "image compressor", "pdf merger",
+    "json formatter", "background remover", "emi calculator", "unit converter",
+    "qr code generator", "developer utilities", "private online tools", SITE_NAME,
   ],
-  authors: [{ name: "Professor", url: "https://t.me/hey_mrprofessor" }],
-  creator: "Professor",
-  publisher: "ToolNest",
-  metadataBase: new URL("https://webtoolnest.vercel.app"),
-  alternates: {
-    canonical: "/",
-  },
+  authors: [{ name: "Periyasamy S", url: "https://github.com/periyasamy2github" }],
+  creator: "Periyasamy S",
+  publisher: SITE_NAME,
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   },
   openGraph: {
-    title: "ToolNest - The Ultimate All-in-One Digital Toolbox",
-    description: "Powerful, private, and browser-based tools for everyone. Media, developers, and everyday tasks. 100% private.",
-    url: "https://webtoolnest.vercel.app",
-    siteName: "ToolNest",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "ToolNest - The Ultimate Digital Toolbox",
-      },
-    ],
+        images: [OG_IMAGE],
+    title: `${SITE_NAME} – ${tools.length} free tools that run in your browser`,
+    description,
+    url: "/",
+    siteName: SITE_NAME,
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ToolNest - The Ultimate All-in-One Digital Toolbox",
-    description: "Powerful, private, and browser-based tools for everyone. Media, developers, and everyday tasks. 100% private.",
-    images: ["/og-image.png"],
-    creator: "@hey_mrprofessor",
+    title: `${SITE_NAME} – ${tools.length} free tools that run in your browser`,
+    description,
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
-  },
-  verification: {
-    google: "your-google-verification-code", // User should replace this
-  }
+  icons: { icon: "/favicon.ico" },
 };
 
-import { LazyMotionProvider } from "@/components/LazyMotionProvider";
+export const viewport: Viewport = {
+  themeColor: "#09090b",
+  colorScheme: "dark",
+};
 
-// ... imports
+const siteJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      description,
+      inLanguage: "en",
+      publisher: { "@id": `${SITE_URL}/#org` },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#org`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: `${SITE_URL}/favicon.ico`,
+      sameAs: ["https://github.com/periyasamy2github/toolnest"],
+    },
+  ],
+};
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en" className="dark">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-950 text-zinc-100 overflow-x-hidden flex flex-col min-h-screen`}
-      >
-        <LazyMotionProvider>
-          <ScrollToTop />
-          <Navbar />
-          <main className="flex-grow transition-all duration-300 pt-24">
-            <div className="container mx-auto px-4 py-0 pb-6 sm:px-6 lg:px-8 max-w-7xl">
-              <PageTransition>
-                {children}
-              </PageTransition>
-            </div>
-          </main>
-          <Footer />
-          <SupportButton />
-          <Search />
-        </LazyMotionProvider>
-      </body>
-    </html>
-  );
-}
+const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => (
+  <html lang="en" className="dark">
+    <body className={`${albert.variable} antialiased bg-background text-foreground overflow-x-hidden flex flex-col min-h-screen`}>
+      <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }} />
+      <LazyMotionProvider>
+        <ScrollToTop />
+        <RevealObserver />
+        <Navbar />
+        <main className="flex-grow">
+          <PageFrame>{children}</PageFrame>
+        </main>
+        <Footer />
+        <Search />
+      </LazyMotionProvider>
+    </body>
+  </html>
+);
+
+export default RootLayout;

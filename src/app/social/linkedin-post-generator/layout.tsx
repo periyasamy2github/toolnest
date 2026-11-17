@@ -1,3 +1,7 @@
+import { toolMetadata } from "@/lib/seo";
+
+export const metadata = toolMetadata("/social/linkedin-post-generator");
+
 export default function SocialMediaLayout({
     children,
 }: {

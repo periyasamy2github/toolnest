@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Pitch Shifter - Change Audio Pitch Online | ToolNest",
+    alternates: { canonical: "/audio/pitch-shifter" },
+    title: "Pitch Shifter - Change Audio Pitch Online",
     description: "Change the pitch of your audio without affecting speed online for free. Adjust pitch of MP3, WAV, and other formats instantly. 100% private.",
-    keywords: ["pitch shifter", "change audio pitch", "pitch changer", "audio pitch control", "ToolNest", "free audio tools"],
+    keywords: ["pitch shifter", "change audio pitch", "pitch changer", "audio pitch control", "WebToolNest", "free audio tools"],
 };
 
 export default function Layout({

@@ -1,12 +1,15 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Search as SearchIcon, X, Command, ArrowRight, LayoutGrid } from "lucide-react";
+import { Search as SearchIcon, X, ArrowRight } from "lucide-react";
 import { m, AnimatePresence } from "framer-motion";
-import { tools, Tool } from "@/data/tools";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { searchTools } from "@/lib/searchTools";
+import { categories } from "@/data/categories";
+
+const categoryName = (key: string) => categories.find((c) => c.key === key)?.name ?? key;
 
 export function Search() {
     const [isOpen, setIsOpen] = useState(false);
@@ -15,13 +18,7 @@ export function Search() {
     const inputRef = useRef<HTMLInputElement>(null);
     const router = useRouter();
 
-    const filteredTools = query.trim() === ""
-        ? []
-        : tools.filter(tool =>
-            tool.title.toLowerCase().includes(query.toLowerCase()) ||
-            tool.description.toLowerCase().includes(query.toLowerCase()) ||
-            tool.tags?.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
-        ).slice(0, 8);
+    const results = query.trim() === "" ? [] : searchTools(query).slice(0, 8);
 
     const closeSearch = useCallback(() => {
         setIsOpen(false);
@@ -30,39 +27,36 @@ export function Search() {
     }, []);
 
     useEffect(() => {
-        const handleOpenSearch = () => {
+        const open = () => {
             setIsOpen(true);
-            setTimeout(() => inputRef.current?.focus(), 100);
+            setTimeout(() => inputRef.current?.focus(), 50);
         };
-
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        const onKey = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
                 e.preventDefault();
-                handleOpenSearch();
+                open();
             }
-            if (e.key === "Escape") {
-                closeSearch();
-            }
+            if (e.key === "Escape") closeSearch();
         };
-
-        window.addEventListener("open-search", handleOpenSearch);
-        window.addEventListener("keydown", handleKeyDown);
+        window.addEventListener("open-search", open);
+        window.addEventListener("keydown", onKey);
         return () => {
-            window.removeEventListener("open-search", handleOpenSearch);
-            window.removeEventListener("keydown", handleKeyDown);
+            window.removeEventListener("open-search", open);
+            window.removeEventListener("keydown", onKey);
         };
     }, [closeSearch]);
 
-    const handleKeyDown = (e: React.KeyboardEvent) => {
+    const onInputKey = (e: React.KeyboardEvent) => {
+        const count = Math.max(1, results.length);
         if (e.key === "ArrowDown") {
             e.preventDefault();
-            setSelectedIndex(prev => (prev + 1) % Math.max(1, filteredTools.length));
+            setSelectedIndex((i) => (i + 1) % count);
         } else if (e.key === "ArrowUp") {
             e.preventDefault();
-            setSelectedIndex(prev => (prev - 1 + filteredTools.length) % Math.max(1, filteredTools.length));
-        } else if (e.key === "Enter" && filteredTools[selectedIndex]) {
+            setSelectedIndex((i) => (i - 1 + count) % count);
+        } else if (e.key === "Enter" && results[selectedIndex]) {
             e.preventDefault();
-            router.push(filteredTools[selectedIndex].href);
+            router.push(results[selectedIndex].href);
             closeSearch();
         }
     };
@@ -70,117 +64,80 @@ export function Search() {
     return (
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] px-4">
+                <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[12vh] px-3" role="dialog" aria-modal="true" aria-label="Search tools">
                     <m.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={closeSearch}
-                        className="absolute inset-0 bg-zinc-950/80 backdrop-blur-sm"
+                        className="absolute inset-0 bg-background/85"
                     />
 
                     <m.div
-                        initial={{ opacity: 0, scale: 0.95, y: -20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: -20 }}
-                        className="relative w-full max-w-2xl bg-zinc-900 border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+                        initial={{ opacity: 0, y: -12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -12 }}
+                        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                        className="relative w-full max-w-2xl bg-surface rounded-[var(--radius)] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.8)] overflow-hidden"
                     >
-                        <div className="flex items-center gap-3 px-4 py-4 border-b border-white/5">
-                            <SearchIcon size={20} className="text-zinc-500" />
+                        <div className="flex items-center gap-3 px-5 h-16 bg-surface-2">
+                            <SearchIcon size={20} className="text-muted" aria-hidden />
                             <input
                                 ref={inputRef}
-                                type="text"
+                                type="search"
                                 value={query}
                                 onChange={(e) => {
                                     setQuery(e.target.value);
                                     setSelectedIndex(0);
                                 }}
-                                onKeyDown={handleKeyDown}
-                                placeholder="Search for tools (e.g. 'pdf', 'json', 'salary')..."
-                                className="flex-1 bg-transparent border-none outline-none text-white placeholder-zinc-500 text-lg"
+                                onKeyDown={onInputKey}
+                                aria-label="Search tools"
+                                placeholder="Try pdf, json, compress, salary"
+                                className="flex-1 bg-transparent outline-none text-foreground placeholder:text-muted text-lg"
                             />
-                            <div className="flex items-center gap-1 px-2 py-1 rounded bg-zinc-800 border border-white/5 text-[10px] font-mono text-zinc-400">
-                                ESC
-                            </div>
-                            <button onClick={closeSearch} className="p-1 hover:bg-white/5 rounded-lg transition-colors">
-                                <X size={20} className="text-zinc-500" />
+                            <button onClick={closeSearch} aria-label="Close search" className="p-2 rounded-[var(--radius)] hover:bg-surface text-muted hover:text-foreground">
+                                <X size={20} />
                             </button>
                         </div>
 
                         <div className="max-h-[60vh] overflow-y-auto custom-scrollbar">
                             {query.trim() === "" ? (
-                                <div className="p-8 text-center space-y-4">
-                                    <div className="w-16 h-16 rounded-2xl bg-zinc-800 flex items-center justify-center mx-auto">
-                                        <Command size={32} className="text-zinc-500" />
-                                    </div>
-                                    <div className="space-y-1">
-                                        <p className="text-white font-semibold">Search ToolNest</p>
-                                        <p className="text-zinc-500 text-sm">Find any tool instantly by name, description, or tags.</p>
+                                <div className="p-5">
+                                    <p className="text-sm text-muted mb-3">Browse a category</p>
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                        {categories.map((c) => (
+                                            <Link key={c.href} href={c.href} onClick={closeSearch} className="px-4 py-3 rounded-[var(--radius)] bg-surface-2 hover:text-accent transition-colors">
+                                                {c.name}
+                                            </Link>
+                                        ))}
                                     </div>
                                 </div>
-                            ) : filteredTools.length > 0 ? (
-                                <div className="p-2 space-y-1">
-                                    {filteredTools.map((tool, index) => (
-                                        <Link
-                                            key={tool.href}
-                                            href={tool.href}
-                                            onClick={closeSearch}
-                                            onMouseEnter={() => setSelectedIndex(index)}
-                                            className={cn(
-                                                "flex items-center gap-4 p-3 rounded-xl transition-all group",
-                                                selectedIndex === index ? "bg-white/10" : "hover:bg-white/5"
-                                            )}
-                                        >
-                                            <div className={cn(
-                                                "w-12 h-12 rounded-xl flex items-center justify-center transition-colors",
-                                                tool.bg
-                                            )}>
-                                                <tool.icon size={24} className={tool.color} />
-                                            </div>
-                                            <div className="flex-1 min-w-0">
-                                                <div className="flex items-center gap-2">
-                                                    <p className="text-white font-bold truncate">{tool.title}</p>
-                                                    <span className="text-[10px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded bg-white/5 text-zinc-500 border border-white/5">
-                                                        {tool.category}
-                                                    </span>
-                                                </div>
-                                                <p className="text-zinc-400 text-sm truncate">{tool.description}</p>
-                                            </div>
-                                            <ArrowRight size={18} className={cn(
-                                                "text-zinc-600 transition-all",
-                                                selectedIndex === index ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
-                                            )} />
-                                        </Link>
+                            ) : results.length > 0 ? (
+                                <ul className="p-2 space-y-1">
+                                    {results.map((tool, index) => (
+                                        <li key={tool.href}>
+                                            <Link
+                                                href={tool.href}
+                                                onClick={closeSearch}
+                                                onMouseEnter={() => setSelectedIndex(index)}
+                                                className={cn(
+                                                    "flex items-center gap-4 p-3 rounded-[var(--radius)] transition-colors",
+                                                    selectedIndex === index ? "bg-surface-2" : "hover:bg-surface-2"
+                                                )}
+                                            >
+                                                <tool.icon size={22} className="text-accent flex-none" aria-hidden />
+                                                <span className="flex-1 min-w-0">
+                                                    <span className="block font-medium truncate">{tool.title}</span>
+                                                    <span className="block text-sm text-muted truncate">{categoryName(tool.category)} · {tool.description}</span>
+                                                </span>
+                                                <ArrowRight size={18} aria-hidden className={cn("text-accent transition-opacity", selectedIndex === index ? "opacity-100" : "opacity-0")} />
+                                            </Link>
+                                        </li>
                                     ))}
-                                </div>
+                                </ul>
                             ) : (
-                                <div className="p-8 text-center space-y-4">
-                                    <div className="w-16 h-16 rounded-2xl bg-zinc-800 flex items-center justify-center mx-auto">
-                                        <SearchIcon size={32} className="text-zinc-500" />
-                                    </div>
-                                    <div className="space-y-1">
-                                        <p className="text-white font-semibold">No tools found</p>
-                                        <p className="text-zinc-500 text-sm">We couldn't find any tools matching "{query}".</p>
-                                    </div>
-                                </div>
+                                <p className="p-6 text-muted">No tool matches “{query}”. Try a shorter word, such as pdf or image.</p>
                             )}
-                        </div>
-
-                        <div className="px-4 py-3 bg-zinc-950/50 border-t border-white/5 flex items-center justify-between text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
-                            <div className="flex items-center gap-4">
-                                <span className="flex items-center gap-1.5">
-                                    <kbd className="px-1.5 py-0.5 rounded bg-zinc-800 border border-white/5 text-zinc-400">↑↓</kbd>
-                                    Navigate
-                                </span>
-                                <span className="flex items-center gap-1.5">
-                                    <kbd className="px-1.5 py-0.5 rounded bg-zinc-800 border border-white/5 text-zinc-400">Enter</kbd>
-                                    Select
-                                </span>
-                            </div>
-                            <div className="flex items-center gap-1.5">
-                                <LayoutGrid size={12} />
-                                ToolNest Search
-                            </div>
                         </div>
                     </m.div>
                 </div>
