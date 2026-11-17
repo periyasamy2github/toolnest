@@ -13,7 +13,7 @@ export const Footer = () => (
                 <p className="text-2xl leading-snug font-medium tracking-[-0.01em] max-w-[22ch]">
                     {tools.length} tools that do their work on your device, free.
                 </p>
-                <p className="text-sm text-muted">© {new Date().getFullYear()} WebToolNest. No accounts, no uploads, no tracking.</p>
+                <p className="text-sm text-muted" suppressHydrationWarning>© {new Date().getFullYear()} WebToolNest. No accounts, no uploads, no tracking.</p>
             </div>
 
             <nav aria-label="Categories" className="tile col-span-1 md:col-span-3 p-6">
@@ -35,7 +35,7 @@ export const Footer = () => (
             </div>
 
             <div className="col-span-2 md:col-span-8 rounded-[var(--radius)] bg-surface text-accent overflow-hidden flex items-center justify-center min-h-[160px] md:min-h-[320px]">
-                <p aria-hidden className="font-semibold tracking-[-0.045em] leading-none text-[16vw] md:text-[9.4vw] whitespace-nowrap">
+                <p aria-hidden translate="no" className="font-semibold tracking-[-0.045em] leading-none text-[16vw] md:text-[9.4vw] whitespace-nowrap">
                     WebToolNest
                 </p>
             </div>

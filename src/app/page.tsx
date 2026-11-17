@@ -78,10 +78,10 @@ const Home = () => (
   <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }} />
 
-    {/* first screen: name band, category links, then nest, live finder and quick links */}
+    {/* first screen: name band, category links, then facts, live finder and quick links */}
     <section className="grid grid-cols-2 lg:grid-cols-12 gap-2 pt-2 lg:h-[calc(100svh-72px)] lg:min-h-[760px] lg:grid-rows-[200px_64px_1fr]">
       <h1 className="col-span-2 lg:col-span-12 h-[96px] lg:h-auto rounded-[var(--radius)] bg-surface text-accent overflow-hidden flex items-center justify-center whitespace-nowrap font-semibold tracking-[-0.045em] leading-[0.8] text-[14.6vw] lg:text-[clamp(160px,17vw,300px)]">
-        <span className="block translate-y-[4%]">WebToolNest</span>
+        <span className="block translate-y-[4%]" translate="no">WebToolNest</span>
         <span className="sr-only">: free online tools</span>
       </h1>
 
@@ -194,7 +194,7 @@ const Home = () => (
       <CloseUp href="/image/compressor" className="col-span-1 row-span-2 lg:col-start-1 lg:col-span-6 lg:row-span-4 lg:row-start-3 bg-bone text-bark" name="Image Compressor" line="Shrink JPG, PNG and WebP without uploading them." d={60}>
         <span data-ui className="absolute right-5 top-5 text-right font-semibold tracking-[-0.05em] leading-[0.9] text-[13vw] lg:text-[11vw] tabular-nums">
           −75%
-          <span className="block text-base lg:text-2xl tracking-normal font-medium text-clay pt-2">2.4 MB to 612 KB</span>
+          <span className="block text-base lg:text-2xl tracking-normal font-medium text-clay pt-2">{"2.4 MB to 612 KB"}</span>
         </span>
       </CloseUp>
 
@@ -206,7 +206,7 @@ const Home = () => (
         <span data-ui className={figure}>3 → 1</span>
       </CloseUp>
 
-      <CloseUp href="/health/bmi-calculator" className="col-span-1 row-span-2 lg:col-start-1 lg:col-span-3 lg:row-span-2 bg-bone-2 text-bark" name="BMI" line="70 kg at 177 cm." d={60}>
+      <CloseUp href="/health/bmi-calculator" className="col-span-1 row-span-2 lg:col-start-1 lg:col-span-3 lg:row-span-2 bg-bone-2 text-bark" name="BMI" line={"70 kg at 177 cm."} d={60}>
         <span data-ui className={figure}>22.3</span>
       </CloseUp>
 
@@ -237,14 +237,21 @@ const Home = () => (
     </section>
 
     {/* the one loud moment: the claim, travelling */}
-    <div className="marquee mt-40 -mx-4 lg:-mx-3 overflow-hidden bg-accent text-accent-ink py-6" aria-hidden>
-      <div className="marquee-track flex w-max whitespace-nowrap text-[clamp(56px,9vw,150px)] font-semibold tracking-[-0.045em] leading-none">
+    <div className="marquee group/marquee mt-40 -mx-4 lg:-mx-3 overflow-hidden bg-accent text-accent-ink pt-6 pb-3 flex flex-col">
+
+      <div aria-hidden className="marquee-track flex w-max whitespace-nowrap text-[clamp(56px,9vw,150px)] font-semibold tracking-[-0.045em] leading-none">
         {[0, 1].map((k) => (
           <span key={k} className="pr-[0.5em]">
             Your files stay on your device · {tools.length} free tools · WebToolNest ·&nbsp;
           </span>
         ))}
       </div>
+      {/* pause control without script: the checkbox state pauses the track in CSS */}
+      <label className="self-end mr-4 lg:mr-3 mt-4 flex items-center px-3 py-2 rounded-[var(--radius)] bg-accent-ink text-accent text-sm font-medium cursor-pointer has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent-ink">
+        <input type="checkbox" className="marquee-pause sr-only" />
+        <span className="group-has-[.marquee-pause:checked]/marquee:hidden">Pause animation</span>
+        <span className="hidden group-has-[.marquee-pause:checked]/marquee:inline">Play animation</span>
+      </label>
     </div>
 
     {/* questions */}
@@ -260,7 +267,7 @@ const Home = () => (
         {faqs.map((f, i) => (
           <details key={f.q} name="faq" open={i === 1} className="reveal group rounded-[var(--radius)] bg-surface open:bg-accent open:text-accent-ink transition-colors" style={{ "--d": `${i * 60}ms` } as React.CSSProperties}>
             <summary className="flex items-center justify-between gap-6 min-h-[72px] px-6 cursor-pointer text-lg lg:text-xl font-medium">
-              <h3>{f.q}</h3>
+              <span>{f.q}</span>
               <span className="faq-plus" aria-hidden />
             </summary>
             <p className="px-6 pb-6 text-[17px] leading-relaxed max-w-[52ch]">{f.a}</p>

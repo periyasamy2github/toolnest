@@ -57,7 +57,7 @@ export const CategoryBoard = ({ categoryKey }: { categoryKey: string }) => {
                 <div className="col-span-2 lg:col-span-9 rounded-[var(--radius)] bg-surface text-foreground p-6 lg:p-8 flex flex-col justify-between gap-12 min-h-[300px]">
                     <nav aria-label="Breadcrumb" className="text-base text-muted">
                         <Link href="/" className="text-accent hover:underline">WebToolNest</Link>
-                        <span> / {category.name}</span>
+                        <span> / </span><span aria-current="page">{category.name}</span>
                     </nav>
                     <div>
                         <h1 className="text-[11vw] sm:text-[clamp(44px,6vw,96px)] leading-[0.95] font-semibold tracking-[-0.04em] max-w-[14ch]">

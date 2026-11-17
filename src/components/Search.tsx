@@ -70,6 +70,7 @@ export function Search() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={closeSearch}
+                        aria-hidden
                         className="absolute inset-0 bg-background/85"
                     />
 
@@ -85,6 +86,9 @@ export function Search() {
                             <input
                                 ref={inputRef}
                                 type="search"
+                                name="search"
+                                autoComplete="off"
+                                spellCheck={false}
                                 value={query}
                                 onChange={(e) => {
                                     setQuery(e.target.value);
@@ -92,15 +96,15 @@ export function Search() {
                                 }}
                                 onKeyDown={onInputKey}
                                 aria-label="Search tools"
-                                placeholder="Try pdf, json, compress, salary"
+                                placeholder="Try pdf, json, compress, salary…"
                                 className="flex-1 bg-transparent outline-none text-foreground placeholder:text-muted text-lg"
                             />
                             <button onClick={closeSearch} aria-label="Close search" className="p-2 rounded-[var(--radius)] hover:bg-surface text-muted hover:text-foreground">
-                                <X size={20} />
+                                <X size={20} aria-hidden />
                             </button>
                         </div>
 
-                        <div className="max-h-[60vh] overflow-y-auto custom-scrollbar">
+                        <div className="max-h-[60vh] overflow-y-auto overscroll-contain custom-scrollbar">
                             {query.trim() === "" ? (
                                 <div className="p-5">
                                     <p className="text-sm text-muted mb-3">Browse a category</p>

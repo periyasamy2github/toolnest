@@ -19,7 +19,7 @@ export const Navbar = () => {
     return (
         <header className="sticky top-0 z-50 bg-background px-4 lg:px-3 pt-2">
             <nav aria-label="Main" className="tile flex items-center justify-between gap-4 h-14 pl-5 pr-2">
-                <Link href="/" className="text-xl font-semibold tracking-[-0.03em] text-foreground hover:text-accent transition-colors">
+                <Link href="/" translate="no" className="text-xl font-semibold tracking-[-0.03em] text-foreground hover:text-accent transition-colors">
                     WebToolNest
                 </Link>
 
@@ -50,7 +50,7 @@ export const Navbar = () => {
                     >
                         <Search size={18} aria-hidden />
                         <span>Search<span className="hidden sm:inline"> tools</span></span>
-                        <kbd className="hidden md:inline text-sm font-sans opacity-70">Ctrl K</kbd>
+                        <kbd className="hidden md:inline text-sm font-sans opacity-70">{"Ctrl K"}</kbd>
                     </button>
                     <button
                         onClick={() => setIsOpen((v) => !v)}
@@ -59,7 +59,7 @@ export const Navbar = () => {
                         aria-label={isOpen ? "Close menu" : "Open menu"}
                         className="lg:hidden w-10 h-10 grid place-items-center rounded-[var(--radius)] bg-surface-2 text-foreground"
                     >
-                        {isOpen ? <X size={20} /> : <Menu size={20} />}
+                        {isOpen ? <X size={20} aria-hidden /> : <Menu size={20} aria-hidden />}
                     </button>
                 </div>
             </nav>

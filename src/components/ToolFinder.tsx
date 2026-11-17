@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Search } from "lucide-react";
 import { tools } from "@/data/tools";
@@ -18,6 +18,21 @@ const categoryName = (key: string) => categories.find((c) => c.key === key)?.nam
 // the hero's live search: the board of tools filters as you type
 export const ToolFinder = () => {
     const [query, setQuery] = useState("");
+
+    // restore a shared ?q= search on load
+    useEffect(() => {
+        const q = new URLSearchParams(window.location.search).get("q");
+        if (q) setQuery(q);
+    }, []);
+
+    // keep the query in the URL so a search can be shared or bookmarked
+    const updateQuery = (value: string) => {
+        setQuery(value);
+        const url = new URL(window.location.href);
+        if (value.trim()) url.searchParams.set("q", value);
+        else url.searchParams.delete("q");
+        window.history.replaceState(null, "", url);
+    };
     const matches = query.trim() ? searchTools(query) : featuredTools;
     const shown = matches.slice(0, 9);
 
@@ -28,9 +43,12 @@ export const ToolFinder = () => {
                 <span className="sr-only">Find a tool</span>
                 <input
                     type="search"
+                    name="q"
+                    autoComplete="off"
+                    spellCheck={false}
                     value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Find a tool: pdf, json, emi"
+                    onChange={(e) => updateQuery(e.target.value)}
+                    placeholder="Find a tool: pdf, json, emi…"
                     className="flex-1 min-w-0 bg-transparent outline-none text-lg placeholder:text-clay"
                 />
                 <span className="text-base text-clay tabular-nums whitespace-nowrap" aria-live="polite">
